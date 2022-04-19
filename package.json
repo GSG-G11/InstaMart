@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node dist/index.js",
     "dev": "cross-env NODE_ENV=dev nodemon src/index.ts",
-    "build": "tsc -p ."
+    "build": "tsc -p .",
+    "heroku-postbuild": "cd client && npm i && npm run build"
   },
   "repository": {
     "type": "git",
