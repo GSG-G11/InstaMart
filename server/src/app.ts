@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import dotenv from 'dotenv';
 import router from './routes';
+import { serveRoot } from './controllers';
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ app.use('/api/v1/', router);
 const { NODE_ENV } = process.env;
 if (NODE_ENV === 'production') {
   app.use(express.static(join(__dirname, '..', '..', 'client', 'build')));
-  app.get('*', () => {});
+  app.get('*', serveRoot);
 }
 
 app.set('port', process.env.PORT || 3000);
