@@ -23,6 +23,6 @@ if (NODE_ENV === 'production') {
   app.get('*', serveRoot);
 }
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3001);
 
 export default app;
