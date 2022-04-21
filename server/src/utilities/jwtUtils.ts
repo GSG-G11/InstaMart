@@ -2,9 +2,11 @@ import jwt, { Secret } from 'jsonwebtoken';
 
 const { PRIVATE_KEY } = process.env;
 
-// eslint-disable-next-line max-len
-const jwtSign = (payload: { id: number | undefined, isAdmin: boolean |undefined}) => new Promise((resolve, reject) => {
-  jwt.sign(payload, (PRIVATE_KEY as Secret), (jwtError, token) => {
+const jwtSign = (payload: {
+  id: number | undefined;
+  isAdmin: boolean | undefined;
+}) => new Promise((resolve, reject) => {
+  jwt.sign(payload, PRIVATE_KEY as Secret, (jwtError, token) => {
     if (!jwtError) {
       resolve(token);
     }
@@ -12,8 +14,8 @@ const jwtSign = (payload: { id: number | undefined, isAdmin: boolean |undefined}
   });
 });
 
-const jwtVerify = (token:string) => new Promise((resolve, reject) => {
-  jwt.verify(token, (PRIVATE_KEY as Secret), (error, data) => {
+const jwtVerify = (token: string) => new Promise((resolve, reject) => {
+  jwt.verify(token, PRIVATE_KEY as Secret, (error, data) => {
     if (!error) {
       resolve(data);
     } else {
