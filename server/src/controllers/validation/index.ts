@@ -1,3 +1,4 @@
 import signupValidation from './signupValidation';
 
-export default signupValidation;
+// eslint-disable-next-line import/prefer-default-export
+export { signupValidation };
