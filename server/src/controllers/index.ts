@@ -1,4 +1,11 @@
+import logout from './logout';
+import notFound from './notFound';
+import serverError from './serverError';
 import serveRoot from './serveRootIndex';
 
-// eslint-disable-next-line import/prefer-default-export
-export { serveRoot };
+export {
+  serveRoot,
+  logout,
+  notFound,
+  serverError,
+};
