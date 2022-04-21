@@ -11,8 +11,8 @@
     "heroku-postbuild": "cd client && npm i && npm run build",
     "sync":"cross-env NODE_ENV=dev ts-node server/src/database/sync.ts",
     "lint": "eslint --ext .ts server/src/",
-    "lint:client": "eslint --ext .js .jsx client/src/",
-    "lint-fix:client": "eslint --ext .js .jsx client/src/ --fix",
+    "lint:client": "eslint --ext .jsx client/src/",
+    "lint-fix:client": "eslint --ext .jsx client/src/ --fix",
     "lint-fix": "eslint --ext .ts server/src/ --fix"
   },
   "repository": {
