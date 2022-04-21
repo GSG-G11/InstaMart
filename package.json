@@ -8,7 +8,8 @@
     "dev": "cross-env NODE_ENV=dev ts-node-dev server/src/index.ts",
     "build": "tsc -p .",
     "react": "cd client && npm start",
-    "heroku-postbuild": "cd client && npm i && npm run build"
+    "heroku-postbuild": "cd client && npm i && npm run build",
+    "sync":"cross-env NODE_ENV=dev ts-node server/src/database/sync.ts"
   },
   "repository": {
     "type": "git",
@@ -54,6 +55,5 @@
     "ts-node": "^10.7.0",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.6.3"
-  },
-  "type": "module"
+  }
 }
