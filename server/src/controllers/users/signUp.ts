@@ -14,7 +14,7 @@ const signUp = async (req: Request, res: Response, next: NextFunction) => {
       } else if (confirmPassword === password) {
         bcrypt.hash(password, 10).then(async (encryptedPass) => {
           // eslint-disable-next-line max-len
-          const user = await User.create({ ...req.body, password: encryptedPass, confirmPassword: encryptedPass });
+          const user = await User.create({ ...req.body, password: encryptedPass });
           jwtSign({ id: user.id, isAdmin: user.is_admin })
             .then((token) => {
               res.cookie('token', token)

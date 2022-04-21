@@ -22,10 +22,6 @@ const Product = sequelize.define('product', {
   details: {
     type: DataTypes.TEXT,
   },
-//   quantity:{
-//     type: DataTypes.INTEGER,
-//     allowNull: false
-//   }
 });
 
 export default Product;

@@ -28,9 +28,6 @@ const sequelize = new Sequelize(connectionString, {
   dialect: 'postgres',
   dialectOptions: { ssl },
   logging: false,
-  define: {
-    timestamps: false,
-  },
 });
 
 export default sequelize;
