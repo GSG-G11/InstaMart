@@ -1,4 +1,4 @@
 import serveRoot from './serveRootIndex';
+import signUp from './users';
 
-// eslint-disable-next-line import/prefer-default-export
-export { serveRoot };
+export { serveRoot, signUp };
