@@ -1,5 +1,7 @@
 import { Sequelize } from 'sequelize';
+import dotenv from 'dotenv';
 
+dotenv.config();
 const {
   NODE_ENV, DEV_DB_URL, TEST_DB_URL, DATABASE_URL,
 } = process.env;
@@ -25,6 +27,7 @@ if (!connectionString) throw new Error('no db url, check .env file for valid key
 const sequelize = new Sequelize(connectionString, {
   dialect: 'postgres',
   dialectOptions: { ssl },
+  logging: false,
 });
 
 export default sequelize;
