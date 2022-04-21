@@ -1,35 +1,48 @@
-import { DataTypes } from 'sequelize';
+import {
+  DataTypes, Model, InferCreationAttributes, InferAttributes,
+} from 'sequelize';
 import sequelize from '../config/connection';
 
-const User = sequelize.define('users', {
-id:{
+interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
+    id?:number,
+    name:string
+    email:string
+    mobile?:number
+    address?:string
+    password:string
+    is_admin?: boolean
+   }
+
+const User = sequelize.define<UserModel>('users', {
+  id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
-},
-name:{
-    type: DataTypes.STRING,
-    allowNull: false
-},
-email:{
+  },
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique:true,
-},
-mobile:{
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  mobile: {
     type: DataTypes.INTEGER,
-},
-address:{
+  },
+  address: {
     type: DataTypes.STRING,
-},
-password:{
+  },
+  password: {
     type: DataTypes.STRING,
     allowNull: false,
-},
-is_admin:{
+  },
+  is_admin: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
-},
+    defaultValue: false,
+  },
 });
 
-export default User
+export default User;
