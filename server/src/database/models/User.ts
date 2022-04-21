@@ -10,7 +10,7 @@ interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttri
     mobile?:number
     address?:string
     password:string
-    is_admin?: boolean
+    isAdmin?: boolean
    }
 
 const User = sequelize.define<UserModel>('users', {
@@ -38,11 +38,12 @@ const User = sequelize.define<UserModel>('users', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  is_admin: {
+  isAdmin: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
     defaultValue: false,
   },
+
 });
 
 export default User;
