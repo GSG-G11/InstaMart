@@ -5,12 +5,12 @@ import sequelize from '../config/connection';
 
 interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
     id?:number,
-    name:string
-    email:string
-    mobile?:number
-    address?:string
-    password:string
-    isAdmin?: boolean
+    name:string,
+    email:string,
+    mobile?:number,
+    address?:string,
+    password:string,
+    isAdmin?: boolean,
    }
 
 const User = sequelize.define<UserModel>('users', {

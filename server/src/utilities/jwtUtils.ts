@@ -3,8 +3,9 @@ import jwt, { Secret } from 'jsonwebtoken';
 const { PRIVATE_KEY } = process.env;
 
 const jwtSign = (payload: {
-  id: number | undefined;
-  isAdmin: boolean | undefined;
+  id: number | undefined,
+  isAdmin: boolean | undefined,
+  name:string | undefined,
 }) => new Promise((resolve, reject) => {
   jwt.sign(payload, PRIVATE_KEY as Secret, (jwtError, token) => {
     if (!jwtError) {

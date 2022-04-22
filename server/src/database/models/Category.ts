@@ -1,7 +1,16 @@
-import { DataTypes } from 'sequelize';
+import {
+  DataTypes, Model, InferCreationAttributes, InferAttributes,
+} from 'sequelize';
 import sequelize from '../config/connection';
 
-const Category = sequelize.define('category', {
+interface CategoryModel extends Model<InferAttributes<CategoryModel>,
+ InferCreationAttributes<CategoryModel>> {
+  id?:number,
+  name:string,
+  imageUrl:string,
+ }
+
+const Category = sequelize.define<CategoryModel>('category', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -11,7 +20,7 @@ const Category = sequelize.define('category', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  image_url: {
+  imageUrl: {
     type: DataTypes.TEXT,
     allowNull: false,
   },

@@ -1,7 +1,20 @@
-import { DataTypes } from 'sequelize';
+import {
+  DataTypes, Model, InferCreationAttributes, InferAttributes,
+} from 'sequelize';
 import sequelize from '../config/connection';
 
-const Order = sequelize.define('orders', {
+interface OrderModel extends Model<InferAttributes<OrderModel>,
+ InferCreationAttributes<OrderModel>> {
+  id?:number,
+  date:Date,
+  totalPrice:number,
+  paidPrice:number,
+  status:string,
+  supplier?:string,
+  isSupplied:boolean,
+ }
+
+const Order = sequelize.define<OrderModel>('order', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -11,11 +24,11 @@ const Order = sequelize.define('orders', {
     type: DataTypes.DATE,
     allowNull: false,
   },
-  total_price: {
+  totalPrice: {
     type: DataTypes.DECIMAL,
     allowNull: false,
   },
-  paid_price: {
+  paidPrice: {
     type: DataTypes.DECIMAL,
     allowNull: false,
   },
@@ -26,7 +39,7 @@ const Order = sequelize.define('orders', {
   supplier: {
     type: DataTypes.STRING,
   },
-  is_admin: {
+  isSupplied: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },

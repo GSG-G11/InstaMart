@@ -1,5 +1,16 @@
+import notFound from './notFound';
+import serverError from './serverError';
 import serveRoot from './serveRootIndex';
-import signUp from './users';
-import login from './users/login';
+import {
+  authUser, login, logout, signUp,
+} from './users';
 
-export { serveRoot, signUp, login };
+export {
+  serveRoot,
+  notFound,
+  serverError,
+  logout,
+  login,
+  signUp,
+  authUser,
+};

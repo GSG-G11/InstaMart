@@ -1,7 +1,18 @@
-import { DataTypes } from 'sequelize';
+import {
+  DataTypes, Model, InferCreationAttributes, InferAttributes,
+} from 'sequelize';
 import sequelize from '../config/connection';
 
-const Product = sequelize.define('product', {
+interface ProductModel extends Model<InferAttributes<ProductModel>,
+ InferCreationAttributes<ProductModel>> {
+  id?:number,
+  name:string,
+  imageUrl:string,
+  price: number,
+  details?: string,
+ }
+
+const Product = sequelize.define<ProductModel>('product', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -11,7 +22,7 @@ const Product = sequelize.define('product', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  image_url: {
+  imageUrl: {
     type: DataTypes.TEXT,
     allowNull: false,
   },
