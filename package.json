@@ -14,7 +14,7 @@
     "lint:client": "eslint --ext .jsx client/src/",
     "lint-fix:client": "eslint --ext .jsx client/src/ --fix",
     "lint-fix": "eslint --ext .ts server/src/ --fix",
-    "test":"cross-env NODE_ENV=test ts-jest server/__test__/"
+    "test": "cross-env NODE_ENV=test ts-jest server/__test__/"
   },
   "repository": {
     "type": "git",
@@ -40,6 +40,8 @@
     "sequelize": "^6.19.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
     "@types/bcrypt": "^5.0.0",
     "@types/compression": "^1.7.2",
     "@types/cookie-parser": "^1.4.2",
@@ -54,6 +56,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.26.0",
+    "husky": "^7.0.4",
     "jest": "^27.5.1",
     "pre-commit": "^1.2.2",
     "supertest": "^6.2.2",
