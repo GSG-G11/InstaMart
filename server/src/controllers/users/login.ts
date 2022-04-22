@@ -4,25 +4,27 @@ import { CustomizedError, comparePass, jwtSign } from '../../utilities';
 import { User } from '../../database/models';
 
 const login = async (req:Request, res:Response) => {
-  const { name, password } = req.body;
+  const { email, password } = req.body;
   try {
     await logInValidation.validateAsync(req.body);
     const getUser = await User.findAll({
       where: {
-        name,
+        email,
       },
     });
     if (getUser.length === 0) {
       throw CustomizedError('Email Is Used Sign Up', 403);
     }
 
-    const { password: hashedPass, id, isAdmin } = getUser[0];
+    const {
+      password: hashedPass, id, isAdmin, name,
+    } = getUser[0];
     const verifiedUser = await comparePass(password, hashedPass);
 
     if (!verifiedUser) throw CustomizedError('password Invalid', 403);
 
     else {
-      const token = await jwtSign({ id, isAdmin });
+      const token = await jwtSign({ id, isAdmin, name });
       res
         .status(201)
         .cookie('token', token)
