@@ -18,7 +18,7 @@ const signUp = async (req: Request, res: Response) => {
       const user = await User.create({
         name, address, mobile, email, password: encryptedPass,
       });
-      const token = await jwtSign({ id: user.id, isAdmin: user.isAdmin });
+      const token = await jwtSign({ id: user.id, isAdmin: user.isAdmin, name });
       res.cookie('token', token).status(201).json({ success: true });
     } else {
       res.status(400).json({ success: false, message: 'password and checkPassword not equivelant' });
