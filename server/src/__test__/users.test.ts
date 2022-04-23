@@ -1,9 +1,75 @@
 /* eslint-disable no-undef */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import supertest from 'supertest';
-import sync from '../database/sync';
 import sequelize from '../database/config/connection';
 import app from '../app';
+import sync from '../database/sync';
+
+beforeAll(() => sync());
+
+describe('POST /api/v1/signup', () => {
+  test('success sign up', (done) => {
+    supertest(app)
+      .post('/api/v1/signup')
+      .send({
+        name: 'yosra',
+        password: 'password',
+        confirmPassword: 'password',
+        email: 'yosra@gmail.com',
+        address: 'gaza',
+        mobile: '0594121212',
+      })
+      .expect(201)
+      .end((err, res) => {
+        if (err) return done(err);
+        const token = res.header['set-cookie'][0].split('=')[0];
+        expect(token).toBe('token');
+        expect(res.body.success).toBe(true);
+        return done();
+      });
+  });
+});
+describe('validation error', () => {
+  test('validation error, must be a valid email', (done) => {
+    supertest(app)
+      .post('/api/v1/signup')
+      .send({
+        name: 'yosra',
+        password: 'password',
+        confirmPassword: 'password',
+        email: 'yosragmail.com',
+        address: 'gaza',
+        mobile: '0594121212',
+      })
+      .expect(422)
+      .end((err, res) => {
+        if (err) return done(err);
+        // eslint-disable-next-line no-useless-escape
+        expect(res.body).toBe('\"email\" must be a valid email');
+        return done();
+      });
+  });
+});
+describe('sign up with email is already exists', () => {
+  test('email is already exists', (done) => {
+    supertest(app)
+      .post('/api/v1/signup')
+      .send({
+        name: 'yosra',
+        password: 'password',
+        confirmPassword: 'password',
+        email: 'yosra@gmail.com',
+        address: 'gaza',
+        mobile: '0594121212',
+      })
+      .expect(400)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.message).toBe('Email is already exist !');
+        return done();
+      });
+  });
+});
 
 beforeAll(() => sync());
 describe('Post /api/v1/logout', () => {
