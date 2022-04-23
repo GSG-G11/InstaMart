@@ -131,8 +131,8 @@ describe('GET /api/v1/auth/user', () => {
   test('when the entered data is valid and the token was created Should return 200 status', (done) => {
     supertest(app)
       .post('/api/v1/login')
-      .send({ email: 'mahmoud@gmail.com', password: '123456' })
-      .expect(200)
+      .send({ email: 'yosra@gmail.com', password: 'password' })
+      .expect(201)
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
@@ -143,12 +143,13 @@ describe('GET /api/v1/auth/user', () => {
   test('when there is a validation error 422 status', (done) => {
     supertest(app)
       .post('/api/v1/login')
-      .send({ email: 'mgmail.com', password: '123456' })
+      .send({ email: 'mgmail.com', password: 'password' })
       .expect(422)
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
-        expect(res.body.msg).toBe('password Invalid');
+        expect(res.body.msg).toBe('"email" must be a valid email');
+
         return done();
       });
   });
