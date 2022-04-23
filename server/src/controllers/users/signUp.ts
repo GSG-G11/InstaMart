@@ -1,10 +1,10 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import { signupValidation } from '../validation';
 import { User } from '../../database/models';
-import { jwtSign } from '../../utilities';
+import { jwtSign, CustomizedError } from '../../utilities';
 
-const signUp = async (req: Request, res: Response) => {
+const signUp = async (req: Request, res: Response, next: NextFunction) => {
   const {
     name, address, mobile, email, password, confirmPassword,
   } = req.body;
@@ -27,7 +27,7 @@ const signUp = async (req: Request, res: Response) => {
     if (error.details) {
       res.status(422).json(error.details[0].message);
     } else {
-      res.json('Internal Server Error').status(500);
+      next(CustomizedError('server error', 500));
     }
   }
 };
