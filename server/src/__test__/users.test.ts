@@ -40,7 +40,7 @@ describe('validation error', () => {
         address: 'gaza',
         mobile: '0594121212',
       })
-      .expect(200)
+      .expect(422)
       .end((err, res) => {
         if (err) return done(err);
         // eslint-disable-next-line no-useless-escape

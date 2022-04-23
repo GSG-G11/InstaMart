@@ -25,7 +25,7 @@ const signUp = async (req: Request, res: Response) => {
     }
   } catch (error: any) {
     if (error.details) {
-      res.json(error.details[0].message);
+      res.status(422).json(error.details[0].message);
     } else {
       res.json('Internal Server Error').status(500);
     }
