@@ -3,21 +3,30 @@ import React, {
   createContext, useState, useContext, useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
-import Cookies from 'js-cookie';
+import axios from 'axios';
 
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [isAuth, setIsAuth] = useState(null);
+  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    setIsAuth(Cookies.get('token'));
-  });
-  if (isAuth === null) {
-    return <h1>Loading</h1>;
-  }
+  const login = async ({ password, email }, callback = null) => {
+    try {
+      const result = await axios.post('/api/v1/login', {
+        password,
+        email,
+      });
+      setUser(result.data.rows);
+      if (callback) callback(null);
+    } catch (error) {
+      if (callback) callback(error);
+    }
+  };
+
+  useEffect(() => {});
+
   return (
-    <AuthContext.Provider value={{ isAuth }}>
+    <AuthContext.Provider value={{ user, login }}>
       {children}
     </AuthContext.Provider>
   );

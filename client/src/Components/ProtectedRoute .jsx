@@ -4,8 +4,8 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '../useAuth';
 
 function ProtectedRoute({ redirectPath = '/', children }) {
-  const { isAuth } = useAuth();
-  if (!isAuth) {
+  const { user } = useAuth();
+  if (!user) {
     return <Navigate to={redirectPath} />;
   }
   return children;
