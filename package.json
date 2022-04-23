@@ -15,7 +15,7 @@
     "lint-fix:client": "eslint --ext .jsx client/src/ --fix",
     "lint-fix": "eslint --ext .ts server/src/ --fix",
     "test": "cross-env NODE_ENV=test jest server/__test__/",
-    "prepare": "husky install"
+    "prepare": "is-ci || npx husky install"
   },
   "repository": {
     "type": "git",
@@ -59,6 +59,7 @@
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.26.0",
     "husky": "^7.0.4",
+    "is-ci": "^3.0.1",
     "jest": "^27.5.1",
     "supertest": "^6.2.2",
     "ts-jest": "^27.1.4",
