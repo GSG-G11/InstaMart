@@ -1,35 +1,48 @@
-import { DataTypes } from 'sequelize';
+import {
+  DataTypes, Model, InferCreationAttributes, InferAttributes,
+} from 'sequelize';
 import sequelize from '../config/connection';
 
-const Order = sequelize.define('orders', {
-id:{
+interface OrderModel extends Model<InferAttributes<OrderModel>,
+ InferCreationAttributes<OrderModel>> {
+  id?:number,
+  date:Date,
+  totalPrice:number,
+  paidPrice:number,
+  status:string,
+  supplier?:string,
+  isSupplied:boolean,
+ }
+
+const Order = sequelize.define<OrderModel>('order', {
+  id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
-},
-date:{
+  },
+  date: {
     type: DataTypes.DATE,
-    allowNull: false
-},
-total_price:{
+    allowNull: false,
+  },
+  totalPrice: {
     type: DataTypes.DECIMAL,
-    allowNull: false
-},
-paid_price:{
+    allowNull: false,
+  },
+  paidPrice: {
     type: DataTypes.DECIMAL,
-    allowNull: false
-},
-status:{
+    allowNull: false,
+  },
+  status: {
     type: DataTypes.STRING,
-    allowNull: false
-},
-supplier:{
+    allowNull: false,
+  },
+  supplier: {
     type: DataTypes.STRING,
-},
-is_admin:{
+  },
+  isSupplied: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
-},
+  },
 });
 
-export default Order
+export default Order;

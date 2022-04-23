@@ -1,31 +1,38 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../config/connection";
+import {
+  DataTypes, Model, InferCreationAttributes, InferAttributes,
+} from 'sequelize';
+import sequelize from '../config/connection';
 
-const Product = sequelize.define('product',{
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-      },
-      name:{
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      image_url:{
-        type: DataTypes.TEXT,
-        allowNull: false
-      },
-      price:{
-        type: DataTypes.DECIMAL,
-        allowNull: false
-      },
-      details:{
-        type: DataTypes.TEXT,
-      },
-    //   quantity:{
-    //     type: DataTypes.INTEGER,
-    //     allowNull: false
-    //   }
-})
+interface ProductModel extends Model<InferAttributes<ProductModel>,
+ InferCreationAttributes<ProductModel>> {
+  id?:number,
+  name:string,
+  imageUrl:string,
+  price: number,
+  details?: string,
+ }
 
-export default Product
+const Product = sequelize.define<ProductModel>('product', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  imageUrl: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+  price: {
+    type: DataTypes.DECIMAL,
+    allowNull: false,
+  },
+  details: {
+    type: DataTypes.TEXT,
+  },
+});
+
+export default Product;

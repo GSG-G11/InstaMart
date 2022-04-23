@@ -1,20 +1,29 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../config/connection";
+import {
+  DataTypes, Model, InferCreationAttributes, InferAttributes,
+} from 'sequelize';
+import sequelize from '../config/connection';
 
-const Category = sequelize.define('category',{
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-      },
-      name:{
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      image_url:{
-        type: DataTypes.TEXT,
-        allowNull: false
-      }
-})
+interface CategoryModel extends Model<InferAttributes<CategoryModel>,
+ InferCreationAttributes<CategoryModel>> {
+  id?:number,
+  name:string,
+  imageUrl:string,
+ }
 
-export default Category
+const Category = sequelize.define<CategoryModel>('category', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  imageUrl: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+});
+
+export default Category;
