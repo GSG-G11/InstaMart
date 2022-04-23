@@ -1,0 +1,70 @@
+{
+  "name": "instamart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/dist/index.js",
+    "dev": "cross-env NODE_ENV=dev ts-node-dev server/src/index.ts",
+    "build": "tsc -p .",
+    "react": "cd client && npm start",
+    "heroku-postbuild": "cd client && npm i && npm run build",
+    "sync": "cross-env NODE_ENV=dev ts-node server/src/database/sync.ts",
+    "lint": "eslint --ext .ts server/src/",
+    "lint:client": "eslint --ext .jsx client/src/",
+    "lint-fix:client": "eslint --ext .jsx client/src/ --fix",
+    "lint-fix": "eslint --ext .ts server/src/ --fix",
+    "test": "cross-env NODE_ENV=test jest  --runInBand server/src/__test__/",
+    "prepare": "is-ci || npx husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GSG-G11/InstaMart.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GSG-G11/InstaMart/issues"
+  },
+  "homepage": "https://github.com/GSG-G11/InstaMart#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.7.3",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.19.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-conventional": "^16.2.1",
+    "@types/bcrypt": "^5.0.0",
+    "@types/compression": "^1.7.2",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.1",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/node": "^17.0.25",
+    "@types/supertest": "^2.0.12",
+    "@typescript-eslint/eslint-plugin": "^5.20.0",
+    "@typescript-eslint/parser": "^5.20.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
+    "eslint-plugin-import": "^2.26.0",
+    "husky": "^7.0.4",
+    "is-ci": "^3.0.1",
+    "jest": "^27.5.1",
+    "supertest": "^6.2.2",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.6.3"
+  }
+}
