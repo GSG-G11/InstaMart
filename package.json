@@ -14,8 +14,8 @@
     "lint:client": "eslint --ext .jsx client/src/",
     "lint-fix:client": "eslint --ext .jsx client/src/ --fix",
     "lint-fix": "eslint --ext .ts server/src/ --fix",
-    "test": "cross-env NODE_ENV=test ts-jest server/__test__/",
-    "prepare": "npx husky install"
+    "test": "cross-env NODE_ENV=test jest --runInBand server/src/__test__/",
+    "prepare": "is-ci || npx husky install"
   },
   "repository": {
     "type": "git",
@@ -50,6 +50,7 @@
     "@types/jest": "^27.4.1",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^17.0.25",
+    "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
     "cross-env": "^7.0.3",
@@ -58,6 +59,7 @@
     "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.26.0",
     "husky": "^7.0.4",
+    "is-ci": "^3.0.1",
     "jest": "^27.5.1",
     "supertest": "^6.2.2",
     "ts-jest": "^27.1.4",

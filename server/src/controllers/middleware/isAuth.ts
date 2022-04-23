@@ -12,9 +12,10 @@ const isAuth = async (req:ModRequest, res:Response, next:NextFunction) => {
       req.user = decodedToken;
       return next();
     }
-    throw CustomizedError('Unauthorized', 401);
+    return next(CustomizedError('Unauthorized', 401));
   } catch (err:any) {
-    return res.clearCookie('token').json(CustomizedError('Bad request', 400));
+    res.clearCookie('token');
+    return next(CustomizedError('Bad Request', 400));
   }
 };
 
