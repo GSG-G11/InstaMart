@@ -132,7 +132,7 @@ describe('GET /api/v1/auth/user', () => {
     supertest(app)
       .post('/api/v1/login')
       .send({ email: 'yosra@gmail.com', password: 'password' })
-      .expect(201)
+      .expect(200)
       .expect('Content-Type', /json/)
       .end((err, res) => {
         if (err) return done(err);
