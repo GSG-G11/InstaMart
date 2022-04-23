@@ -32,7 +32,7 @@ const login = async (req:Request, res:Response) => {
     }
   } catch (err:any) {
     if (err.details) {
-      res.json(CustomizedError(err.details[0].message, 400));
+      res.json(CustomizedError(err.details[0].message, 422));
     }
     res.json(err);
   }
