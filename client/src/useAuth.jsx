@@ -45,10 +45,23 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const logout = async (callback = null) => {
+    try {
+      await axios.post('/api/v1/logout');
+      setUser(null);
+      if (callback) callback(null);
+    } catch (error) {
+      if (callback) callback(error);
+    }
+  };
+
   useEffect(() => {});
 
   return (
-    <AuthContext.Provider value={{ user, login, signup }}>
+    <AuthContext.Provider value={{
+      user, login, signup, logout,
+    }}
+    >
       {children}
     </AuthContext.Provider>
   );
