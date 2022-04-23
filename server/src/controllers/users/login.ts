@@ -1,9 +1,9 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { logInValidation } from '../validation';
 import { CustomizedError, comparePass, jwtSign } from '../../utilities';
 import { User } from '../../database/models';
 
-const login = async (req: Request, res: Response) => {
+const login = async (req:Request, res:Response, next:NextFunction) => {
   const { email, password } = req.body;
   try {
     await logInValidation.validateAsync(req.body);
@@ -29,10 +29,9 @@ const login = async (req: Request, res: Response) => {
     }
   } catch (err: any) {
     if (err.details) {
-      res.json(CustomizedError(err.details[0].message, 400));
-    } else {
-      res.json({ error: err.message });
+      res.status(422).json({ msg: err.details[0].message, status: 422 });
     }
+    next(err);
   }
 };
 
