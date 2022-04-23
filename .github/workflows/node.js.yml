@@ -1,7 +1,7 @@
 name: Test
 on: push
 env:
-  SECRET_KEY: ${{ secrets.PRIVATE_KEY }}
+  PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
 
 jobs:
   container-job:
