@@ -23,10 +23,32 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const signup = async (
+    {
+      name, address, mobile, email, password, confirmPassword,
+    },
+    callback = null,
+  ) => {
+    try {
+      const result = await axios.post('/api/v1/signup', {
+        name,
+        address,
+        mobile,
+        email,
+        password,
+        confirmPassword,
+      });
+      setUser(result.data.rows);
+      if (callback) callback(null);
+    } catch (error) {
+      if (callback) callback(error);
+    }
+  };
+
   useEffect(() => {});
 
   return (
-    <AuthContext.Provider value={{ user, login }}>
+    <AuthContext.Provider value={{ user, login, signup }}>
       {children}
     </AuthContext.Provider>
   );
