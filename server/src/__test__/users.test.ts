@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import supertest from 'supertest';
-import app from '../src/app';
+import app from '../app';
 
 describe('Post /api/v1/logout', () => {
   test("should return { status: 200, msg: 'logged out successfully !' }", (done) => {
