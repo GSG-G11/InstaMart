@@ -11,7 +11,7 @@ router.post('/login', login);
 router.post('/logout', logout);
 
 // Protected routes should be under this line
-router.use(isAuth);
+router.use('/auth', isAuth);
 router.get('/auth/user', authUser);
 
 router.use(notFound);
