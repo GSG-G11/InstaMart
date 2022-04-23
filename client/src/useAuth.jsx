@@ -9,6 +9,7 @@ export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const login = async ({ password, email }, callback = null) => {
     try {
@@ -55,17 +56,39 @@ export function AuthProvider({ children }) {
     }
   };
 
-  useEffect(() => {});
+  const authUser = async (signal) => {
+    try {
+      const result = await axios.get('/api/v1/auth/user', { signal });
+      setUser(result.data);
+      setLoading(false);
+    } catch (error) {
+      setUser(null);
+    }
+  };
+
+  useEffect(() => {
+    const abortController = new AbortController();
+    authUser(abortController.signal);
+    return () => {
+      abortController.abort();
+    };
+  }, []);
 
   return (
-    <AuthContext.Provider value={{
-      user, login, signup, logout,
-    }}
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        login,
+        signup,
+        logout,
+      }}
     >
       {children}
     </AuthContext.Provider>
   );
 }
+
 AuthProvider.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
