@@ -1,8 +1,11 @@
 /* eslint-disable no-undef */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import supertest from 'supertest';
+import sync from '../database/sync';
+import sequelize from '../database/config/connection';
 import app from '../app';
 
+beforeAll(() => sync());
 describe('Post /api/v1/logout', () => {
   test("should return { status: 200, msg: 'logged out successfully !' }", (done) => {
     const resp = { status: 200, msg: 'logged out successfully !' };
@@ -58,4 +61,46 @@ describe('GET /api/v1/auth/user', () => {
         return done();
       });
   });
+
+  test('when the entered data is valid and the token was created Should return 200 status', (done) => {
+    supertest(app)
+      .post('/api/v1/login')
+      .send({ email: 'q@q.com', password: '123456' })
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.msg).toBe('logIn successfully');
+        return done();
+      });
+  });
+  test('when the entered data is valid and the token was created Should return 200 status', (done) => {
+    supertest(app)
+      .post('/api/v1/login')
+      .send({ email: 'mahmoud@gmail.com', password: '123456' })
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.msg).toBe('logIn successfully');
+        return done();
+      });
+  });
+  test('when there is a validation error 403 status', (done) => {
+    supertest(app)
+      .post('/api/v1/login')
+      .send({ email: 'm@gmail.com', password: '123456' })
+      .expect(403)
+      .expect('Content-Type', /json/)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(res.body.msg).toBe('password Invalid');
+        return done();
+      });
+  });
+});
+
+afterAll(() => {
+  // Closing the DB connection allows Jest to exit successfully.
+  sequelize.close();
 });
