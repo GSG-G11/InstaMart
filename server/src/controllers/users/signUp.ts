@@ -16,10 +16,10 @@ const signUp = async (req: Request, res: Response) => {
     } else if (confirmPassword === password) {
       const encryptedPass = await bcrypt.hash(password, 10);
       const user = await User.create({
-        name, address, mobile, email, password: encryptedPass,
+        name, address, mobile, email, password: encryptedPass, isAdmin: false,
       });
       const token = await jwtSign({ id: user.id, isAdmin: user.isAdmin, name });
-      res.cookie('token', token).status(201).json({ success: true });
+      res.cookie('token', token).status(201).json({ success: true, user: { isAdmin: user.isAdmin, id: user.id, name } });
     } else {
       res.status(400).json({ success: false, message: 'password and checkPassword not equivelant' });
     }
