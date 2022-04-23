@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
         password,
         email,
       });
-      setUser(result.data.rows);
+      setUser(result.data.user);
       if (callback) callback(null);
     } catch (error) {
       if (callback) callback(error);
@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
         password,
         confirmPassword,
       });
-      setUser(result.data.rows);
+      setUser(result.data.user);
       if (callback) callback(null);
     } catch (error) {
       if (callback) callback(error);
@@ -56,22 +56,19 @@ export function AuthProvider({ children }) {
     }
   };
 
-  const authUser = async (signal) => {
+  const authUser = async () => {
     try {
-      const result = await axios.get('/api/v1/auth/user', { signal });
+      const result = await axios.get('/api/v1/auth/user');
       setUser(result.data);
       setLoading(false);
     } catch (error) {
+      setLoading(false);
       setUser(null);
     }
   };
 
   useEffect(() => {
-    const abortController = new AbortController();
-    authUser(abortController.signal);
-    return () => {
-      abortController.abort();
-    };
+    authUser();
   }, []);
 
   return (
