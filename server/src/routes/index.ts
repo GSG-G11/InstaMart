@@ -10,15 +10,15 @@ const router = Router();
 router.post('/signup', signUp);
 router.post('/login', login);
 router.post('/logout', logout);
-router.route('/products')
-  .get(getProducts)
-  .post(addProduct)
-  .patch(editProduct)
-  .delete(deleteProduct);
+router.get('/products', getProducts);
 
 // Protected routes should be under this line
 router.use('/auth', isAuth);
 router.get('/auth/user', authUser);
+router.route('/auth/admin/product')
+  .post(addProduct)
+  .patch(editProduct)
+  .delete(deleteProduct);
 
 router.use(notFound);
 router.use(serverError);

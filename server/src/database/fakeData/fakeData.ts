@@ -19,18 +19,18 @@ const categories = [
 
 const products = [
   {
-    name: 'Rice',
-    imageUrl: '',
-    price: 10,
-    details: '',
-    categoryId: 1,
-  },
-  {
     name: 'Cola',
     imageUrl: '',
     price: 20,
     details: '',
     categoryId: 2,
+  },
+  {
+    name: 'Rice',
+    imageUrl: '',
+    price: 10,
+    details: '',
+    categoryId: 1,
   },
   {
     name: 'Tomato',

@@ -8,7 +8,7 @@ const getProducts = async (req:Request, res:Response, next:NextFunction) => {
     await getProductsValidation(req);
     const dbProducts = await Product.findAll({
       where: categoryId ? { categoryId: +categoryId } : undefined,
-      order: sort ? [['price', 'DESC']] : undefined,
+      order: sort ? [['price', `${sort}`]] : undefined,
     });
     res.json(dbProducts.filter(({ name }) => !q || name.includes(`${q}`)));
   } catch (err:any) {
