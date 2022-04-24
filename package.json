@@ -15,7 +15,9 @@
     "lint-fix:client": "eslint --ext .jsx client/src/ --fix",
     "lint-fix": "eslint --ext .ts server/src/ --fix",
     "test": "cross-env NODE_ENV=test jest  --runInBand server/src/__test__/",
-    "prepare": "is-ci || npx husky install"
+    "prepare": "is-ci || npx husky install",
+    "db:fake": "cross-env NODE_ENV=dev ts-node server/src/database/fakeData/buildFakeData.ts"
+
   },
   "repository": {
     "type": "git",
