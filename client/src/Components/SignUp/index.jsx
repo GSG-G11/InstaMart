@@ -3,7 +3,7 @@ import { Button, TextField, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import logo from '../../images/logo1.png';
 import './SignUp.css';
-import image from '../../images/image.png';
+import image from '../../images/SignUp.jpeg';
 import { useAuth } from '../../Hooks/useAuth';
 
 function SignUp() {
@@ -32,19 +32,21 @@ function SignUp() {
 
   return (
     <div className="container">
-      <div className="signupImage">
+      <div className="signupImage-container">
         <img src={image} alt="error loading images" className="signupimage" />
       </div>
       <div className="rightContainer">
         <div className="logoPart">
           <img
+            className="logo-image-title"
             src={logo}
             alt="img"
           />
         </div>
-        <p className="welomeParagraph">welcome to Instashop</p>
+        <p className="welomeParagraph">Welcome To InstaMart</p>
         <div className="inputContainer">
           <TextField
+            size="small"
             id="name"
             label="Name"
             variant="outlined"
@@ -54,8 +56,9 @@ function SignUp() {
             }}
           />
           <TextField
+            size="small"
             id="email"
-            label="email"
+            label="Email"
             variant="outlined"
             className="inputField"
             onChange={(e) => {
@@ -63,8 +66,9 @@ function SignUp() {
             }}
           />
           <TextField
+            size="small"
             id="mobile"
-            label="mobile"
+            label="Mobile"
             variant="outlined"
             className="inputField"
             onChange={(e) => {
@@ -72,8 +76,9 @@ function SignUp() {
             }}
           />
           <TextField
+            size="small"
             id="password"
-            label="password"
+            label="Password"
             variant="outlined"
             className="inputField"
             type="password"
@@ -82,8 +87,9 @@ function SignUp() {
             }}
           />
           <TextField
+            size="small"
             id="confirmPassword"
-            label="confirmPassword"
+            label="Confirm Password"
             className="inputField"
             type="password"
             onChange={(e) => {
@@ -91,8 +97,9 @@ function SignUp() {
             }}
           />
           <TextField
+            size="small"
             id="address"
-            label="address"
+            label="Address"
             className="inputField"
             onChange={(e) => {
               setValue({ ...value, address: e.target.value });
