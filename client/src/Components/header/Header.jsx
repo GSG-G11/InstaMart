@@ -6,7 +6,9 @@ import './index.css';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import { ShoppingCart, AccountCircle, Logout } from '@mui/icons-material';
+import {
+  ShoppingCart, AccountCircle, Logout, Login,
+} from '@mui/icons-material';
 import appIcon from './grocery-cart 3.png';
 import { useAuth } from '../../useAuth';
 
@@ -87,7 +89,15 @@ function Header() {
             </Menu>
 
           </>
-        ) : null}
+        ) : (
+          <div
+            className="user-info"
+            onClick={() => navigate('/login')}
+          >
+            <Login className="shopping-cart-icon" />
+            <p className="user-name">Log In</p>
+          </div>
+        )}
       </div>
     </div>
   );
