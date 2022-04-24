@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './index.css';
 import Menu from '@mui/material/Menu';
@@ -14,6 +14,14 @@ function Header() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const [cartitems, setCartitems] = useState([]);
+
+  useEffect(() => {
+    const cartitemsArr = localStorage.getItem('cartItems');
+    if (cartitems) {
+      setCartitems(JSON.parse(cartitemsArr));
+    }
+  }, []);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -57,7 +65,7 @@ function Header() {
           {' '}
           <div className="shopping-cart-div">
             <ShoppingCart className="shopping-cart-icon" />
-            <p className="products-number">5</p>
+            <p className="products-number">{cartitems.length}</p>
           </div>
         </Link>
 
