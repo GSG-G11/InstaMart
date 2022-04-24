@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
-import { Product } from '../../database';
+import { Product, Category } from '../../database';
 
 const getProductByID = async (req:Request, res:Response, next:NextFunction) => {
   const { id } = req.params;
   try {
-    const productByID = await Product.findOne({ where: { id } });
+    const productByID = await Product.findOne({ include: Category, where: { id } });
     if (productByID) {
       res.json({ success: true, data: productByID });
     } else {
