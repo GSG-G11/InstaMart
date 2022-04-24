@@ -13,7 +13,7 @@ const login = async (req:Request, res:Response, next:NextFunction) => {
       },
     });
     if (getUser.length === 0) {
-      throw CustomizedError('Email Is Used Sign Up', 403);
+      throw CustomizedError('Email is not exist sign up', 403);
     }
 
     const {
@@ -22,15 +22,12 @@ const login = async (req:Request, res:Response, next:NextFunction) => {
     const verifiedUser = await comparePass(password, hashedPass);
 
     if (!verifiedUser) throw CustomizedError('password Invalid', 403);
-
     else {
       const token = await jwtSign({ id, isAdmin, name });
-      res
-        .status(201)
-        .cookie('token', token)
-        .json({ msg: 'logIn successfully' });
+      res.cookie('token', token);
+      res.send({ msg: 'logIn successfully', user: { isAdmin, id, name } });
     }
-  } catch (err:any) {
+  } catch (err: any) {
     if (err.details) {
       res.status(422).json({ msg: err.details[0].message, status: 422 });
     }

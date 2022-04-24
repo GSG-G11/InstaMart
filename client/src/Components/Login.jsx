@@ -1,12 +1,12 @@
-/* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  Link,
+  Link, useNavigate,
 } from 'react-router-dom';
 import { Button, TextField, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import axios from 'axios';
+
 import logo from '../assets/logo.png';
+import { useAuth } from '../useAuth';
 
 const useStyles = makeStyles({
   head: {
@@ -43,11 +43,13 @@ const useStyles = makeStyles({
   },
 });
 
-function LogInComponent() {
+function Login() {
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const classes = useStyles();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [loginPayload, setLoginPayload] = useState({});
+  const [errorMsg, setError] = useState(null);
   const [data, setData] = useState({
     email: null,
     password: null,
@@ -61,26 +63,20 @@ function LogInComponent() {
     });
   };
 
-  //   useEffect(() => {
-  //     const fetchData = async () => {
-  //       try {
-  //         const response = await axios.post('/api/v1/login', {
-  //           password: data.password,
-  //           email: data.email,
-  //         });
-  //         setLoginPayload(response);
-  //       } catch (err) {
-  //         setLoginPayload(err.response);
-  //       }
-  //     };
-  //     fetchData();
-  //   }, [data]);
+  const call = (loginPayload) => {
+    if (loginPayload.data.msg === 'logIn successfully') {
+      navigate(`/
+      `);
+    } else {
+      setError(loginPayload.data.msg);
+      console.log(errorMsg);
+    }
+  };
 
-  //   useEffect(() => {
-  //     if (loginPayload.data) {
-  //       console.log(loginPayload.data.msg);
-  //     }
-  //   }, [loginPayload]);
+  useEffect(() => {
+    // eslint-disable-next-line no-unused-expressions
+    data.email ? login({ password: data.password, email: data.email }, call) : null;
+  }, [data]);
 
   return (
     <div className={classes.loginContainer}>
@@ -91,23 +87,20 @@ function LogInComponent() {
         <h1 className={classes.head}>welcome to Instashop</h1>
         <TextField className={classes.textFld} variant="outlined" type="email" placeholder=" Enter your email" onChange={(e) => setEmail(e.target.value)} required />
         <TextField className={classes.textFld} variant="outlined" type="password" placeholder=" Password" onChange={(e) => setPassword(e.target.value)} required />
-        {/* {result.body.msg === 'logIn successfully' ? null : <h1>{result.body.msg}</h1>} */}
+        {errorMsg ? <Typography component="h4" style={{ color: 'red', paddingBottom: '20' }}>{errorMsg}</Typography> : null}
 
         <Button type="submit" className={classes.signInBtn} style={{ backgroundColor: '#3AB77D' }} variant="contained" size="large">Sign In </Button>
         <Typography component="h2" style={{ margin: '15px' }}>
           {' '}
           Create new account
           {' '}
-          <a href="/signin">
-            Sign In
-          </a>
+          <Link to="/signup">
+            Sign Up
+          </Link>
         </Typography>
       </form>
     </div>
   );
 }
 
-export default LogInComponent;
-// if (result.data.msg === 'logIn successfully') { navigate('/dsw'); } else {
-//   console.log('ghdfh');
-// }
+export default Login;
