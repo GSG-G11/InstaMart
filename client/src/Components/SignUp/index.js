@@ -3,11 +3,46 @@
 import React, { useState } from 'react';
 import { link } from 'react-router-dom';
 import { Button, TextField, Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import logo from '../../images/logo.png';
 import image from '../../images/image.png';
-import './SignUp.css';
+
+const useStyles = makeStyles({
+  head: {
+    height: '80px',
+  },
+  signUpBtn: {
+    backgroun: '#3AB77D',
+    width: '200px',
+  },
+  container: {
+    display: 'flex',
+    width: '100vw',
+    height: '100vh',
+  },
+  signupimage: {
+    height: '100%',
+    width: '50%',
+  },
+  logo: {
+    height: '300px',
+    width: '500px',
+  },
+  inputconatiner: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+  },
+  textFld: {
+    width: '400px',
+    height: '100px',
+  },
+});
 
 function SignUp() {
+  const classes = useStyles();
   const [value, setValue] = useState({
     username: '',
     password: '',
@@ -16,22 +51,22 @@ function SignUp() {
   });
 
   return (
-    <div className="container">
-      <div className="image">
-        <img src={image} alt="error loading images" className="signup image" />
-      </div>
+    <div className={classes.container}>
+      <img src={image} alt="error loading images" className={classes.signupimage} />
 
-      <div className="input-conatiner">
-        <img src={logo} alt="logo" />
-        <Typography variant="h6" component="h2">
-          welcome to instashop
-        </Typography>
-
+      <div className={classes.inputconatiner}>
+        <img
+          // src="https://o.remove.bg/downloads/5dd29f37-cdef-4f0a-beed-21df992cc719/Screen_Shot_2022-04-23_at_10.59.53_PM-removebg-preview.png"
+          src={logo}
+          alt="img"
+          className={classes.logo}
+        />
+        <h1 className={classes.head}>welcome to Instashop</h1>
         <TextField
           id="name"
           label="Name"
           variant="outlined"
-          className="input-field"
+          className={classes.textFld}
           onChange={(e) => {
             setValue({ ...value, username: e.target.value });
           }}
@@ -40,7 +75,7 @@ function SignUp() {
           id="password"
           label="password"
           variant="outlined"
-          className="input-field"
+          className={classes.textFld}
           onChange={(e) => {
             setValue({ ...value, password: e.target.value });
           }}
@@ -49,7 +84,7 @@ function SignUp() {
           id="confirmPassword"
           label="confirmPassword"
           variant="outlined"
-          className="input-field"
+          className={classes.textFld}
           onChange={(e) => {
             setValue({ ...value, confirmPassword: e.target.value });
           }}
@@ -58,12 +93,12 @@ function SignUp() {
           id="address"
           label="address"
           variant="outlined"
-          className="input-field"
+          className={classes.textFld}
           onChange={(e) => {
             setValue({ ...value, address: e.target.value });
           }}
         />
-        <Button variant="contained" className="btn-signup">Sign Up</Button>
+        <Button variant="contained" className={classes.signUpBtn}>Sign Up</Button>
       </div>
     </div>
   );

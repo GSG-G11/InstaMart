@@ -1,4 +1,4 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -39,4 +39,7 @@
 .btn-signup{
     background-color: #3AB77D;
     color: #FFFFFF;
+} */
+.makeStyles-signUpBtn-30 {
+    width: 200px;
 }
