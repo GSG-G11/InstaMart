@@ -1,8 +1,34 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+.container{
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+}
+.signupImage{
+width: 50vw;
+}
+.rightContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:40px 120px;
+    gap: 20px;
+}
+.welomeParagraph{
+    color: #7E7E7E;
+    font-size: 31px;
+}
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.inputField{
+    background-color: #FAFAFB;
+    color: #000000;
+    height: 63px;
+    width: 400px;
+}
   /* 
 .container{
     display: flex;
