@@ -55,6 +55,9 @@
   align-items: center;
   align-content: center;
   gap: 5px;
+  cursor: pointer;
+  border: none;
+  background: none;
 }
 .header-section .icons-div .shopping-cart-icon {
   color: #3bb77e;

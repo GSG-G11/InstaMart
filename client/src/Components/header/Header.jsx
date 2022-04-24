@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './index.css';
@@ -9,7 +7,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import {
   ShoppingCart, AccountCircle, Logout, Login,
 } from '@mui/icons-material';
-import appIcon from './grocery-cart 3.png';
+import appIcon from './logo.png';
 import { useAuth } from '../../useAuth';
 
 function Header() {
@@ -65,13 +63,14 @@ function Header() {
 
         {user ? (
           <>
-            <div
+            <button
               onClick={handleClick}
               className="user-info"
+              type="submit"
             >
               <AccountCircle className="shopping-cart-icon" />
-              <p className="user-name">Salma</p>
-            </div>
+              <p className="user-name">{user.name}</p>
+            </button>
             <Menu
               anchorEl={anchorEl}
               id="account-menu"
@@ -90,13 +89,14 @@ function Header() {
 
           </>
         ) : (
-          <div
+          <button
             className="user-info"
             onClick={() => navigate('/login')}
+            type="submit"
           >
             <Login className="shopping-cart-icon" />
             <p className="user-name">Log In</p>
-          </div>
+          </button>
         )}
       </div>
     </div>
