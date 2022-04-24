@@ -4,6 +4,9 @@ import serveRoot from './serveRootIndex';
 import {
   authUser, login, logout, signUp,
 } from './users';
+import {
+  addProduct, deleteProduct, editProduct, getProducts,
+} from './products';
 
 export {
   serveRoot,
@@ -13,4 +16,8 @@ export {
   login,
   signUp,
   authUser,
+  addProduct,
+  deleteProduct,
+  editProduct,
+  getProducts,
 };
