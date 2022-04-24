@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
+import { Op } from 'sequelize';
 import { getProductsValidation } from '../validation';
 import { Product } from '../../database';
 
@@ -7,10 +8,15 @@ const getProducts = async (req:Request, res:Response, next:NextFunction) => {
   try {
     await getProductsValidation(req);
     const dbProducts = await Product.findAll({
-      where: categoryId ? { categoryId: +categoryId } : undefined,
+      where:
+       ((categoryId && q) ? {
+         [Op.and]: [{ categoryId: +categoryId }, { name: { [Op.like]: `%${q}%` } }],
+       } : undefined)
+       || (categoryId ? { categoryId: +categoryId } : undefined)
+       || (q ? { name: { [Op.like]: `%${q}%` } } : undefined),
       order: sort ? [['price', `${sort}`]] : undefined,
     });
-    res.json(dbProducts.filter(({ name }) => !q || name.includes(`${q}`)));
+    res.json(dbProducts);
   } catch (err:any) {
     if (err.details) {
       res.status(422).json({ msg: err.details[0].message, status: 422 });
