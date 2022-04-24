@@ -42,6 +42,7 @@ export function AuthProvider({ children }) {
       setUser(result.data.user);
       if (callback) callback(null);
     } catch (error) {
+      console.log(error.response);
       if (callback) callback(error);
     }
   };

@@ -2,10 +2,10 @@ import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import SignUp from './Components/SignUp';
 import './App.css';
-import { Home, Profile } from './Components';
+import { Home } from './Components';
 import Login from './Components/Login';
-import ProtectedRoute from './Components/ProtectedRoute ';
-import { AuthProvider } from './useAuth';
+// import ProtectedRoute from './Components/ProtectedRoute ';
+import { AuthProvider } from './Hooks/useAuth';
 
 function App() {
   return (
@@ -17,14 +17,14 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route
+          {/* <Route
             path="/profile"
             element={(
               <ProtectedRoute redirectPath="/login">
                 <Profile />
               </ProtectedRoute>
             )}
-          />
+          /> */}
         </Routes>
       </AuthProvider>
     </div>

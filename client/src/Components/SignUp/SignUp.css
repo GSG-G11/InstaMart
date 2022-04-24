@@ -1,8 +1,9 @@
-/* *{
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
   }
+  /* 
 .container{
     display: flex;
     flex-direction: row;
@@ -40,6 +41,3 @@
     background-color: #3AB77D;
     color: #FFFFFF;
 } */
-.makeStyles-signUpBtn-30 {
-    width: 200px;
-}
