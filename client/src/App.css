@@ -1,4 +1,6 @@
-p{
-  color: brown;
-  font-size: 200px;
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
