@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
 import React, {
   createContext, useState, useContext, useEffect,
 } from 'react';
@@ -42,7 +41,7 @@ export function AuthProvider({ children }) {
       setUser(result.data.user);
       if (callback) callback(null);
     } catch (error) {
-      if (callback) callback(error);
+      if (callback) callback(error.response);
     }
   };
 
