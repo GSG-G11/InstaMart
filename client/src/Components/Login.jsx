@@ -51,10 +51,6 @@ function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [errorMsg, setError] = useState(null);
-  const [data, setData] = useState({
-    email: null,
-    password: null,
-  });
 
   const call = (error) => {
     if (!error) {
@@ -67,11 +63,8 @@ function Login() {
 
   const handelSubmit = (e) => {
     e.preventDefault();
-    setData({
-      email,
-      password,
-    });
-    login({ password: data.password, email: data.email }, call);
+
+    login({ password, email }, call);
   };
 
   return (
