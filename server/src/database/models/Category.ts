@@ -22,7 +22,7 @@ const Category = sequelize.define<CategoryModel>('category', {
   },
   imageUrl: {
     type: DataTypes.TEXT,
-    allowNull: false,
+    allowNull: true,
   },
 });
 
