@@ -6,7 +6,7 @@ import { Button, TextField, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 import logo from '../assets/logo.png';
-import { useAuth } from '../useAuth';
+import { useAuth } from '../Hooks/useAuth';
 
 const useStyles = makeStyles({
   head: {

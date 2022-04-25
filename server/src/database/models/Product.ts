@@ -10,6 +10,7 @@ interface ProductModel extends Model<InferAttributes<ProductModel>,
   imageUrl:string,
   price: number,
   details?: string,
+  categoryId?:number
  }
 
 const Product = sequelize.define<ProductModel>('product', {
@@ -32,6 +33,9 @@ const Product = sequelize.define<ProductModel>('product', {
   },
   details: {
     type: DataTypes.TEXT,
+  },
+  categoryId: {
+    type: DataTypes.INTEGER,
   },
 });
 

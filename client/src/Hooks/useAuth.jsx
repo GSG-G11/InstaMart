@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
 import React, {
-  createContext, useState, useContext, useEffect,
+  createContext, useState, useContext, useEffect, useMemo,
 } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -43,7 +42,7 @@ export function AuthProvider({ children }) {
       setUser(result.data.user);
       if (callback) callback(null);
     } catch (error) {
-      if (callback) callback(error);
+      if (callback) callback(error.response);
     }
   };
 
@@ -71,16 +70,16 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     authUser();
   }, []);
-
+  const value = useMemo(() => ({
+    user,
+    loading,
+    login,
+    signup,
+    logout,
+  }), []);
   return (
     <AuthContext.Provider
-      value={{
-        user,
-        loading,
-        login,
-        signup,
-        logout,
-      }}
+      value={value}
     >
       {children}
     </AuthContext.Provider>
