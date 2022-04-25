@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Link, useNavigate,
 } from 'react-router-dom';
@@ -56,14 +56,6 @@ function Login() {
     password: null,
   });
 
-  const handelSubmit = (e) => {
-    e.preventDefault();
-    setData({
-      email,
-      password,
-    });
-  };
-
   const call = (error) => {
     if (!error) {
       navigate(`/
@@ -73,10 +65,14 @@ function Login() {
     }
   };
 
-  useEffect(() => {
-    // eslint-disable-next-line no-unused-expressions
-    data.email ? login({ password: data.password, email: data.email }, call) : null;
-  }, [data]);
+  const handelSubmit = (e) => {
+    e.preventDefault();
+    setData({
+      email,
+      password,
+    });
+    login({ password: data.password, email: data.email }, call);
+  };
 
   return (
     <div className={classes.loginContainer}>
