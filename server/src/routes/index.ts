@@ -16,11 +16,10 @@ router.get('/products', getProducts);
 // Protected routes should be under this line
 router.use('/auth', isAuth);
 router.get('/auth/user', authUser);
-router.post('/addproduct', addProduct);
-// router.route('/auth/admin/product')
-//   .post(addProduct)
-//   .patch(editProduct)
-//   .delete(deleteProduct);
+router.route('/auth/admin/product')
+  .post(addProduct)
+  .patch(editProduct)
+  .delete(deleteProduct);
 
 router.use(notFound);
 router.use(serverError);
