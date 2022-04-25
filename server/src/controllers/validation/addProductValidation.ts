@@ -7,7 +7,7 @@ const addProductValidation = (req: Request) => {
     imageUrl: Joi.string().required(),
     price: Joi.number().required(),
     details: Joi.string().required(),
-    categoryId: Joi.string().required(),
+    categoryId: Joi.number().required(),
   });
   return schema.validateAsync(req.body);
 };

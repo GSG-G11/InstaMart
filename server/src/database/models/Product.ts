@@ -13,7 +13,7 @@ interface ProductModel extends Model<InferAttributes<ProductModel>,
   categoryId?:number
  }
 
-const Product = sequelize.define<ProductModel>('products', {
+const Product = sequelize.define<ProductModel>('product', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
