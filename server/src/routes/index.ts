@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {
   signUp, login, logout, notFound, serverError, authUser,
+  // eslint-disable-next-line no-unused-vars
   addProduct, deleteProduct, editProduct, getProducts,
 } from '../controllers';
 import { isAuth } from '../controllers/middleware';

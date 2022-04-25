@@ -119,7 +119,7 @@ describe('GET /api/v1/auth/user', () => {
     };
     supertest(app)
       .get('/api/v1/auth/user')
-      .set('Cookie', ['token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaXNBZG1pbiI6ZmFsc2UsIm5hbWUiOiJJYnJhaGltIiwiaWF0IjoxNjUwNjY5MDk1fQ.7lzrri5_70Xlm5djI-bu9HPSI7yTnT-yP813FNXZOBk'])
+      .set('Cookie', [`token=${process.env.TOKEN}`])
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
@@ -156,6 +156,5 @@ describe('GET /api/v1/auth/user', () => {
 });
 
 afterAll(() => {
-  // Closing the DB connection allows Jest to exit successfully.
   sequelize.close();
 });
