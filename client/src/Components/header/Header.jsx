@@ -8,7 +8,7 @@ import {
   ShoppingCart, AccountCircle, Logout, Login,
 } from '@mui/icons-material';
 import appIcon from './logo.png';
-import { useAuth } from '../../useAuth';
+import { useAuth } from '../../Hooks/useAuth';
 
 function Header() {
   const navigate = useNavigate();

@@ -1,12 +1,12 @@
 import React from 'react';
-// import { Routes, Route, Link } from 'react-router-dom';
-
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
-// import { Home, Profile } from './Components';
+import SignUp from './Components/SignUp';
+import { Home } from './Components';
+import Login from './Components/Login';
 import Header from './Components/header/Header';
-// import Login from './Components/Login';
-// import ProtectedRoute from './Components/ProtectedRoute ';
-import { AuthProvider } from './useAuth';
+// import ProtectedRoute from './Components/ProtectedRoute';
+import { AuthProvider } from './Hooks/useAuth';
 
 function App() {
   return (
@@ -15,19 +15,20 @@ function App() {
       <Link to="/profile">Profile</Link> */}
       <AuthProvider>
         <Header />
-
-        {/* <Routes>
+        <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route
+          {/* <Route
             path="/profile"
             element={(
               <ProtectedRoute redirectPath="/login">
                 <Profile />
               </ProtectedRoute>
             )}
-          />
-        </Routes> */}
+          /> */}
+          {/* example how to use protected route */}
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
       </AuthProvider>
     </div>
   );

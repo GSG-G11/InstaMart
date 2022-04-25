@@ -13,7 +13,7 @@ const login = async (req:Request, res:Response, next:NextFunction) => {
       },
     });
     if (getUser.length === 0) {
-      throw CustomizedError('Email Is Used Sign Up', 403);
+      throw CustomizedError('Email is not exist sign up', 403);
     }
 
     const {
