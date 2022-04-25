@@ -33,6 +33,28 @@ describe('POST /api/v1/auth/admin/product', () => {
       });
   });
 });
+describe('POST /api/v1/auth/admin/product', () => {
+  test('test error validation, not found price', (done) => {
+    supertest(app)
+      .post('/api/v1/auth/admin/product')
+      .set('Cookie', ['token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaXNBZG1pbiI6ZmFsc2UsIm5hbWUiOiJJYnJhaGltIiwiaWF0IjoxNjUwNjY5MDk1fQ.7lzrri5_70Xlm5djI-bu9HPSI7yTnT-yP813FNXZOBk'])
+      .send({
+        name: 'product test',
+        imageUrl: 'image url product test',
+        details: 'details test',
+        categoryId: 2,
+      })
+      .expect(422)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+        // eslint-disable-next-line no-useless-escape
+        expect(res.body).toBe('\"price\" is required');
+        return done();
+      });
+  });
+});
 afterAll(() => {
   sequelize.close();
 });
