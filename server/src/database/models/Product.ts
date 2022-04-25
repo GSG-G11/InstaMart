@@ -34,6 +34,9 @@ const Product = sequelize.define<ProductModel>('product', {
   details: {
     type: DataTypes.TEXT,
   },
+  categoryId: {
+    type: DataTypes.INTEGER,
+  },
 });
 
 export default Product;
