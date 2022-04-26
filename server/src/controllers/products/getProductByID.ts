@@ -14,7 +14,7 @@ const getProductByID = async (req:Request, res:Response, next:NextFunction) => {
     if (err.details) {
       res.status(422).json({ msg: err.details[0].message, status: 422 });
     }
-    next(err);
+    return next(err);
   }
 };
 export default getProductByID;
