@@ -18,7 +18,7 @@ function Header() {
 
   useEffect(() => {
     const cartitemsArr = localStorage.getItem('cartItems');
-    if (cartitems) {
+    if (cartitemsArr) {
       setCartitems(JSON.parse(cartitemsArr));
     }
   }, []);
