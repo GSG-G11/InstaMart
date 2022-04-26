@@ -7,6 +7,7 @@ import Login from './Components/Login';
 import Header from './Components/header/Header';
 // import ProtectedRoute from './Components/ProtectedRoute';
 import { AuthProvider } from './Hooks/useAuth';
+import ProductDetails from './Components/productdetails/ProductDetails';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           /> */}
           {/* example how to use protected route */}
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
       </AuthProvider>
     </div>
