@@ -1,4 +1,9 @@
 import signupValidation from './signupValidation';
 import logInValidation from './logInSchema';
+import getProductsValidation from './getProductsValidation';
 
-export { signupValidation, logInValidation };
+export {
+  signupValidation,
+  logInValidation,
+  getProductsValidation,
+};
