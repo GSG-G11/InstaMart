@@ -3,7 +3,7 @@ on: push
 env:
   PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
   TOKEN: ${{ secrets.TOKEN }}
-
+  ADMIN: ${{ secrets.ADMIN }}
 jobs:
   container-job:
     runs-on: ubuntu-latest
