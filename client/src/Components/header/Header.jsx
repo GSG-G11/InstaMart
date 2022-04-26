@@ -17,7 +17,7 @@ function Header() {
   const [cartitems, setCartitems] = useState([]);
 
   useEffect(() => {
-    const cartitemsArr = localStorage.getItem('cartItems');
+    const cartitemsArr = localStorage.getItem('product');
     if (cartitems) {
       setCartitems(JSON.parse(cartitemsArr));
     }
@@ -65,7 +65,7 @@ function Header() {
           {' '}
           <div className="shopping-cart-div">
             <ShoppingCart className="shopping-cart-icon" />
-            <p className="products-number">{cartitems.length}</p>
+            <p className="products-number">{0}</p>
           </div>
         </Link>
 

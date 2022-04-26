@@ -55,6 +55,29 @@ describe('POST /api/v1/auth/admin/product', () => {
       });
   });
 });
+describe('Patch /api/v1/auth/admin/product', () => {
+  test('success edit product ', (done) => {
+    supertest(app)
+      .patch('/api/v1/auth/admin/product')
+      .set('Cookie', [`token=${process.env.ADMIN}`])
+      .send({
+        id: 2,
+        name: 'product test',
+        imageUrl: 'image url product test',
+        price: 20,
+        details: 'details test',
+        categoryId: 2,
+      })
+      .expect(200)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+        expect(res.body.message).toBe('Product Updated Successfully !');
+        return done();
+      });
+  });
+});
 afterAll(() => {
   sequelize.close();
 });
