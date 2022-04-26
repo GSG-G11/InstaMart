@@ -1,41 +1,15 @@
 /* eslint-disable no-param-reassign */
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
 import './index.css';
 
-function ProductDetails() {
+function ProductDetails({ addToCartLS }) {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [productCount, setProductCount] = useState(0);
-  const addToCartLS = () => {
-    if (productCount) {
-      const products = localStorage.getItem('cartItems');
-      if (products) {
-        const productsArray = JSON.parse(products);
-        const currentProduct = productsArray.find(
-          (productInArray) => productInArray.id === product.id,
-        );
-        if (currentProduct) {
-          const newProducts = productsArray.map((item) => {
-            if (item.id === product.id) {
-              item.count += +productCount;
-              return item;
-            }
-            return item;
-          });
-          localStorage.setItem('cartItems', JSON.stringify(newProducts));
-        } else {
-          const newProducts = [...productsArray, { ...product, count: +productCount }];
-          localStorage.setItem('cartItems', JSON.stringify(newProducts));
-        }
-      } else {
-        const newProducts = [{ ...product, count: +productCount }];
-        localStorage.setItem('cartItems', JSON.stringify(newProducts));
-      }
-    }
-  };
 
   useEffect(() => {
     axios
@@ -45,6 +19,7 @@ function ProductDetails() {
       })
       .catch(console.log);
   }, []);
+
   return (
     <div>
       {product ? (
@@ -77,7 +52,7 @@ function ProductDetails() {
                   />
                   <Button
                     className="add-product-number"
-                    onClick={() => addToCartLS()}
+                    onClick={() => addToCartLS(productCount, product)}
                   >
                     Add To Cart
                   </Button>
@@ -90,5 +65,9 @@ function ProductDetails() {
     </div>
   );
 }
+ProductDetails.propTypes = {
+  // cartitems: PropTypes.arrayOf(Object).isRequired,
+  addToCartLS: PropTypes.func.isRequired,
+};
 
 export default ProductDetails;
