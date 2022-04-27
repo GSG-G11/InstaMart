@@ -25,7 +25,7 @@ function Products() {
   const [page, setPage] = useState(1);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
-  console.log(products);
+
   const handleQChange = ({ target: { value } }) => {
     setQ(value);
   };
