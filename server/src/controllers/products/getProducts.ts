@@ -15,19 +15,19 @@ const getProducts = async (req:Request, res:Response, next:NextFunction) => {
       limit: +limit,
       where:
        ((categoryId && q) ? {
-         [Op.and]: [{ categoryId: +categoryId }, { name: { [Op.like]: `%${q}%` } }],
+         [Op.and]: [{ categoryId: +categoryId }, { name: { [Op.iLike]: `%${q}%` } }],
        } : undefined)
        || (categoryId ? { categoryId: +categoryId } : undefined)
-       || (q ? { name: { [Op.like]: `%${q}%` } } : undefined),
+       || (q ? { name: { [Op.iLike]: `%${q}%` } } : undefined),
       order: sort ? [['price', `${sort}`]] : undefined,
     }),
     Product.count({
       where:
        ((categoryId && q) ? {
-         [Op.and]: [{ categoryId: +categoryId }, { name: { [Op.like]: `%${q}%` } }],
+         [Op.and]: [{ categoryId: +categoryId }, { name: { [Op.iLike]: `%${q}%` } }],
        } : undefined)
        || (categoryId ? { categoryId: +categoryId } : undefined)
-       || (q ? { name: { [Op.like]: `%${q}%` } } : undefined),
+       || (q ? { name: { [Op.iLike]: `%${q}%` } } : undefined),
     }),
     ]);
 
