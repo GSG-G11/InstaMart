@@ -1,8 +1,7 @@
 import { Router } from 'express';
 import {
   signUp, login, logout, notFound, serverError, authUser,
-  // eslint-disable-next-line no-unused-vars
-  addProduct, deleteProduct, editProduct, getProducts,
+  addProduct, deleteProduct, editProduct, getProducts, getProductByID,
 } from '../controllers';
 import { isAuth } from '../controllers/middleware';
 import { getCategories } from '../controllers/products';
@@ -14,6 +13,7 @@ router.post('/login', login);
 router.post('/logout', logout);
 router.get('/products', getProducts);
 router.get('/categories', getCategories);
+router.get('/products/:id', getProductByID);
 
 // Protected routes should be under this line
 router.use('/auth', isAuth);
