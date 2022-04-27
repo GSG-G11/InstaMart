@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   loginContainer: {
     display: 'flex',
 
-    height: '100vh',
+    height: 'calc(100vh - 69px)',
   },
   img: {
     height: '100%',

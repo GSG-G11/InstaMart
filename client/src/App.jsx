@@ -7,6 +7,7 @@ import Login from './Components/Login';
 import Header from './Components/header/Header';
 // import ProtectedRoute from './Components/ProtectedRoute';
 import { AuthProvider } from './Hooks/useAuth';
+import Products from './Pages/Products';
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
       <AuthProvider>
         <Header />
         <Routes>
+          <Route path="/" element={<Products />} />
+
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           {/* <Route
