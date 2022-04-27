@@ -65,7 +65,7 @@ function Header() {
           {' '}
           <div className="shopping-cart-div">
             <ShoppingCart className="shopping-cart-icon" />
-            <p className="products-number">{cartitems.length}</p>
+            <p className="products-number">{0}</p>
           </div>
         </Link>
 

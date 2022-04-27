@@ -6,26 +6,28 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-// const fakeData = [{
-//   id: 1,
-//   name: 'Cola',
-//   imageUrl: 'https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGNoaXBzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
-//   price: '20',
+const fakeData = [{
+  id: 1,
+  name: 'Cola',
+  imageUrl: 'https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGNoaXBzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
+  price: '20',
 
-//   quantity: 3,
+  quantity: 3,
 
-// }, {
-//   id: 2,
-//   name: 'chips',
-//   imageUrl: 'https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGNoaXBzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
-//   price: '40',
+}, {
+  id: 2,
+  name: 'chips',
+  imageUrl: 'https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTV8fGNoaXBzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
+  price: '40',
 
-//   quantity: 1,
+  quantity: 1,
 
-// }];
+}];
+localStorage.setItem('product', JSON.stringify(fakeData));
 const useStyle = makeStyles({
   header: {
     padding: '10px',
+    margin: '30px',
   },
   productContainer: {
     display: 'flex',
@@ -54,7 +56,7 @@ const useStyle = makeStyles({
   },
   spanBorder: {
     height: '1px',
-    background: 'black',
+    background: '#7e7e7e70',
     marginTop: '10px',
 
   },
@@ -70,8 +72,8 @@ const useStyle = makeStyles({
     borderRadius: '8px',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: '80px',
-    height: '60px',
+    width: '90px',
+    height: '55px',
   },
   productCounter: {
     color: ' green',
@@ -85,6 +87,7 @@ const useStyle = makeStyles({
   totalPrice: {
     color: '#3AB77D',
   },
+
 });
 
 function CartProduct({ data, setData }) {

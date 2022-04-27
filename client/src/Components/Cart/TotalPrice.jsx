@@ -2,7 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Typography, Button } from '@mui/material/';
+import { Paper, Typography, Button } from '@mui/material/';
 import { makeStyles } from '@mui/styles';
 
 const useStyle = makeStyles({
@@ -43,7 +43,7 @@ function TotalPrice({ data }) {
   return (
     <div className={classes.cardContainer}>
 
-      <Card className={classes.card}>
+      <Paper elevation={10} className={classes.card}>
         <Typography className={classes.typog} color="textSecondary">
           <span>Subtotal</span>
           {' '}
@@ -81,7 +81,7 @@ function TotalPrice({ data }) {
           checkout
 
         </Button>
-      </Card>
+      </Paper>
     </div>
   );
 }
