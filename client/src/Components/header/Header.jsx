@@ -17,8 +17,8 @@ function Header() {
   const [cartitems, setCartitems] = useState([]);
 
   useEffect(() => {
-    const cartitemsArr = localStorage.getItem('product');
-    if (cartitems) {
+    const cartitemsArr = localStorage.getItem('cartItems');
+    if (cartitemsArr) {
       setCartitems(JSON.parse(cartitemsArr));
     }
   }, []);
