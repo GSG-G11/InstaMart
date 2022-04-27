@@ -31,12 +31,16 @@ const getProducts = async (req:Request, res:Response, next:NextFunction) => {
     }),
     ]);
 
-    res.json({ status: 200, totalCount: dbFilterdProducts[1], data: dbFilterdProducts[0] });
+    return res.json({
+      status: 200,
+      totalPages: Math.ceil(dbFilterdProducts[1] / +limit) || 1,
+      data: dbFilterdProducts[0],
+    });
   } catch (err:any) {
     if (err.details) {
-      res.status(422).json({ msg: err.details[0].message, status: 422 });
+      return res.status(422).json({ msg: err.details[0].message, status: 422 });
     }
-    next(err);
+    return next(err);
   }
 };
 
