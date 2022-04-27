@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Alert } from '@mui/material';
 import Header from '../../Components/header/Header';
-import ProductDetails from '../../Components/productdetails/ProductDetails';
-import './index.css';
+import ProductDetails from '../../Components/ProductDetailsCard';
+import './style.css';
 
 function ProductDetailsPage() {
   const [cartitems, setCartitems] = useState([]);

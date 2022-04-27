@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
 
-import './index.css';
+import './style.css';
 
 function ProductDetails({ addToCartLS }) {
   const { id } = useParams();
