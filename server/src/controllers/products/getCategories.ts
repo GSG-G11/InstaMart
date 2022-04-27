@@ -3,7 +3,9 @@ import { Category } from '../../database';
 
 const getCategories = async (req:Request, res:Response, next:NextFunction) => {
   try {
-    const dbCategories = await Category.findAll();
+    const dbCategories = await Category.findAll({
+      attributes: ['id', 'name', 'imageUrl'],
+    });
     return res.json({
       status: 200,
       data: dbCategories,

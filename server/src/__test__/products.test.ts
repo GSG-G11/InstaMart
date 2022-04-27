@@ -82,6 +82,44 @@ describe('/api/v1/products/200', () => {
   });
 });
 
+describe('/api/v1/categories  Test', () => {
+  test('should return {status:200,data:[...]}', (done) => {
+    const resp = {
+      status: 200,
+      data: [
+        {
+          id: 1,
+          name: 'Food',
+          imageUrl: 'https://cdn-icons-png.flaticon.com/512/541/541836.png',
+        },
+        {
+          id: 2,
+          name: 'Drinks',
+          imageUrl: 'https://cdn-icons-png.flaticon.com/512/3126/3126588.png',
+        },
+        {
+          id: 3,
+          name: 'Vegetables',
+          imageUrl: 'https://cdn-icons-png.flaticon.com/512/2329/2329903.png',
+        },
+        {
+          id: 4,
+          name: 'Fruits',
+          imageUrl: 'https://cdn-icons-png.flaticon.com/512/3081/3081887.png',
+        },
+      ],
+    };
+    supertest(app)
+      .get('/api/v1/categories')
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(JSON.parse(res.text)).toEqual(resp);
+        return done();
+      });
+  });
+});
+
 afterAll(() => {
   sequelize.close();
 });
