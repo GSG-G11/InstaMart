@@ -55,6 +55,33 @@ describe('POST /api/v1/auth/admin/product', () => {
       });
   });
 });
+
+describe('/api/v1/products/1', () => {
+  test('should success when request exist product', (done) => {
+    supertest(app)
+      .get('/api/v1/products/1')
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(JSON.parse(res.text).success).toEqual(true);
+        return done();
+      });
+  });
+});
+
+describe('/api/v1/products/200', () => {
+  test('should failed when product id not found', (done) => {
+    supertest(app)
+      .get('/api/v1/products/200')
+      .expect(404)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(JSON.parse(res.text).success).toEqual(false);
+        return done();
+      });
+  });
+});
+
 afterAll(() => {
   sequelize.close();
 });

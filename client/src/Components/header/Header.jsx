@@ -18,8 +18,8 @@ function Header() {
 
   useEffect(() => {
     const cartitemsArr = localStorage.getItem('cartItems');
-    if (cartitems) {
-      setCartitems(JSON.parse(cartitemsArr) || []);
+    if (cartitemsArr) {
+      setCartitems(JSON.parse(cartitemsArr));
     }
   }, []);
 
@@ -35,7 +35,7 @@ function Header() {
       if (!error) {
         navigate('/');
       } else {
-        console.log(error);
+        // console.log(error);
       }
     });
   };
