@@ -6,7 +6,7 @@ import { Home } from './Components';
 import Login from './Components/Login';
 // import ProtectedRoute from './Components/ProtectedRoute';
 import { AuthProvider } from './Hooks/useAuth';
-import ProductDetailsPage from './Pages';
+import ProductDetailsPage from './Pages/productdetailsPage/ProductDetailsPage';
 
 function App() {
   return (

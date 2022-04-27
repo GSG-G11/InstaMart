@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../Components/header/Header';
-import ProductDetails from '../Components/productdetails/ProductDetails';
+import { Alert } from '@mui/material';
+import Header from '../../Components/header/Header';
+import ProductDetails from '../../Components/productdetails/ProductDetails';
+import './index.css';
 
 function ProductDetailsPage() {
   const [cartitems, setCartitems] = useState([]);
+  const [open, setOpen] = useState(false);
 
   const addToCartLS = (productCount, product) => {
     if (productCount) {
@@ -32,6 +35,8 @@ function ProductDetailsPage() {
         localStorage.setItem('cartItems', JSON.stringify(newProducts));
         setCartitems(newProducts);
       }
+      setOpen(true);
+      setTimeout(() => setOpen(false), 5000);
     }
   };
 
@@ -45,7 +50,18 @@ function ProductDetailsPage() {
   return (
     <div>
       <Header cartitems={cartitems} />
-      <ProductDetails cartitems={cartitems} addToCartLS={addToCartLS} />
+      <div className="product-page-container">
+        <ProductDetails cartitems={cartitems} addToCartLS={addToCartLS} />
+        {open ? (
+          <>
+            {' '}
+            <Alert severity="success" className="success-alert-message">
+              Product was added successfully
+            </Alert>
+          </>
+        ) : null}
+      </div>
+
     </div>
   );
 }

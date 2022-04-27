@@ -1,0 +1,8 @@
+.product-page-container{
+    position: relative;
+}
+.product-page-container .success-alert-message{
+    position: absolute;
+    right: 0;
+    top: 0;
+}

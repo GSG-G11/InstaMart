@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
+
 import './index.css';
 
 function ProductDetails({ addToCartLS }) {
@@ -66,7 +67,6 @@ function ProductDetails({ addToCartLS }) {
   );
 }
 ProductDetails.propTypes = {
-  // cartitems: PropTypes.arrayOf(Object).isRequired,
   addToCartLS: PropTypes.func.isRequired,
 };
 
