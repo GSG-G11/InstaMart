@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 /* eslint-disable no-undef */
 // eslint-disable-next-line import/no-extraneous-dependencies
 import supertest from 'supertest';
@@ -74,6 +75,52 @@ describe('Patch /api/v1/auth/admin/product', () => {
           return done(err);
         }
         expect(res.body.message).toBe('Product Updated Successfully !');
+        return done();
+      });
+  });
+});
+describe('Patch /api/v1/auth/admin/product', () => {
+  test('Unauthorized admin ', (done) => {
+    supertest(app)
+      .patch('/api/v1/auth/admin/product')
+
+      .send({
+        id: 2,
+        name: 'product test',
+        imageUrl: 'image url product test',
+        price: 20,
+        details: 'details test',
+        categoryId: 2,
+      })
+      .expect(401)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+        expect(res.body.msg).toBe('Unauthorized');
+        return done();
+      });
+  });
+});
+describe('Patch /api/v1/auth/admin/product', () => {
+  test('Validation error', (done) => {
+    supertest(app)
+      .patch('/api/v1/auth/admin/product')
+      .set('Cookie', [`token=${process.env.ADMIN}`])
+      .send({
+        id: 2,
+        name: 'product test',
+        imageUrl: 'image url product test',
+        price: 20,
+        details: 'details test',
+        categoryId: 'xsdf',
+      })
+      .expect(422)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+        expect(res.body).toBe('"categoryId" must be a number');
         return done();
       });
   });
