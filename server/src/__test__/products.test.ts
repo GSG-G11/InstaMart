@@ -56,10 +56,10 @@ describe('POST /api/v1/admin/product', () => {
       });
   });
 });
-describe('Patch /api/v1/auth/admin/product', () => {
+describe('Patch /api/v1/admin/product', () => {
   test('success edit product ', (done) => {
     supertest(app)
-      .patch('/api/v1/auth/admin/product')
+      .patch('/api/v1/admin/product')
       .set('Cookie', [`token=${process.env.ADMIN}`])
       .send({
         id: 2,
@@ -91,10 +91,10 @@ describe('/api/v1/products/1', () => {
       });
   });
 });
-describe('Patch /api/v1/auth/admin/product', () => {
+describe('Patch /api/v1/admin/product', () => {
   test('Unauthorized admin ', (done) => {
     supertest(app)
-      .patch('/api/v1/auth/admin/product')
+      .patch('/api/v1/admin/product')
 
       .send({
         id: 2,
@@ -114,10 +114,10 @@ describe('Patch /api/v1/auth/admin/product', () => {
       });
   });
 });
-describe('Patch /api/v1/auth/admin/product', () => {
+describe('Patch /api/v1/admin/product', () => {
   test('Validation error', (done) => {
     supertest(app)
-      .patch('/api/v1/auth/admin/product')
+      .patch('/api/v1/admin/product')
       .set('Cookie', [`token=${process.env.ADMIN}`])
       .send({
         id: 2,
