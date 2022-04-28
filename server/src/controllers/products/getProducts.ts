@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { Op } from 'sequelize';
 import { getProductsValidation } from '../validation';
-import { Product } from '../../database';
+import { Category, Product } from '../../database';
 
 const getProducts = async (req:Request, res:Response, next:NextFunction) => {
   const {
@@ -13,6 +13,8 @@ const getProducts = async (req:Request, res:Response, next:NextFunction) => {
     const dbFilterdProducts = await Promise.all([Product.findAll({
       offset: (+page - 1) * +limit,
       limit: +limit,
+      include: { model: Category, attributes: ['id', 'name', 'imageUrl'] },
+      attributes: ['id', 'name', 'imageUrl', 'details', 'categoryId'],
       where:
        ((categoryId && q) ? {
          [Op.and]: [{ categoryId: +categoryId }, { name: { [Op.iLike]: `%${q}%` } }],
