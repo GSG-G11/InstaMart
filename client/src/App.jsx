@@ -4,6 +4,9 @@ import './App.css';
 import SignUp from './Components/SignUp';
 import { Home } from './Components';
 import Login from './Components/Login';
+import Cart from './Pages/Cart';
+
+import Header from './Components/header/Header';
 // import ProtectedRoute from './Components/ProtectedRoute';
 import { AuthProvider } from './Hooks/useAuth';
 import ProductDetailsPage from './Pages/ProductDetails';
@@ -17,6 +20,8 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
+
           {/* <Route
             path="/profile"
             element={(
