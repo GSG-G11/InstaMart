@@ -7,6 +7,7 @@ import Login from './Components/Login';
 import Header from './Components/header/Header';
 // import ProtectedRoute from './Components/ProtectedRoute';
 import { AuthProvider } from './Hooks/useAuth';
+import Table from './Components/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/table" element={<Table />} />
           {/* <Route
             path="/profile"
             element={(
