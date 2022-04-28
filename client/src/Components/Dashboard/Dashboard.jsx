@@ -39,13 +39,6 @@ export default function CustomizedTables() {
         const result = await axios.get('/api/v1/products');
         if (result && result.data) {
           setProducts(result.data.data);
-          // eslint-disable-next-line array-callback-return
-          products.map(async (productItem) => {
-            await axios.get(`/api/v1/products/${productItem.id}`);
-          });
-          console.log(products);
-          // const productById = await axios.get('/api/v1/products/2');
-          // console.log(productById.data);
         }
       } catch (err) {
         console.log(err);
