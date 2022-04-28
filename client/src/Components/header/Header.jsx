@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 import './index.css';
 import Menu from '@mui/material/Menu';
@@ -10,18 +11,10 @@ import {
 import appIcon from './logo.png';
 import { useAuth } from '../../Hooks/useAuth';
 
-function Header() {
+function Header({ cartitems }) {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const [cartitems, setCartitems] = useState([]);
-
-  useEffect(() => {
-    const cartitemsArr = localStorage.getItem('cartItems');
-    if (cartitems) {
-      setCartitems(JSON.parse(cartitemsArr));
-    }
-  }, []);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -39,7 +32,6 @@ function Header() {
       }
     });
   };
-
   return (
 
     <div className="header-section">
@@ -110,5 +102,8 @@ function Header() {
     </div>
   );
 }
+Header.propTypes = {
+  cartitems: PropTypes.arrayOf(Object).isRequired,
+};
 
 export default Header;
