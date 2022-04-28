@@ -6,7 +6,6 @@ import { Home } from './Components';
 import Login from './Components/Login';
 import Cart from './Pages/Cart';
 
-import Header from './Components/header/Header';
 // import ProtectedRoute from './Components/ProtectedRoute';
 import { AuthProvider } from './Hooks/useAuth';
 import ProductDetailsPage from './Pages/ProductDetails';
