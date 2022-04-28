@@ -11,11 +11,11 @@ beforeAll(async () => {
   await buildFakeData();
 });
 
-describe('POST /api/v1/auth/admin/product', () => {
+describe('POST /api/v1/admin/product', () => {
   test('success add product', (done) => {
     supertest(app)
-      .post('/api/v1/auth/admin/product')
-      .set('Cookie', [`token=${process.env.TOKEN}`])
+      .post('/api/v1/admin/product')
+      .set('Cookie', [`token=${process.env.ADMIN}`])
       .send({
         name: 'product test',
         imageUrl: 'image url product test',
@@ -33,11 +33,11 @@ describe('POST /api/v1/auth/admin/product', () => {
       });
   });
 });
-describe('POST /api/v1/auth/admin/product', () => {
+describe('POST /api/v1/admin/product', () => {
   test('test error validation, not found price', (done) => {
     supertest(app)
-      .post('/api/v1/auth/admin/product')
-      .set('Cookie', [`token=${process.env.TOKEN}`])
+      .post('/api/v1/admin/product')
+      .set('Cookie', [`token=${process.env.ADMIN}`])
       .send({
         name: 'product test',
         imageUrl: 'image url product test',
