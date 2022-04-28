@@ -9,22 +9,22 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import './Dashboard.css';
+import { Button, TextField } from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: theme.palette.action.hover,
+    color: theme.palette.common.black,
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
   },
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
+const StyledTableRow = styled(TableRow)(() => ({
   '&:last-child td, &:last-child th': {
     border: 0,
   },
@@ -32,12 +32,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function CustomizedTables() {
   const [products, setProducts] = useState([]);
+
   useEffect(() => {
     const getProducts = async () => {
       try {
         const result = await axios.get('/api/v1/products');
         if (result && result.data) {
           setProducts(result.data.data);
+          // eslint-disable-next-line array-callback-return
+          products.map(async (productItem) => {
+            await axios.get(`/api/v1/products/${productItem.id}`);
+          });
+          console.log(products);
+          // const productById = await axios.get('/api/v1/products/2');
+          // console.log(productById.data);
         }
       } catch (err) {
         console.log(err);
@@ -46,33 +54,55 @@ export default function CustomizedTables() {
     getProducts();
   }, []);
   return (
-    <TableContainer component={Paper} style={{ width: 1200, margin: 70 }}>
-      <Table sx={{ minWidth: 700 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>ID</StyledTableCell>
-            <StyledTableCell align="right">Item</StyledTableCell>
-            <StyledTableCell align="right">Category</StyledTableCell>
-            <StyledTableCell align="right">Price</StyledTableCell>
-            <StyledTableCell align="right">Description</StyledTableCell>
-            <StyledTableCell align="right">Options</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {products.map((product) => (
-            <StyledTableRow key={product.id}>
-              <StyledTableCell>
-                {product.id}
-              </StyledTableCell>
-              <StyledTableCell align="right">{product.name}</StyledTableCell>
-              <StyledTableCell align="right">{product.categoryId}</StyledTableCell>
-              <StyledTableCell align="right">{product.price}</StyledTableCell>
-              <StyledTableCell align="right">{product.details}</StyledTableCell>
-              <StyledTableCell align="right"><MoreVertIcon /></StyledTableCell>
-            </StyledTableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <div className="dashboard">
+      <div className="TitleAndButton">
+        <h2 className="title">Products</h2>
+        <Button
+          variant="contained"
+          style={{
+            backgroundColor: '#3AB77D',
+            width: '169px',
+            height: '45px',
+          }}
+        >
+          Add Product
+
+        </Button>
+      </div>
+      <div className="inputSearchContainer">
+        <TextField size="large" label="Search" className="inputSearch" variant="filled" />
+      </div>
+      <TableContainer component={Paper} style={{ width: 1200, margin: 70, marginTop: 20 }}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell align="center">ID</StyledTableCell>
+              <StyledTableCell align="center">Item</StyledTableCell>
+              <StyledTableCell align="center">Category</StyledTableCell>
+              <StyledTableCell align="center">Price</StyledTableCell>
+              <StyledTableCell align="center">Description</StyledTableCell>
+              <StyledTableCell align="center">Options</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {products.map((product) => (
+              <StyledTableRow key={product.id}>
+                <StyledTableCell align="center">{product.id}</StyledTableCell>
+                <StyledTableCell align="center">{product.name}</StyledTableCell>
+                <StyledTableCell align="center">{product.categoryId}</StyledTableCell>
+                <StyledTableCell align="center">{product.price}</StyledTableCell>
+                <StyledTableCell align="center">{product.details}</StyledTableCell>
+                <StyledTableCell align="center" className="dashicon">
+                  <EditIcon color="success" />
+                  {' '}
+                  <DeleteIcon color="error" />
+                  {' '}
+                </StyledTableCell>
+              </StyledTableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </div>
   );
 }
