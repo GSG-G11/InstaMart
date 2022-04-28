@@ -4,7 +4,15 @@ import axios from 'axios';
 //   Link, useNavigate,
 // } from 'react-router-dom';
 import {
-  TextField, Select, MenuItem, Pagination, InputLabel, FormControl, Box, Grid, Container,
+  TextField,
+  Select,
+  MenuItem,
+  Pagination,
+  InputLabel,
+  FormControl,
+  Box,
+  Grid,
+  Container,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Card from '../../Components/header/Card';
@@ -41,59 +49,117 @@ function Products() {
     setPage(value);
   };
 
-  useEffect(
-    () => {
-      (async () => {
-        const { data } = await axios.get(`/api/v1/products?q=${q.trim()}&&categoryId=${categoryId.toString().trim()}&&sort=${sort.trim()}&&page=${page}&&limit=3`);
-        if (data.totalPages !== totalPages) settotalPages(data.totalPages);
-        setProducts(data.data);
-      })();
-    },
-    [q, sort, categoryId, page],
-  );
-  useEffect(
-    () => {
-      (async () => {
-        const { data: { data } } = await axios.get('/api/v1/categories');
-        setCategories(data);
-      })();
-    },
-    [],
-  );
+  useEffect(() => {
+    (async () => {
+      const { data } = await axios.get(
+        `/api/v1/products?q=${q.trim()}&&categoryId=${categoryId
+          .toString()
+          .trim()}&&sort=${sort.trim()}&&page=${page}&&limit=10`,
+      );
+      if (data.totalPages !== totalPages) settotalPages(data.totalPages);
+      setProducts(data.data);
+    })();
+  }, [q, sort, categoryId, page]);
+  useEffect(() => {
+    (async () => {
+      const {
+        data: { data },
+      } = await axios.get('/api/v1/categories');
+      setCategories(data);
+    })();
+  }, []);
   return (
     <main className={classes.main}>
-      <Box sx={{ display: 'flex', mt: '10px', p: '30px' }}>
-        <FormControl sx={{ marginX: '15px' }} fullWidth>
-          <TextField value={q} label="Search" onChange={handleQChange} />
-        </FormControl>
-        <FormControl sx={{ marginX: '15px' }} fullWidth>
-          <InputLabel id="category-select">Category</InputLabel>
-          <Select value={categoryId} label="Category" onChange={handleCategoryIdChange}>
-            <MenuItem key="all" value=" ">All</MenuItem>
-            {categories.map(({ id, name }) => <MenuItem key={name} value={id}>{name}</MenuItem>)}
-          </Select>
-        </FormControl>
-        <FormControl sx={{ marginX: '15px' }} fullWidth>
-          <InputLabel id="demo-simple-select-label">Sort By Price</InputLabel>
-          <Select value={sort} label="Sort By Price" onChange={handleSortChange}>
-            <MenuItem value=" ">Sort By Price</MenuItem>
-            <MenuItem value="asc">Low to High</MenuItem>
-            <MenuItem value="desc">High to low</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
       <Container sx={{
-        height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        mt: '10px',
+        mb: '10px',
       }}
       >
         <Grid container spacing={5}>
-          {products.map(({
-            id, name, price, imageUrl,
-          }) => (<Card key={id} id={id} name={name} price={+price} imageUrl={imageUrl} />))}
+          <Grid item xs={6}>
+            <FormControl fullWidth>
+              <TextField size="small" value={q} label="Search" onChange={handleQChange} />
+            </FormControl>
+          </Grid>
+          <Grid item xs={3}>
+            <FormControl size="small" fullWidth>
+              <InputLabel id="category-select">Category</InputLabel>
+              <Select
+                value={categoryId}
+                label="Category"
+                onChange={handleCategoryIdChange}
+              >
+                <MenuItem key="all" value=" ">
+                  All
+                </MenuItem>
+                {categories.map(({ id, name }) => (
+                  <MenuItem key={name} value={id}>
+                    {name}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={3}>
+            <FormControl size="small" fullWidth>
+              <InputLabel id="demo-simple-select-label">Sort By Price</InputLabel>
+              <Select
+                value={sort}
+                label="Sort By Price"
+                onChange={handleSortChange}
+              >
+                <MenuItem value=" ">Sort By Price</MenuItem>
+                <MenuItem value="asc">Low to High</MenuItem>
+                <MenuItem value="desc">High to low</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
         </Grid>
       </Container>
+      <Container
+        sx={{
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <Grid container columnSpacing={15} rowSpacing={1}>
+          {products.map(({
+            id, name, price, imageUrl,
+          }) => (
+            <Card
+              key={id}
+              id={id}
+              name={name}
+              price={+price}
+              imageUrl={imageUrl}
+            />
+          ))}
+        </Grid>
+        {/* <Grid container spacing={15}>
+          {products.map(({
+            id, name, price, imageUrl,
+          }) => (
+            <Card
+              key={id}
+              id={id}
+              name={name}
+              price={+price}
+              imageUrl={imageUrl}
+            />
+          ))}
+        </Grid> */}
+
+      </Container>
       <Box sx={{ display: 'flex', justifyContent: 'space-around', p: '15px' }}>
-        <Pagination count={totalPages} page={page} onChange={handlePageChange} />
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={handlePageChange}
+        />
       </Box>
     </main>
   );

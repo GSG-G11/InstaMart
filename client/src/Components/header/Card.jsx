@@ -10,7 +10,7 @@ function Card({
 }) {
   const navigate = useNavigate();
   return (
-    <Grid item xs={4}>
+    <Grid item xs={2.4}>
       <Paper elevation={7} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <img src={imageUrl} alt={name} width="70%" />
         <Typography variant="h6">
