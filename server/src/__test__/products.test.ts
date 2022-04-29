@@ -187,6 +187,39 @@ describe('/api/v1/categories  Test', () => {
       });
   });
 });
+describe('/api/v1/productsByCat/1', () => {
+  test('should success when request exist product', (done) => {
+    supertest(app)
+      .get('/api/v1/productsByCat/1')
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(JSON.parse(res.text).data.length).toBeGreaterThan(0);
+        return done();
+      });
+  });
+});
+
+describe('/api/v1/productsByCat/0', () => {
+  test('should success when request exist product', (done) => {
+    supertest(app)
+      .get('/api/v1/productsByCat/0')
+      .expect(200)
+      .end((err, res) => {
+        if (err) return done(err);
+        expect(JSON.parse(res.text).data.length).toEqual(0);
+        return done();
+      });
+  });
+});
+describe('/api/v1/productsByCat/test', () => {
+  test('should success when request exist product', (done) => {
+    supertest(app)
+      .get('/api/v1/productsByCat/test')
+      .expect(500)
+      .end(() => done());
+  });
+});
 
 afterAll(() => {
   sequelize.close();
