@@ -1,5 +1,5 @@
-import sequelize, { Category, Product } from '..';
-import { categories, products } from './fakeData';
+import sequelize, { Category, Product, User } from '..';
+import { categories, products, users } from './fakeData';
 
 const { NODE_ENV } = process.env;
 
@@ -8,6 +8,7 @@ const buildFakeData = async () => {
   const dbData = await Promise.all([
     Category.bulkCreate(categories),
     Product.bulkCreate(products),
+    User.bulkCreate(users),
   ]);
   dbData.forEach(console.log);
 };

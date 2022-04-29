@@ -160,4 +160,13 @@ const products = [
   },
 ];
 
-export { products, categories };
+const users = [{
+  id: 10,
+  name: 'insta',
+  email: 'yosra@gmail.com',
+  mobile: 4525245,
+  address: 'sgsggdgsg',
+  password: '$2b$10$5Or.3zVU/tuQnKIVZXjjyObIgJvuhk/xHS41EaMBWXgK1LPQjpk0O',
+  isAdmin: true,
+}];
+export { products, categories, users };
