@@ -4,23 +4,25 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Button, TextField } from '@mui/material';
-
+import CatProductsSlider from '../catProductsSlider';
 import './style.css';
 
 function ProductDetails({ addToCartLS }) {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [productCount, setProductCount] = useState(0);
+  const [catID, setCatID] = useState(null);
 
   useEffect(() => {
     axios
       .get(`/api/v1/products/${id}`)
       .then((result) => {
+        const { category: { id: catId } } = result.data.data;
+        setCatID(catId);
         setProduct(result.data.data);
       })
       .catch(console.log);
   }, []);
-
   return (
     <div>
       {product ? (
@@ -63,6 +65,7 @@ function ProductDetails({ addToCartLS }) {
           </div>
         </section>
       ) : null}
+      {catID && <CatProductsSlider catID={catID} />}
     </div>
   );
 }
