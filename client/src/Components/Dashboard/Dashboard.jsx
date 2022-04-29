@@ -1,18 +1,13 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import {
+  Table, TableBody, TableCell, tableCellClasses, TableContainer,
+  TableHead, TableRow, Paper, Button, TextField,
+  styled,
+} from '@mui/material';
 import axios from 'axios';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './Dashboard.css';
-import { Button, TextField } from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -48,22 +43,23 @@ export default function CustomizedTables() {
   }, []);
   return (
     <div className="dashboard">
-      <div className="TitleAndButton">
-        <h2 className="title">Products</h2>
+      <div className="TitleContainer">
+        <h2>Products</h2>
+      </div>
+      <div className="inputSearchAndButton">
+        <TextField size="large" label="Search" className="inputSearch" variant="filled" />
         <Button
           variant="contained"
           style={{
             backgroundColor: '#3AB77D',
             width: '169px',
             height: '45px',
+            fontWeight: 'bold',
           }}
         >
           Add Product
 
         </Button>
-      </div>
-      <div className="inputSearchContainer">
-        <TextField size="large" label="Search" className="inputSearch" variant="filled" />
       </div>
       <TableContainer component={Paper} style={{ width: 1200, margin: 70, marginTop: 20 }}>
         <Table aria-label="simple table">
@@ -82,7 +78,7 @@ export default function CustomizedTables() {
               <StyledTableRow key={product.id}>
                 <StyledTableCell align="center">{product.id}</StyledTableCell>
                 <StyledTableCell align="center">{product.name}</StyledTableCell>
-                <StyledTableCell align="center">{product.categoryId}</StyledTableCell>
+                <StyledTableCell align="center">{product.category.name}</StyledTableCell>
                 <StyledTableCell align="center">{product.price}</StyledTableCell>
                 <StyledTableCell align="center">{product.details}</StyledTableCell>
                 <StyledTableCell align="center" className="dashicon">
