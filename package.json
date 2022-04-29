@@ -17,7 +17,6 @@
     "test": "cross-env NODE_ENV=test jest  --runInBand server/src/__test__/",
     "prepare": "is-ci || npx husky install",
     "db:fake": "cross-env NODE_ENV=dev ts-node server/src/database/fakeData/buildFakeData.ts"
-
   },
   "repository": {
     "type": "git",
@@ -31,6 +30,7 @@
   },
   "homepage": "https://github.com/GSG-G11/InstaMart#readme",
   "dependencies": {
+    "@material-ui/icons": "^4.11.3",
     "bcrypt": "^5.0.1",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",

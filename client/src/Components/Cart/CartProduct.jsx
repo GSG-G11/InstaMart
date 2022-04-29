@@ -4,7 +4,7 @@ import { Typography, IconButton } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { DeleteIcon } from '@mui/icons-material';
 
 const fakeData = [{
   id: 1,
