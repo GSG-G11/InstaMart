@@ -14,7 +14,7 @@ const getProducts = async (req:Request, res:Response, next:NextFunction) => {
       offset: (+page - 1) * +limit,
       limit: +limit,
       include: { model: Category, attributes: ['id', 'name', 'imageUrl'] },
-      attributes: ['id', 'name', 'imageUrl', 'details', 'categoryId'],
+      attributes: ['id', 'name', 'imageUrl', 'price', 'details', 'categoryId'],
       where:
        ((categoryId && q) ? {
          [Op.and]: [{ categoryId: +categoryId }, { name: { [Op.iLike]: `%${q}%` } }],
