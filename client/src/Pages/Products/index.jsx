@@ -15,7 +15,7 @@ import {
   Container,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import Card from '../../Components/header/Card';
+import Card from '../../Components/Card';
 // import Header from '../../Components/header/Header';
 const useStyles = makeStyles({
   main: {
@@ -54,7 +54,7 @@ function Products() {
       const { data } = await axios.get(
         `/api/v1/products?q=${q.trim()}&&categoryId=${categoryId
           .toString()
-          .trim()}&&sort=${sort.trim()}&&page=${page}&&limit=10`,
+          .trim()}&&sort=${sort.trim()}&&page=${page}&&limit=4`,
       );
       if (data.totalPages !== totalPages) settotalPages(data.totalPages);
       setProducts(data.data);
@@ -70,13 +70,14 @@ function Products() {
   }, []);
   return (
     <main className={classes.main}>
-      <Container sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        mt: '10px',
-        mb: '10px',
-      }}
+      <Container
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          mt: '35px',
+          // width: '69%',
+        }}
       >
         <Grid container spacing={5}>
           <Grid item xs={6}>
@@ -123,22 +124,26 @@ function Products() {
         sx={{
           height: '100%',
           display: 'flex',
-          flexDirection: 'column',
+          width: '100%',
+          flexWrap: 'wrap',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+
         }}
       >
-        <Grid container columnSpacing={15} rowSpacing={1}>
-          {products.map(({
-            id, name, price, imageUrl,
-          }) => (
-            <Card
-              key={id}
-              id={id}
-              name={name}
-              price={+price}
-              imageUrl={imageUrl}
-            />
-          ))}
-        </Grid>
+        {/* <Grid container columnSpacing={15} rowSpacing={1}> */}
+        {products.map(({
+          id, name, price, imageUrl,
+        }) => (
+          <Card
+            key={id}
+            id={id}
+            name={name}
+            price={+price}
+            imageUrl={imageUrl}
+          />
+        ))}
+        {/* </Grid> */}
         {/* <Grid container spacing={15}>
           {products.map(({
             id, name, price, imageUrl,
