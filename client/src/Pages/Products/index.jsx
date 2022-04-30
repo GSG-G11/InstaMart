@@ -53,17 +53,18 @@ function Products() {
 
   const handleQChange = ({ target: { value } }) => {
     setIsLoading(true);
+    setPage(1);
     setQ(value);
   };
 
   const handleSortChange = ({ target: { value } }) => {
     setIsLoading(true);
-
+    setPage(1);
     setSort(value);
   };
   const handleCategoryIdChange = ({ target: { value } }) => {
     setIsLoading(true);
-
+    setPage(1);
     setCategoryId(value);
   };
 
