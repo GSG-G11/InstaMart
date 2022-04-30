@@ -7,34 +7,49 @@ import PropTypes from 'prop-types';
 import {
   ShoppingCart,
 } from '@mui/icons-material';
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles({
+  cardContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '246px',
+    height: '80%',
+    justifyContent: 'space-between',
+    '&:hover': {
+      border: '1px solid #3bb77e',
+    },
+  },
+  addBtn: {
+    '&:hover': {
+      transform: 'translateY(-15%)',
+      transition: '0.2s',
+
+    },
+  },
+});
 
 function Card({
-  id, name, price, imageUrl,
+  id, name, price, imageUrl, category, color,
 }) {
+  const classes = useStyles();
   const navigate = useNavigate();
   return (
-  // <Grid item xs={2.4}>
     <Paper
       elevation={7}
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '246px',
-        height: '80%',
-        borderRadius: '20px',
-        justifyContent: 'space-between',
-      }}
+      className={classes.cardContainer}
+      sx={{ borderRadius: '20px' }}
     >
       <Paper sx={{
-        width: '30%', borderRadius: '20px 0 20px 0', background: '#f74b81', textAlign: 'center', color: '#fff', lineHeight: '24px', fontSize: '10px', alignSelf: 'flex-start', zIndex: 1,
+        width: '30%', borderRadius: '20px 0 20px 0', background: color || '#f74b81', textAlign: 'center', color: '#fff', lineHeight: '24px', fontSize: '10px', alignSelf: 'flex-start', zIndex: 1,
       }}
       >
-        new
+        New
       </Paper>
       <img src={imageUrl} alt={name} width="80%" />
       <Typography variant="body2" sx={{ alignSelf: 'flex-start', ml: '10px' }} color="#adadad">
-        {name}
+        {category}
       </Typography>
 
       <Typography variant="subtitle1">
@@ -50,14 +65,13 @@ function Card({
           {`$${price}`}
         </Typography>
 
-        <Button size="small" variant="contained" color="success" sx={{ marginBottom: '20px' }} onClick={() => navigate(`/products/${id}`)}>
+        <Button size="small" className={classes.addBtn} variant="contained" color="success" sx={{ marginBottom: '20px' }} onClick={() => navigate(`/products/${id}`)}>
           <ShoppingCart />
           Add
         </Button>
       </Box>
 
     </Paper>
-  // </Grid>
   );
 }
 Card.propTypes = {
@@ -65,5 +79,7 @@ Card.propTypes = {
   price: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
 };
 export default Card;

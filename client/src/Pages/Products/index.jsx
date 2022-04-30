@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-// import {
-//   Link, useNavigate,
-// } from 'react-router-dom';
 import {
   TextField,
   Select,
@@ -13,10 +10,29 @@ import {
   Box,
   Grid,
   Container,
+  CircularProgress,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import Card from '../../Components/Card';
-// import Header from '../../Components/header/Header';
+import Header from '../../Components/header/Header';
+
+const colorsArr = [
+  '#6f42c1',
+  '#6610f2',
+  '#d63384',
+  '#fd7e14',
+  '#dc3545',
+  '#198754',
+  '#ffc107',
+  '#20c997',
+  '#0dcaf0',
+  '#6c757d',
+  '#0d6efd',
+  '#198754',
+  '#0dcaf0',
+  '#ffc107',
+  '#dc3545',
+  '#212529'];
 const useStyles = makeStyles({
   main: {
     height: 'calc(100vh - 79px)',
@@ -33,19 +49,26 @@ function Products() {
   const [page, setPage] = useState(1);
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleQChange = ({ target: { value } }) => {
+    setIsLoading(true);
     setQ(value);
   };
 
   const handleSortChange = ({ target: { value } }) => {
+    setIsLoading(true);
+
     setSort(value);
   };
   const handleCategoryIdChange = ({ target: { value } }) => {
+    setIsLoading(true);
+
     setCategoryId(value);
   };
 
   const handlePageChange = (e, value) => {
+    setIsLoading(true);
     setPage(value);
   };
 
@@ -58,6 +81,7 @@ function Products() {
       );
       if (data.totalPages !== totalPages) settotalPages(data.totalPages);
       setProducts(data.data);
+      setIsLoading(false);
     })();
   }, [q, sort, categoryId, page]);
   useEffect(() => {
@@ -69,84 +93,73 @@ function Products() {
     })();
   }, []);
   return (
-    <main className={classes.main}>
-      <Container
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          mt: '35px',
-          // width: '69%',
-        }}
-      >
-        <Grid container spacing={5}>
-          <Grid item xs={6}>
-            <FormControl fullWidth>
-              <TextField size="small" value={q} label="Search" onChange={handleQChange} />
-            </FormControl>
-          </Grid>
-          <Grid item xs={3}>
-            <FormControl size="small" fullWidth>
-              <InputLabel id="category-select">Category</InputLabel>
-              <Select
-                value={categoryId}
-                label="Category"
-                onChange={handleCategoryIdChange}
-              >
-                <MenuItem key="all" value=" ">
-                  All
-                </MenuItem>
-                {categories.map(({ id, name }) => (
-                  <MenuItem key={name} value={id}>
-                    {name}
+    <>
+      <Header cartitems={[]} />
+      <main className={classes.main}>
+        <Container
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            mt: '35px',
+          }}
+        >
+          <Grid container spacing={5}>
+            <Grid item xs={6}>
+              <FormControl fullWidth>
+                <TextField size="small" value={q} label="Search" onChange={handleQChange} />
+              </FormControl>
+            </Grid>
+            <Grid item xs={3}>
+              <FormControl size="small" fullWidth>
+                <InputLabel id="category-select">Category</InputLabel>
+                <Select
+                  value={categoryId}
+                  label="Category"
+                  onChange={handleCategoryIdChange}
+                >
+                  <MenuItem key="all" value=" ">
+                    All
                   </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+                  {categories.map(({ id, name }) => (
+                    <MenuItem key={name} value={id}>
+                      {name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={3}>
+              <FormControl size="small" fullWidth>
+                <InputLabel id="demo-simple-select-label">Sort By Price</InputLabel>
+                <Select
+                  value={sort}
+                  label="Sort By Price"
+                  onChange={handleSortChange}
+                >
+                  <MenuItem value=" ">Sort By Price</MenuItem>
+                  <MenuItem value="asc">Low to High</MenuItem>
+                  <MenuItem value="desc">High to low</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
           </Grid>
-          <Grid item xs={3}>
-            <FormControl size="small" fullWidth>
-              <InputLabel id="demo-simple-select-label">Sort By Price</InputLabel>
-              <Select
-                value={sort}
-                label="Sort By Price"
-                onChange={handleSortChange}
-              >
-                <MenuItem value=" ">Sort By Price</MenuItem>
-                <MenuItem value="asc">Low to High</MenuItem>
-                <MenuItem value="desc">High to low</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-        </Grid>
-      </Container>
-      <Container
-        sx={{
-          height: '100%',
-          display: 'flex',
-          width: '100%',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          alignItems: 'center',
+        </Container>
+        <Container
+          sx={{
+            height: '100%',
+            display: 'flex',
+            width: '100%',
+            flexWrap: 'wrap',
+            justifyContent: isLoading ? 'center' : 'space-between',
+            alignItems: 'center',
 
-        }}
-      >
-        {/* <Grid container columnSpacing={15} rowSpacing={1}> */}
-        {products.map(({
-          id, name, price, imageUrl,
-        }) => (
-          <Card
-            key={id}
-            id={id}
-            name={name}
-            price={+price}
-            imageUrl={imageUrl}
-          />
-        ))}
-        {/* </Grid> */}
-        {/* <Grid container spacing={15}>
-          {products.map(({
-            id, name, price, imageUrl,
+          }}
+        >
+          {isLoading ? (
+            <CircularProgress sx={{ color: '#3bb77e' }} />
+          ) : products.map(({
+            id, name, price, imageUrl, category: { name: category },
           }) => (
             <Card
               key={id}
@@ -154,19 +167,21 @@ function Products() {
               name={name}
               price={+price}
               imageUrl={imageUrl}
+              category={category}
+              color={colorsArr[id % colorsArr.length]}
             />
           ))}
-        </Grid> */}
 
-      </Container>
-      <Box sx={{ display: 'flex', justifyContent: 'space-around', p: '15px' }}>
-        <Pagination
-          count={totalPages}
-          page={page}
-          onChange={handlePageChange}
-        />
-      </Box>
-    </main>
+        </Container>
+        <Box sx={{ display: 'flex', justifyContent: 'space-around', p: '15px' }}>
+          <Pagination
+            count={totalPages}
+            page={page}
+            onChange={handlePageChange}
+          />
+        </Box>
+      </main>
+    </>
   );
 }
 
