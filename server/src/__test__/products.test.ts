@@ -187,10 +187,10 @@ describe('/api/v1/categories  Test', () => {
       });
   });
 });
-describe('/api/v1/productsByCat/1', () => {
+describe('/api/v1/categories/1/products', () => {
   test('should success when request exist product', (done) => {
     supertest(app)
-      .get('/api/v1/productsByCat/1')
+      .get('/api/v1/categories/1/products')
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
@@ -200,10 +200,10 @@ describe('/api/v1/productsByCat/1', () => {
   });
 });
 
-describe('/api/v1/productsByCat/0', () => {
+describe('/api/v1/categories/0/products', () => {
   test('should success when request exist product', (done) => {
     supertest(app)
-      .get('/api/v1/productsByCat/0')
+      .get('/api/v1/categories/0/products')
       .expect(200)
       .end((err, res) => {
         if (err) return done(err);
@@ -212,10 +212,10 @@ describe('/api/v1/productsByCat/0', () => {
       });
   });
 });
-describe('/api/v1/productsByCat/test', () => {
+describe('/api/v1/categories/test/products', () => {
   test('should success when request exist product', (done) => {
     supertest(app)
-      .get('/api/v1/productsByCat/test')
+      .get('/api/v1/categories/test/products')
       .expect(500)
       .end(() => done());
   });

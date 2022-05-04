@@ -10,10 +10,12 @@ import './style.css';
 function CatProductsSlider({ catID }) {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    axios.get(`/api/v1/productsByCat/${catID}`).then((result) => {
+    const fetchData = async () => {
+      const result = await axios.get(`/api/v1/categories/${catID}/products`);
       const { data } = result.data;
       setProducts(data);
-    });
+    };
+    fetchData();
   }, []);
   const settings = {
     infinite: false,
@@ -28,8 +30,17 @@ function CatProductsSlider({ catID }) {
         <Slider className="products-slider" {...settings}>
           {products.map((product) => (
             <div className="products-slider-card">
-              <img className="products-slider-card-image" src={product.imageUrl} alt={product.name} />
-              <a href={`/product/${product.id}`} className="products-slider-card-name">{product.name}</a>
+              <img
+                className="products-slider-card-image"
+                src={product.imageUrl}
+                alt={product.name}
+              />
+              <a
+                href={`/product/${product.id}`}
+                className="products-slider-card-name"
+              >
+                {product.name}
+              </a>
               <p className="products-slider-card-price">
                 {product.price}
                 $

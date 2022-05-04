@@ -15,7 +15,7 @@ router.post('/logout', logout);
 router.get('/products', getProducts);
 router.get('/categories', getCategories);
 router.get('/products/:id', getProductByID);
-router.get('/productsByCat/:categoryID', getCategoryProduct);
+router.get('/categories/:categoryID/products', getCategoryProduct);
 
 // Protected routes should be under this line
 router.use('/auth', isAuth);
