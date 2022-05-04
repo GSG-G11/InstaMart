@@ -14,7 +14,6 @@ function ProductDetails({ addToCartLS }) {
   const [catID, setCatID] = useState(null);
 
   useEffect(() => {
-    console.log('dlfkdlfk');
     axios
       .get(`/api/v1/products/${id}`)
       .then((result) => {
