@@ -1,16 +1,15 @@
 import React from 'react';
-import LeaderboardTwoToneIcon from '@mui/icons-material/LeaderboardTwoTone';
-import BorderAllTwoToneIcon from '@mui/icons-material/BorderAllTwoTone';
+import { LeaderboardTwoTone, BorderAllTwoTone } from '@mui/icons-material';
 import './DashboardAside.css';
 
 function DashboardAside() {
   return (
     <aside className="navigation">
       <div>
-        <LeaderboardTwoToneIcon />
+        <LeaderboardTwoTone />
       </div>
       <div>
-        <BorderAllTwoToneIcon />
+        <BorderAllTwoTone />
       </div>
     </aside>
 

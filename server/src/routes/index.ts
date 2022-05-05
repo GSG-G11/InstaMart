@@ -1,7 +1,14 @@
 import { Router } from 'express';
 import {
-  signUp, login, logout, notFound, serverError, authUser,
-  getProducts, getProductByID,
+  signUp,
+  login,
+  logout,
+  notFound,
+  serverError,
+  authUser,
+  getProducts,
+  getProductByID,
+  uploadImage,
 } from '../controllers';
 import { isAuth } from '../controllers/middleware';
 import { getCategories, getCategoryProduct } from '../controllers/products';
@@ -16,6 +23,7 @@ router.get('/products', getProducts);
 router.get('/categories', getCategories);
 router.get('/products/:id', getProductByID);
 router.get('/categories/:categoryID/products', getCategoryProduct);
+router.post('/product/upload', uploadImage);
 
 // Protected routes should be under this line
 router.use('/auth', isAuth);
