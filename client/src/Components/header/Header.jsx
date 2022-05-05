@@ -28,7 +28,7 @@ function Header({ cartitems }) {
       if (!error) {
         navigate('/');
       } else {
-        console.log(error);
+        // console.log(error);
       }
     });
   };

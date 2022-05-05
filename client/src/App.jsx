@@ -8,6 +8,7 @@ import Cart from './Pages/Cart';
 
 // import ProtectedRoute from './Components/ProtectedRoute';
 import { AuthProvider } from './Hooks/useAuth';
+import Products from './Pages/Products';
 // import Table from './Components/Dashboard/Dashboard';
 import ProductDetailsPage from './Pages/ProductDetails';
 
@@ -18,6 +19,8 @@ function App() {
       <Link to="/profile">Profile</Link> */}
       <AuthProvider>
         <Routes>
+          <Route path="/" element={<Products />} />
+
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           {/* <Route path="/table" element={<Table />} /> */}
