@@ -1,5 +1,7 @@
 .product-page-container{
     position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 .product-page-container .success-alert-message{
     position: absolute;

@@ -9,6 +9,7 @@ import Cart from './Pages/Cart';
 // import ProtectedRoute from './Components/ProtectedRoute';
 import { AuthProvider } from './Hooks/useAuth';
 import Products from './Pages/Products';
+// import Table from './Components/Dashboard/Dashboard';
 import ProductDetailsPage from './Pages/ProductDetails';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
 
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          {/* <Route path="/table" element={<Table />} /> */}
           <Route path="/cart" element={<Cart />} />
 
           {/* <Route
