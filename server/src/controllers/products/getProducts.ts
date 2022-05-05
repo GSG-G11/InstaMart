@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { Op } from 'sequelize';
+import { Op, fn, col } from 'sequelize';
 import { getProductsValidation } from '../validation';
-import { Category, Product } from '../../database';
+import { Category, Product, ProductOrder } from '../../database';
 
 const getProducts = async (req:Request, res:Response, next:NextFunction) => {
   const {
@@ -13,8 +13,11 @@ const getProducts = async (req:Request, res:Response, next:NextFunction) => {
     const dbFilterdProducts = await Promise.all([Product.findAll({
       offset: (+page - 1) * +limit,
       limit: +limit,
-      include: { model: Category, attributes: ['id', 'name', 'imageUrl'] },
-      attributes: ['id', 'name', 'imageUrl', 'details', 'categoryId', 'price'],
+      include: [{ model: Category, attributes: ['id', 'name', 'imageUrl'] }, {
+        model: ProductOrder, attributes: [], required: true, duplicating: false,
+      }],
+      attributes: ['id', 'name', 'imageUrl', 'details', 'categoryId', 'price', [fn('sum', col('productOrders.quantity')), 'availableQuantity']],
+      group: ['product.id', 'category.id'],
       where:
        ((categoryId && q) ? {
          [Op.and]: [{ categoryId: +categoryId }, { name: { [Op.iLike]: `%${q}%` } }],
