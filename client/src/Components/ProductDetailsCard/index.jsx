@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Alert } from '@mui/material';
 import CatProductsSlider from '../catProductsSlider';
 import './style.css';
 
@@ -12,17 +12,25 @@ function ProductDetails({ addToCartLS }) {
   const [product, setProduct] = useState(null);
   const [productCount, setProductCount] = useState(0);
   const [catID, setCatID] = useState(null);
+  const [errorAlert, setErrorAlert] = useState(false);
 
   useEffect(() => {
-    axios
-      .get(`/api/v1/products/${id}`)
-      .then((result) => {
-        const { category: { id: catId } } = result.data.data;
+    const fetchData = async () => {
+      try {
+        const result = await axios.get(`/api/v1/products/${id}`);
+        const {
+          category: { id: catId },
+        } = result.data.data;
         setCatID(catId);
         setProduct(result.data.data);
-      })
-      .catch(console.log);
+      } catch (error) {
+        setErrorAlert(true);
+        setTimeout(() => setErrorAlert(false), 5000);
+      }
+    };
+    fetchData();
   }, []);
+
   return (
     <div>
       {product ? (
@@ -65,7 +73,16 @@ function ProductDetails({ addToCartLS }) {
           </div>
         </section>
       ) : null}
-      {catID && <CatProductsSlider catID={catID} />}
+      {catID && <CatProductsSlider catID={catID} setErrorAlert={setErrorAlert} />}
+      {errorAlert ? (
+        <>
+          {' '}
+          <Alert severity="error" className="error-alert-message">
+            Request failed
+            {' '}
+          </Alert>
+        </>
+      ) : null}
     </div>
   );
 }

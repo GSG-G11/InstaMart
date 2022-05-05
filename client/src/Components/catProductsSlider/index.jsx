@@ -7,16 +7,22 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './style.css';
 
-function CatProductsSlider({ catID }) {
+function CatProductsSlider({ catID, setErrorAlert }) {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get(`/api/v1/categories/${catID}/products`);
-      const { data } = result.data;
-      setProducts(data);
+      try {
+        const result = await axios.get(`/api/v1/categories/${catID}/products`);
+        const { data } = result.data;
+        setProducts(data);
+      } catch (error) {
+        setErrorAlert(true);
+        setTimeout(() => setErrorAlert(false), 5000);
+      }
     };
     fetchData();
   }, []);
+
   const settings = {
     infinite: false,
     speed: 500,
@@ -29,7 +35,7 @@ function CatProductsSlider({ catID }) {
       {products.length ? (
         <Slider className="products-slider" {...settings}>
           {products.map((product) => (
-            <div className="products-slider-card">
+            <div className="products-slider-card" key={product.id}>
               <img
                 className="products-slider-card-image"
                 src={product.imageUrl}
@@ -54,5 +60,6 @@ function CatProductsSlider({ catID }) {
 }
 CatProductsSlider.propTypes = {
   catID: PropTypes.number.isRequired,
+  setErrorAlert: PropTypes.func.isRequired,
 };
 export default CatProductsSlider;
