@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -33,7 +32,13 @@ function CatProductsSlider({ catID, setErrorAlert }) {
     <div className="cat-products-continer">
       <h2>Related Products</h2>
       {products.length ? (
-        <Slider className="products-slider" {...settings}>
+        <Slider
+          className="products-slider"
+          infinite={settings.infinite}
+          speed={settings.speed}
+          slidesToShow={settings.slidesToShow}
+          slidesToScroll={settings.slidesToScroll}
+        >
           {products.map((product) => (
             <div className="products-slider-card" key={product.id}>
               <img
