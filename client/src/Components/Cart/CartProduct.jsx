@@ -4,7 +4,7 @@ import { Typography, IconButton } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Delete } from '@mui/icons-material';
 
 const fakeData = [{
   id: 1,
@@ -160,7 +160,7 @@ function CartProduct({ data, setData }) {
               {`$${item.price * item.quantity}`}
             </Typography>
             <IconButton onClick={() => deleteProduct(item)}>
-              <DeleteIcon color="error" />
+              <Delete color="error" />
             </IconButton>
           </div>
           <span className={classes.spanBorder} />

@@ -53,7 +53,7 @@ function Header({ cartitems }) {
         </div>
       </div>
       <div className="icons-div">
-        <Link to="./cart">
+        <Link to="/cart">
           {' '}
           <div className="shopping-cart-div">
             <ShoppingCart className="shopping-cart-icon" />

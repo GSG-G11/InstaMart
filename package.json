@@ -17,7 +17,6 @@
     "test": "cross-env NODE_ENV=test jest  --runInBand server/src/__test__/",
     "prepare": "is-ci || npx husky install",
     "db:fake": "cross-env NODE_ENV=dev ts-node server/src/database/fakeData/buildFakeData.ts"
-
   },
   "repository": {
     "type": "git",
