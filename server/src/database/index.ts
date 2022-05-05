@@ -6,9 +6,10 @@ import {
 User.hasMany(Order);
 Order.belongsTo(User);
 
-Order.belongsToMany(Product, { through: 'product_order' });
-Product.belongsToMany(Order, { through: 'product_order' });
-
+Order.belongsToMany(Product, { through: ProductOrder });
+Product.belongsToMany(Order, { through: ProductOrder });
+Product.hasMany(ProductOrder);
+ProductOrder.belongsTo(Product);
 Category.hasMany(Product);
 Product.belongsTo(Category);
 

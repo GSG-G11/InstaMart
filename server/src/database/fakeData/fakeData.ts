@@ -211,4 +211,32 @@ const users = [{
   password: '$2b$10$5Or.3zVU/tuQnKIVZXjjyObIgJvuhk/xHS41EaMBWXgK1LPQjpk0O',
   isAdmin: true,
 }];
-export { products, categories, users };
+
+const productsOrders = [
+  { quantity: 0, productId: 1 },
+  { quantity: 0, productId: 2 },
+  { quantity: 0, productId: 3 },
+  { quantity: 0, productId: 4 },
+  { quantity: 0, productId: 5 },
+  { quantity: 0, productId: 6 },
+  { quantity: 0, productId: 7 },
+  { quantity: 0, productId: 8 },
+  { quantity: 0, productId: 9 },
+  { quantity: 0, productId: 10 },
+  { quantity: 0, productId: 11 },
+  { quantity: 0, productId: 12 },
+  { quantity: 0, productId: 13 },
+  { quantity: 0, productId: 14 },
+  { quantity: 0, productId: 15 },
+  { quantity: 0, productId: 16 },
+  { quantity: 0, productId: 17 },
+  { quantity: 0, productId: 18 },
+  { quantity: 0, productId: 19 },
+  { quantity: 0, productId: 20 },
+  { quantity: 10, productId: 1 },
+  { quantity: 5, productId: 1 },
+
+];
+export {
+  products, categories, users, productsOrders,
+};
