@@ -1,4 +1,4 @@
 import DashboardAside from './DashboardAside';
-import CustomizedTables from './Dashboard';
+import CustomizedTables from './CustomizedTables';
 
 export { DashboardAside, CustomizedTables };

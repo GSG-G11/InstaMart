@@ -22,7 +22,6 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<Cart />} />
-          {/* <Route path="/dashboard" element={<Dashboard />} /> */}
           <Route
             path="/dashboard"
             element={(
