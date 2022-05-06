@@ -1,3 +1,4 @@
 import DashboardAside from './DashboardAside';
+import CustomizedTables from './Dashboard';
 
-export default DashboardAside;
+export { DashboardAside, CustomizedTables };
