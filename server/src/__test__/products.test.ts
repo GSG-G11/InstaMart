@@ -221,6 +221,62 @@ describe('/api/v1/categories/test/products', () => {
   });
 });
 
+describe('Delete /api/v1/admin/product', () => {
+  test('success delete product ', (done) => {
+    supertest(app)
+      .delete('/api/v1/admin/product')
+      .set('Cookie', [`token=${process.env.ADMIN}`])
+      .send({
+        id: 1,
+      })
+      .expect(200)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+        expect(res.body.message).toBe('Product Deleted Successfully !');
+        return done();
+      });
+  });
+});
+
+describe('Delete /api/v1/admin/product', () => {
+  test('Unauthorized admin ', (done) => {
+    supertest(app)
+      .delete('/api/v1/admin/product')
+      .send({
+        id: 2,
+      })
+      .expect(401)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+        expect(res.body.msg).toBe('Unauthorized');
+        return done();
+      });
+  });
+});
+
+describe('Delete /api/v1/admin/product', () => {
+  test('server error ', (done) => {
+    supertest(app)
+      .delete('/api/v1/admin/product')
+      .set('Cookie', [`token=${process.env.ADMIN}`])
+      .send({
+        id: 's',
+      })
+      .expect(500)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+        expect(res.body.msg).toBe('server error');
+        return done();
+      });
+  });
+});
+
 afterAll(() => {
   sequelize.close();
 });
