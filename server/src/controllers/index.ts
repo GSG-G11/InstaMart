@@ -7,8 +7,10 @@ import {
 import {
   addProduct, deleteProduct, editProduct, getProductByID, getProducts,
 } from './products';
+import addOrder from './orders';
 
 export {
+  addOrder,
   serveRoot,
   notFound,
   serverError,

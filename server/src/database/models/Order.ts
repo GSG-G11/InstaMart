@@ -34,6 +34,7 @@ const Order = sequelize.define<OrderModel>('order', {
   },
   status: {
     type: DataTypes.STRING,
+
     allowNull: false,
   },
   supplier: {
