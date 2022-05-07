@@ -7,7 +7,7 @@ const addOrder = async (req:Request, res:Response, next:NextFunction) => {
   const {
     date, paidPrice, productArray,
   } = req.body;
-  const totalPrice = JSON.parse(productArray).reduce((sum:number, cur:any) => sum + +cur.price
+  const totalPrice = productArray.reduce((sum:number, cur:any) => sum + +cur.price
   * cur.quantity, 0);
 
   try {
