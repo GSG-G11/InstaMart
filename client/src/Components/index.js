@@ -1,8 +1,8 @@
-import Home from './Home';
 import Profile from './Profile';
 import CartProduct from './Cart/CartProduct';
 import TotalPrice from './Cart/TotalPrice';
+import Hero from './hero';
 
 export {
-  Home, Profile, CartProduct, TotalPrice,
+  Hero, Profile, CartProduct, TotalPrice,
 };

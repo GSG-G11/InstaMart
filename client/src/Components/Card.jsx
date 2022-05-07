@@ -65,7 +65,7 @@ function Card({
           {`$${price}`}
         </Typography>
 
-        <Button size="small" className={classes.addBtn} variant="contained" color="success" sx={{ marginBottom: '20px' }} onClick={() => navigate(`/products/${id}`)}>
+        <Button size="small" className={classes.addBtn} variant="contained" color="success" sx={{ marginBottom: '20px' }} onClick={() => navigate(`/product/${id}`)}>
           <ShoppingCart />
           Add
         </Button>
