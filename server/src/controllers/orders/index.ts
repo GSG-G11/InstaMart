@@ -10,8 +10,6 @@ const addOrder = async (req:Request, res:Response, next:NextFunction) => {
   const {
     date, paidPrice, productArray, isSupplied = false,
   } = req.body;
-  // const totalPrice = productArray.reduce((sum:number, cur:any) => sum + +cur.price
-  // * cur.quantity, 0);
 
   try {
     await orderValidation(req);
