@@ -8,6 +8,7 @@ interface ProductOrderModel extends Model<InferAttributes<ProductOrderModel>,
   id?:number,
   quantity:number,
   productId?:number,
+  orderId?:number,
  }
 
 const ProductOrder = sequelize.define<ProductOrderModel>('productOrder', {
@@ -21,6 +22,9 @@ const ProductOrder = sequelize.define<ProductOrderModel>('productOrder', {
     allowNull: false,
   },
   productId: {
+    type: DataTypes.INTEGER,
+  },
+  orderId: {
     type: DataTypes.INTEGER,
   },
 });
