@@ -38,8 +38,9 @@ const addOrder = async (req:Request, res:Response, next:NextFunction) => {
       }],
       attributes: [
 
-        [literal('product.price*quantity'), 'qp'],
+        [literal('SUM(product.price*quantity)'), 'total'],
       ],
+      group: ['productOrder.orderId'],
     });
     return res.json(totalPrice);
 
