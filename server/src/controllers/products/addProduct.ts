@@ -1,20 +1,25 @@
 import { Request, Response, NextFunction } from 'express';
-import { Product } from '../../database';
-import { CustomizedError } from '../../utilities';
+import { Product, ProductOrder } from '../../database';
+import { CustomizedError, receiveImage } from '../../utilities';
 import addProductValidation from '../validation/addProductValidation';
 
 const addProduct = async (req: Request, res: Response, next: NextFunction) => {
   const {
-    name, imageUrl, price, details, categoryId,
+    name, price, details, categoryId, quantity,
   } = req.body;
+  let { imageUrl } = req.body;
   try {
     await addProductValidation(req);
-    await Product.create({
+    imageUrl = await receiveImage(imageUrl);
+    const newProduct = await Product.create({
       name, imageUrl, price, details, categoryId,
+    });
+    const productId = newProduct.id;
+    await ProductOrder.create({
+      quantity, productId,
     });
     res.status(200).json({ message: 'Product Added Successfully !' });
   } catch (error: any) {
-    console.log(error);
     if (error.details) {
       res.status(422).json(error.details[0].message);
     } else {
