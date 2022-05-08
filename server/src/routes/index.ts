@@ -8,10 +8,9 @@ import {
   authUser,
   getProducts,
   getProductByID,
-  uploadImage,
 } from '../controllers';
 import { isAuth } from '../controllers/middleware';
-import { getCategories, getCategoryProduct } from '../controllers/products';
+import { getCategories, getCategoryProduct, uploadImage } from '../controllers/products';
 import adminRouter from './adminRouter';
 
 const router = Router();

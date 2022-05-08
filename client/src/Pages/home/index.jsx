@@ -1,5 +1,5 @@
 import React from 'react';
-import { Hero } from '../../Components';
+import { Categories, Hero } from '../../Components';
 import Header from '../../Components/header/Header';
 
 function Home() {
@@ -7,6 +7,7 @@ function Home() {
     <div>
       <Header cartitems={[]} />
       <Hero />
+      <Categories />
 
     </div>
   );
