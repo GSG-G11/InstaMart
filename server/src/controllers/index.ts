@@ -5,7 +5,12 @@ import {
   authUser, login, logout, signUp,
 } from './users';
 import {
-  addProduct, deleteProduct, editProduct, getProductByID, getProducts,
+  addProduct,
+  deleteProduct,
+  editProduct,
+  getProductByID,
+  getProducts,
+  uploadImage,
 } from './products';
 
 export {
@@ -21,4 +26,5 @@ export {
   editProduct,
   getProducts,
   getProductByID,
+  uploadImage,
 };
