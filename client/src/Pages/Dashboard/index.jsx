@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../../Components/header/Header';
-// eslint-disable-next-line no-unused-vars
 import { CustomizedTables, DashboardAside } from '../../Components/Dashboard';
 import './dash.css';
 
