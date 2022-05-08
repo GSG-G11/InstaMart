@@ -42,8 +42,8 @@ const addOrder = async (req:Request, res:Response, next:NextFunction) => {
     });
     order.totalPrice = Number(totalPrice[0].total);
     await order.save();
-    return res.status(200).json(order);
-    // return res.status(200).json({ message: 'Order Added Successfully !' });
+
+    return res.status(200).json({ message: 'Order Added Successfully !' });
   } catch (err:any) {
     if (err.details) {
       return res.status(422).json({ msg: err.details[0].message, status: 422 });
