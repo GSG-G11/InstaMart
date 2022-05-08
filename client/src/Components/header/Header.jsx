@@ -23,6 +23,11 @@ function Header({ cartitems }) {
     setAnchorEl(null);
   };
   const { logout, user } = useAuth();
+  // console.log(user);
+  // console.log(user.isAdmin);
+  // const { isAdmin } = user;
+  // eslint-disable-next-line no-unused-vars
+  const admin = user?.isAdmin;
   const logoutFunc = () => {
     logout((error) => {
       if (!error) {
@@ -47,9 +52,11 @@ function Header({ cartitems }) {
           <Link className="navigate-word" to="/products">
             Products
           </Link>
-          <Link className="navigate-word" to="/dashboard">
-            Dashboard
-          </Link>
+          {!admin ? (
+            <Link className="navigate-word" to="/dashboard">
+              Dashboard
+            </Link>
+          ) : null }
         </div>
       </div>
       <div className="icons-div">
@@ -61,7 +68,7 @@ function Header({ cartitems }) {
           </div>
         </Link>
 
-        {user ? (
+        {admin || user ? (
           <>
             <button
               onClick={handleClick}
