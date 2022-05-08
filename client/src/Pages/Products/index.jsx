@@ -13,8 +13,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import Card from '../../Components/Card';
-import Header from '../../Components/header/Header';
+import { Card, Header } from '../../Components';
 
 const colorsArr = [
   '#6f42c1',

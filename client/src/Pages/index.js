@@ -1,3 +1,5 @@
-import ProductDetailsPage from './ProductDetailsPage';
+import ProductDetailsPage from './ProductDetails';
+import Cart from './Cart';
+import Products from './Products';
 
-export default ProductDetailsPage;
+export { ProductDetailsPage, Cart, Products };

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@mui/styles';
-import { CartProduct, TotalPrice } from '../Components';
+import { CartProduct, TotalPrice } from '../../Components/Cart';
 
 const useStyle = makeStyles({
   cardContainer: {
