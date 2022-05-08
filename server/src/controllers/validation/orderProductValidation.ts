@@ -15,6 +15,7 @@ const orderValidation = (req: Request) => {
           .required(),
         quantity: Joi.number()
           .required(),
+        isSupplied: Joi.boolean(),
       }),
     date: Joi.date().raw().required(),
     paidPrice: Joi.number().required(),

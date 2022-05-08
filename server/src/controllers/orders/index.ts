@@ -1,11 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import { Order } from '../../database';
-// import { CustomizedError } from '../../utilities';
 import { orderValidation } from '../validation';
 
 const addOrder = async (req:Request, res:Response, next:NextFunction) => {
   const {
-    date, paidPrice, productArray,
+    date, paidPrice, productArray, isSupplied = false,
   } = req.body;
   const totalPrice = productArray.reduce((sum:number, cur:any) => sum + +cur.price
   * cur.quantity, 0);
@@ -13,7 +12,7 @@ const addOrder = async (req:Request, res:Response, next:NextFunction) => {
   try {
     await orderValidation(req);
     await Order.create({
-      date, totalPrice, paidPrice, status: 'pending', supplier: 'admin', isSupplied: false,
+      date, totalPrice, paidPrice, status: 'pending', supplier: 'admin', isSupplied,
     });
     return res.status(200).json({ message: 'Order Added Successfully !' });
   } catch (err:any) {
