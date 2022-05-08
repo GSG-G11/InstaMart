@@ -36,11 +36,11 @@ const addOrder = async (req:Request, res:Response, next:NextFunction) => {
       }],
       attributes: [
 
-        [literal('SUM(product.price*quantity)'), 'orderId'],
+        [literal('SUM(product.price*quantity)'), 'total'],
       ],
       group: ['productOrder.orderId'],
     });
-    order.totalPrice = Number(totalPrice[0].orderId);
+    order.totalPrice = Number(totalPrice[0].total);
     await order.save();
     return res.status(200).json(order);
     // return res.status(200).json({ message: 'Order Added Successfully !' });
