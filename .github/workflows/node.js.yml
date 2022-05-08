@@ -4,6 +4,9 @@ env:
   PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
   TOKEN: ${{ secrets.TOKEN }}
   ADMIN: ${{ secrets.ADMIN }}
+  CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+  CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+  CLOUDINARY_NAME: ${{ secrets.CLOUDINARY_NAME }}
 
 jobs:
   container-job:
