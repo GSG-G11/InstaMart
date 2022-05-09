@@ -10,31 +10,34 @@ import ProtectedRoute from './Components/ProtectedRoute';
 import { AuthProvider } from './Hooks/useAuth';
 import Products from './Pages/Products';
 import ProductDetailsPage from './Pages/ProductDetails';
+import { CartProvider } from './Hooks/useCart';
 
 function App() {
   return (
     <div className="App">
       {/* <Link to="/home">Home</Link>
       <Link to="/profile">Profile</Link> */}
-      <AuthProvider>
-        <Routes>
-          <Route path="/" element={<Products />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route
-            path="/dashboard"
-            element={(
-              <ProtectedRoute redirectPath="/login">
-                <Dashboard />
-              </ProtectedRoute>
+      <CartProvider>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<Products />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route
+              path="/dashboard"
+              element={(
+                <ProtectedRoute redirectPath="/login">
+                  <Dashboard />
+                </ProtectedRoute>
             )}
-          />
-          {/* example how to use protected route */}
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/product/:id" element={<ProductDetailsPage />} />
-        </Routes>
-      </AuthProvider>
+            />
+            {/* example how to use protected route */}
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/product/:id" element={<ProductDetailsPage />} />
+          </Routes>
+        </AuthProvider>
+      </CartProvider>
     </div>
   );
 }
