@@ -5,8 +5,10 @@ import { useParams } from 'react-router-dom';
 import { Button, TextField, Alert } from '@mui/material';
 import CatProductsSlider from '../catProductsSlider';
 import './style.css';
+import { useCart } from '../../Hooks/useCart';
 
-function ProductDetails({ addToCartLS }) {
+function ProductDetails({ setOpen }) {
+  const { addToCartLS } = useCart();
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [productCount, setProductCount] = useState(0);
@@ -62,7 +64,10 @@ function ProductDetails({ addToCartLS }) {
                   />
                   <Button
                     className="add-product-number"
-                    onClick={() => addToCartLS(productCount, product)}
+                    onClick={() => {
+                      addToCartLS(productCount, product);
+                      setOpen();
+                    }}
                   >
                     Add To Cart
                   </Button>
@@ -86,7 +91,7 @@ function ProductDetails({ addToCartLS }) {
   );
 }
 ProductDetails.propTypes = {
-  addToCartLS: PropTypes.func.isRequired,
+  setOpen: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;

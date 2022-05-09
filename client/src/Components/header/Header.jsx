@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { Link, useNavigate } from 'react-router-dom';
 import './index.css';
 import Menu from '@mui/material/Menu';
@@ -10,9 +9,11 @@ import {
 } from '@mui/icons-material';
 import appIcon from './logo.png';
 import { useAuth } from '../../Hooks/useAuth';
+import { useCart } from '../../Hooks/useCart';
 
-function Header({ cartitems }) {
+function Header() {
   const navigate = useNavigate();
+  const { cartitems } = useCart();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -105,8 +106,5 @@ function Header({ cartitems }) {
     </div>
   );
 }
-Header.propTypes = {
-  cartitems: PropTypes.arrayOf(Object).isRequired,
-};
 
 export default Header;
