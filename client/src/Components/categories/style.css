@@ -1,8 +1,9 @@
 .categories-section {
-  margin: 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  max-width: 1200px;
+  margin: 40px auto;
 }
 .categories-section .categories-section-title {
   font-size: 25px;
