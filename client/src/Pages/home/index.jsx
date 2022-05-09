@@ -1,5 +1,5 @@
 import React from 'react';
-import { Categories, Hero } from '../../Components';
+import { Categories, Hero, LatestProducts } from '../../Components';
 import Header from '../../Components/header/Header';
 
 function Home() {
@@ -8,6 +8,7 @@ function Home() {
       <Header cartitems={[]} />
       <Hero />
       <Categories />
+      <LatestProducts />
 
     </div>
   );

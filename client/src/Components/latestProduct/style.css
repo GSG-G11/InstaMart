@@ -1,0 +1,18 @@
+
+.latest-products-section{
+    margin: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.latest-products-section-cards{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.latest-products-section-title{
+font-weight: bold;
+font-size: 28px;
+}
