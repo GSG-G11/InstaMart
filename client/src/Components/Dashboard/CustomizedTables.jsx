@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import { Delete, Edit } from '@mui/icons-material';
-import './Dashboard.css';
+import './CustomizedTables.css';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
