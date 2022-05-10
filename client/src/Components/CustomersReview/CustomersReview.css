@@ -1,0 +1,23 @@
+.customer-review-section{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 50px auto;
+}
+.customer-review-section-cards{
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+}
+.customer-review-section-title{
+    font-weight: bold;
+font-size: 28px;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow:rgba(0, 0, 0, 0.14) 0px 3px 8px;
+}

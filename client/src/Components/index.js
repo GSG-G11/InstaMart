@@ -5,7 +5,8 @@ import Hero from './hero';
 import Categories from './categories';
 import LatestProducts from './latestProduct';
 import Footer from './Footer';
+import CustomersReview from './CustomersReview';
 
 export {
-  Hero, Profile, CartProduct, TotalPrice, Categories, LatestProducts, Footer,
+  Hero, Profile, CartProduct, TotalPrice, Categories, LatestProducts, Footer, CustomersReview,
 };
