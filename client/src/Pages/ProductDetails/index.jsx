@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Alert } from '@mui/material';
-import { Header, ProductDetails } from '../../Components';
+import { Header, ProductDetails, Footer } from '../../Components';
 import './style.css';
 
 function ProductDetailsPage() {
@@ -60,7 +60,7 @@ function ProductDetailsPage() {
           </>
         ) : null}
       </div>
-
+      <Footer />
     </div>
   );
 }
