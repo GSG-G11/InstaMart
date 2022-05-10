@@ -1,13 +1,15 @@
 import { Request, Response, NextFunction } from 'express';
-import { CustomizedError } from '../../utilities';
+import { CustomizedError, receiveImage } from '../../utilities';
 import { editProductValidation } from '../validation';
 import { Product } from '../../database';
 
 const editProduct = async (req:Request, res:Response, next:NextFunction) => {
   const {
-    id, name, imageUrl, price, details, categoryId,
+    id, name, price, details, categoryId,
   } = req.body;
+  let imageUrl = req.body;
   try {
+    imageUrl = receiveImage(imageUrl);
     await editProductValidation(req);
     await Product.upsert({
       id, name, imageUrl, price, details, categoryId,
