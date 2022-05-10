@@ -1,0 +1,21 @@
+.hero-section{
+    position: relative;
+}
+.hero-image{
+    min-width: 100%;
+    opacity: 0.5;
+    height: 415px;
+    object-fit: cover;
+    object-position: center;
+}
+.welcome-message{
+    position: absolute;
+    top: 128px;
+    right: 63px;
+    font-weight: bold;
+    font-size: 30px;
+    color: #403d3da6;
+}
+.app-title-hero{
+    color:#3bb77e ;
+}

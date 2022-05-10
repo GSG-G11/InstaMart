@@ -8,6 +8,8 @@ import {
   addProduct,
   deleteProduct,
   editProduct,
+  getCategories,
+  getCategoryProduct,
   getProductByID,
   getProducts,
   uploadImage,
@@ -29,4 +31,6 @@ export {
   getProducts,
   getProductByID,
   uploadImage,
+  getCategories,
+  getCategoryProduct,
 };

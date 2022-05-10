@@ -42,7 +42,7 @@ function Header({ cartitems }) {
           <p className="logo-name"> Instamart</p>
         </div>
         <div className="navigate-div">
-          <Link className="navigate-word" to="/home">
+          <Link className="navigate-word" to="/">
             Home
           </Link>
           <Link className="navigate-word" to="/products">
