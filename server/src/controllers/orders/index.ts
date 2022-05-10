@@ -18,7 +18,7 @@ interface ModRequest extends Request{
 
 const addOrder = async (req:ModRequest, res:Response, next:NextFunction) => {
   const {
-    date, paidPrice, productArray, isSupplied = false,
+    date, paidPrice, productArray, isSupplied = false, mobile, address,
   } = req.body;
 
   const isAdmin = req.user?.isAdmin || false;
@@ -27,7 +27,7 @@ const addOrder = async (req:ModRequest, res:Response, next:NextFunction) => {
   try {
     await orderValidation(req);
     const order = await Order.create({
-      date, totalPrice: Infinity, paidPrice, status: 'pending', isSupplied,
+      date, totalPrice: Infinity, paidPrice, status: 'pending', isSupplied, mobile, address,
     }, { transaction: t });
     await ProductOrder.bulkCreate(productArray.map(({ id, quantity }:
       {id:number, quantity:number}) => ({

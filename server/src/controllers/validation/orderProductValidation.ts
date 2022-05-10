@@ -19,7 +19,8 @@ const orderValidation = (req: Request) => {
       }),
     date: Joi.date().raw().required(),
     paidPrice: Joi.number().required(),
-
+    mobile: Joi.number().required(),
+    address: Joi.string().required(),
   });
 
   return schema.validateAsync(req.body);
