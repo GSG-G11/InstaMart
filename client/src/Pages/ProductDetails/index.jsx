@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Alert } from '@mui/material';
-import Header from '../../Components/header/Header';
-import ProductDetails from '../../Components/ProductDetailsCard';
+import { Header, ProductDetails } from '../../Components';
 import './style.css';
 
 function ProductDetailsPage() {

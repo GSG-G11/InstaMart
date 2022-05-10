@@ -14,8 +14,7 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useLocation } from 'react-router-dom';
-import Card from '../../Components/Card';
-import Header from '../../Components/header/Header';
+import { Card, Header } from '../../Components';
 
 const colorsArr = [
   '#6f42c1',
