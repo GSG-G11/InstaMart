@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import SignUp from './Components/SignUp';
-import { Home } from './Components';
+import { Home, Footer } from './Components';
 import Login from './Components/Login';
 import Cart from './Pages/Cart';
 
@@ -23,7 +23,7 @@ function App() {
 
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          {/* <Route path="/table" element={<Table />} /> */}
+          <Route path="/footer" element={<Footer />} />
           <Route path="/cart" element={<Cart />} />
 
           {/* <Route

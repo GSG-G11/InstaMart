@@ -15,6 +15,7 @@ import {
 import { makeStyles } from '@mui/styles';
 import Card from '../../Components/Card';
 import Header from '../../Components/header/Header';
+import Footer from '../../Components/Footer';
 
 const colorsArr = [
   '#6f42c1',
@@ -182,6 +183,7 @@ function Products() {
           />
         </Box>
       </main>
+      <Footer />
     </>
   );
 }
