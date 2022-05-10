@@ -7,7 +7,7 @@ const editProduct = async (req:Request, res:Response, next:NextFunction) => {
   const {
     id, name, price, details, categoryId,
   } = req.body;
-  let imageUrl = req.body;
+  let { imageUrl } = req.body;
   try {
     imageUrl = receiveImage(imageUrl);
     await editProductValidation(req);
