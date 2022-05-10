@@ -5,9 +5,8 @@ import {
   styled,
 } from '@mui/material';
 import axios from 'axios';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import './Dashboard.css';
+import { Delete, Edit } from '@mui/icons-material';
+import './CustomizedTables.css';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -82,9 +81,9 @@ export default function CustomizedTables() {
                 <StyledTableCell align="center">{product.price}</StyledTableCell>
                 <StyledTableCell align="center">{product.details}</StyledTableCell>
                 <StyledTableCell align="center" className="dashicon">
-                  <EditIcon color="success" />
+                  <Edit color="success" />
                   {' '}
-                  <DeleteIcon color="error" />
+                  <Delete color="error" />
                   {' '}
                 </StyledTableCell>
               </StyledTableRow>

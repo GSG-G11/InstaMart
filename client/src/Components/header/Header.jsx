@@ -23,6 +23,7 @@ function Header({ cartitems }) {
     setAnchorEl(null);
   };
   const { logout, user } = useAuth();
+  const admin = user?.isAdmin;
   const logoutFunc = () => {
     logout((error) => {
       if (!error) {
@@ -41,15 +42,17 @@ function Header({ cartitems }) {
           <p className="logo-name"> Instamart</p>
         </div>
         <div className="navigate-div">
-          <Link className="navigate-word" to="/home">
+          <Link className="navigate-word" to="/">
             Home
           </Link>
           <Link className="navigate-word" to="/products">
             Products
           </Link>
-          <Link className="navigate-word" to="/dashboard">
-            Dashboard
-          </Link>
+          {admin ? (
+            <Link className="navigate-word" to="/dashboard">
+              Dashboard
+            </Link>
+          ) : null }
         </div>
       </div>
       <div className="icons-div">

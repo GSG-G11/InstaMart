@@ -5,10 +5,19 @@ import {
   authUser, login, logout, signUp,
 } from './users';
 import {
-  addProduct, deleteProduct, editProduct, getProductByID, getProducts,
+  addProduct,
+  deleteProduct,
+  editProduct,
+  getCategories,
+  getCategoryProduct,
+  getProductByID,
+  getProducts,
+  uploadImage,
 } from './products';
+import addOrder from './orders';
 
 export {
+  addOrder,
   serveRoot,
   notFound,
   serverError,
@@ -21,4 +30,7 @@ export {
   editProduct,
   getProducts,
   getProductByID,
+  uploadImage,
+  getCategories,
+  getCategoryProduct,
 };

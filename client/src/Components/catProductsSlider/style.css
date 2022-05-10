@@ -37,9 +37,9 @@
   font-size: 20px;
   line-height: 24px;
 }
-/* .products-slider .slick-list .slick-track{
-    padding: 0 30px;
-} */
+.products-slider .slick-list {
+    padding: 16px;
+}
 .products-slider-card .products-slider-card-image {
   width: 210px;
 }

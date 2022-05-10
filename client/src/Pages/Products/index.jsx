@@ -13,6 +13,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
+import { useLocation } from 'react-router-dom';
 import Card from '../../Components/Card';
 import Header from '../../Components/header/Header';
 import Footer from '../../Components/Footer';
@@ -42,10 +43,11 @@ const useStyles = makeStyles({
   },
 });
 function Products() {
+  const { state } = useLocation();
   const classes = useStyles();
   const [q, setQ] = useState('');
   const [sort, setSort] = useState('');
-  const [categoryId, setCategoryId] = useState('');
+  const [categoryId, setCategoryId] = useState(state?.categoryId || '');
   const [totalPages, settotalPages] = useState(1);
   const [page, setPage] = useState(1);
   const [categories, setCategories] = useState([]);

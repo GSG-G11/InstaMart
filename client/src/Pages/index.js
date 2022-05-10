@@ -1,3 +1,4 @@
-import ProductDetailsPage from './ProductDetailsPage';
+import Home from './home';
+import ProductDetailsPage from './ProductDetails';
 
-export default ProductDetailsPage;
+export { ProductDetailsPage, Home };
