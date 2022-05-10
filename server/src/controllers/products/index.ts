@@ -15,6 +15,5 @@ export {
   getCategories,
   getProductByID,
   getCategoryProduct,
-  uploadImage
-  ,
+  uploadImage,
 };

@@ -1,12 +1,10 @@
-import React, { } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Paper, Button, Typography, Box, Rating,
 } from '@mui/material';
 import PropTypes from 'prop-types';
-import {
-  ShoppingCart,
-} from '@mui/icons-material';
+import { ShoppingCart } from '@mui/icons-material';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
@@ -25,7 +23,6 @@ const useStyles = makeStyles({
     '&:hover': {
       transform: 'translateY(-15%)',
       transition: '0.2s',
-
     },
   },
 });
@@ -39,38 +36,68 @@ function Card({
     <Paper
       elevation={7}
       className={classes.cardContainer}
-      sx={{ borderRadius: '20px' }}
-    >
-      <Paper sx={{
-        width: '30%', borderRadius: '20px 0 20px 0', background: color || '#f74b81', textAlign: 'center', color: '#fff', lineHeight: '24px', fontSize: '10px', alignSelf: 'flex-start', zIndex: 1,
+      sx={{
+        borderRadius: '20px',
+        boxShadow: 'rgba(0, 0, 0, 0.14) 0px 3px 8px',
       }}
+    >
+      <Paper
+        sx={{
+          width: '30%',
+          borderRadius: '20px 0 20px 0',
+          background: color || '#f74b81',
+          textAlign: 'center',
+          color: '#fff',
+          lineHeight: '24px',
+          fontSize: '10px',
+          alignSelf: 'flex-start',
+          zIndex: 1,
+        }}
       >
         New
       </Paper>
       <img src={imageUrl} alt={name} width="80%" />
-      <Typography variant="body2" sx={{ alignSelf: 'flex-start', ml: '10px' }} color="#adadad">
+      <Typography
+        variant="body2"
+        sx={{ alignSelf: 'flex-start', ml: '10px' }}
+        color="#adadad"
+      >
         {category}
       </Typography>
 
-      <Typography variant="subtitle1">
-        {name}
-      </Typography>
-      <Rating name="read-only" value={3.5} precision={0.5} readOnly size="small" sx={{ transform: 'scale(0.7)', alignSelf: 'flex-start', ml: '10px' }} />
-      <Box sx={{
-        display: 'flex', justifyContent: 'space-around', alignContent: 'center', width: '100%',
-      }}
+      <Typography variant="subtitle1">{name}</Typography>
+      <Rating
+        name="read-only"
+        value={3.5}
+        precision={0.5}
+        readOnly
+        size="small"
+        sx={{ transform: 'scale(0.7)', alignSelf: 'flex-start', ml: '10px' }}
+      />
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-around',
+          alignContent: 'center',
+          width: '100%',
+        }}
       >
-
         <Typography variant="subtitle1" color="#3AB77D" height="100%">
           {`$${price}`}
         </Typography>
 
-        <Button size="small" className={classes.addBtn} variant="contained" color="success" sx={{ marginBottom: '20px' }} onClick={() => navigate(`/products/${id}`)}>
+        <Button
+          size="small"
+          className={classes.addBtn}
+          variant="contained"
+          color="success"
+          sx={{ marginBottom: '20px' }}
+          onClick={() => navigate(`/product/${id}`)}
+        >
           <ShoppingCart />
           Add
         </Button>
       </Box>
-
     </Paper>
   );
 }

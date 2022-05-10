@@ -8,12 +8,16 @@ import {
   addProduct,
   deleteProduct,
   editProduct,
+  getCategories,
+  getCategoryProduct,
   getProductByID,
   getProducts,
   uploadImage,
 } from './products';
+import addOrder from './orders';
 
 export {
+  addOrder,
   serveRoot,
   notFound,
   serverError,
@@ -27,4 +31,6 @@ export {
   getProducts,
   getProductByID,
   uploadImage,
+  getCategories,
+  getCategoryProduct,
 };

@@ -12,6 +12,8 @@ interface OrderModel extends Model<InferAttributes<OrderModel>,
   status:string,
   supplier?:string,
   isSupplied:boolean,
+  mobile:number,
+  address:string,
  }
 
 const Order = sequelize.define<OrderModel>('order', {
@@ -34,6 +36,7 @@ const Order = sequelize.define<OrderModel>('order', {
   },
   status: {
     type: DataTypes.STRING,
+
     allowNull: false,
   },
   supplier: {
@@ -41,6 +44,14 @@ const Order = sequelize.define<OrderModel>('order', {
   },
   isSupplied: {
     type: DataTypes.BOOLEAN,
+    allowNull: false,
+  },
+  mobile: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  address: {
+    type: DataTypes.STRING,
     allowNull: false,
   },
 });

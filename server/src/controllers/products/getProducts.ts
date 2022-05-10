@@ -16,7 +16,7 @@ const getProducts = async (req:Request, res:Response, next:NextFunction) => {
       include: [{ model: Category, attributes: ['id', 'name', 'imageUrl'] }, {
         model: ProductOrder, attributes: [], required: true, duplicating: false,
       }],
-      attributes: ['id', 'name', 'imageUrl', 'details', 'categoryId', 'price', [fn('sum', col('productOrders.quantity')), 'availableQuantity']],
+      attributes: ['id', 'name', 'imageUrl', 'details', 'categoryId', 'price', [fn('sum', col('productOrders.quantity')), 'availableQuantity'], 'createdAt'],
       group: ['product.id', 'category.id'],
       where:
        ((categoryId && q) ? {
@@ -24,7 +24,7 @@ const getProducts = async (req:Request, res:Response, next:NextFunction) => {
        } : undefined)
        || (categoryId ? { categoryId: +categoryId } : undefined)
        || (q ? { name: { [Op.iLike]: `%${q}%` } } : undefined),
-      order: sort ? [['price', `${sort}`]] : undefined,
+      order: sort ? [['price', `${sort}`]] : [['createdAt', 'DESC']],
     }),
     Product.count({
       where:
