@@ -20,7 +20,6 @@ const addProduct = async (req: Request, res: Response, next: NextFunction) => {
     });
     res.status(200).json({ message: 'Product Added Successfully !' });
   } catch (error: any) {
-    console.log(error);
     if (error.details) {
       res.status(422).json(error.details[0].message);
     } else {
