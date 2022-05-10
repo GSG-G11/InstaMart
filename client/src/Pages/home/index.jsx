@@ -1,8 +1,7 @@
 import React from 'react';
 import {
-  Categories, Hero, LatestProducts, CustomersReview, Footer,
+  Categories, Hero, LatestProducts, Header, CustomersReview, Footer,
 } from '../../Components';
-import Header from '../../Components/header/Header';
 
 function Home() {
   return (
