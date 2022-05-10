@@ -12,8 +12,10 @@ import {
   getProducts,
   uploadImage,
 } from './products';
+import addOrder from './orders';
 
 export {
+  addOrder,
   serveRoot,
   notFound,
   serverError,
