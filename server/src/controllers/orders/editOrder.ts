@@ -4,16 +4,14 @@ import { Order } from '../../database';
 import { editOrderValidation } from '../validation';
 
 const editOrder = async (req:Request, res:Response, next:NextFunction) => {
-  const { status, id } = req.body;
+  const { status, id }:{status:string, id: number} = req.body;
   try {
     await editOrderValidation(req);
-    const toBeEditOrder = await Order.findOne({ where: id });
-    if (toBeEditOrder) {
-      toBeEditOrder.status = status;
-      await toBeEditOrder?.save();
-      res.status(200).json({ message: 'Order Updated Successfully !' });
+    const result = await Order.update({ status }, { where: { id } });
+    if (!result[0]) {
+      res.status(404).json({ success: false, message: 'Order Not found !' });
     } else {
-      next(CustomizedError('Bad Request', 400));
+      res.status(200).json({ message: 'Order Updated Successfully !' });
     }
   } catch (error:any) {
     if (error.details) {
