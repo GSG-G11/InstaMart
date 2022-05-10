@@ -1,6 +1,7 @@
 import React from 'react';
-import { Categories, Hero, LatestProducts } from '../../Components';
-import Header from '../../Components/header/Header';
+import {
+  Categories, Hero, LatestProducts, Header,
+} from '../../Components';
 
 function Home() {
   return (
