@@ -2,6 +2,7 @@ import {
   DataTypes, Model, InferCreationAttributes, InferAttributes,
 } from 'sequelize';
 import sequelize from '../config/connection';
+import Order from './Order';
 
 interface ProductOrderModel extends Model<InferAttributes<ProductOrderModel>,
  InferCreationAttributes<ProductOrderModel>> {
@@ -27,6 +28,10 @@ const ProductOrder = sequelize.define<ProductOrderModel>('productOrder', {
   },
   orderId: {
     type: DataTypes.INTEGER,
+    references: {
+      model: Order,
+      key: 'id',
+    },
   },
 });
 
