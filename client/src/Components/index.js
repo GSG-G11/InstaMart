@@ -1,8 +1,15 @@
-import Home from './Home';
-import Profile from './Profile';
-import CartProduct from './Cart/CartProduct';
-import TotalPrice from './Cart/TotalPrice';
+import { CartProduct, TotalPrice } from './Cart';
+import CatProductsSlider from './catProductsSlider';
+import Header from './header';
+import ProductDetails from './ProductDetailsCard';
+import SignUp from './SignUp';
+import Login from './Login';
+import Card from './Card';
+import LatestProducts from './latestProduct';
+import Hero from './hero';
+import Categories from './categories';
 
 export {
-  Home, Profile, CartProduct, TotalPrice,
+  CartProduct, TotalPrice, CatProductsSlider,
+  Header, ProductDetails, SignUp, Login, Card, Hero, Categories, LatestProducts,
 };

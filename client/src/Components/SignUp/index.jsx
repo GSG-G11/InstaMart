@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, TextField, Typography } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import logo from '../../images/logo1.png';
 import './SignUp.css';
 import image from '../../images/SignUp.jpeg';
@@ -23,7 +23,7 @@ function SignUp() {
     e.preventDefault();
     signup(value, (error) => {
       if (error) {
-        setUserError(error.data.message);
+        setUserError(error.data);
       } else {
         navigate('/');
       }
@@ -112,13 +112,20 @@ function SignUp() {
           onClick={handleClick}
           style={{
             backgroundColor: '#3AB77D',
-            width: '189px',
-            height: '53px',
+            width: '200px',
           }}
         >
           Sign Up
 
         </Button>
+        <Typography component="h2" style={{ margin: '15px' }}>
+          {' '}
+          Already have an account?
+          {' '}
+          <Link to="/login">
+            LOGIN
+          </Link>
+        </Typography>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../../Components/header/Header';
+import { Header } from '../../Components';
 import { CustomizedTables, DashboardAside } from '../../Components/Dashboard';
-import './dash.css';
+import './dashboard.css';
 
 function Dashboard() {
   return (

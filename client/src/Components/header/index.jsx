@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './index.css';
+import './Header.css';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -43,7 +43,7 @@ function Header() {
           <p className="logo-name"> Instamart</p>
         </div>
         <div className="navigate-div">
-          <Link className="navigate-word" to="/home">
+          <Link className="navigate-word" to="/">
             Home
           </Link>
           <Link className="navigate-word" to="/products">
