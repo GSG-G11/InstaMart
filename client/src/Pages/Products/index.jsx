@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useLocation } from 'react-router-dom';
-import { Card, Header } from '../../Components';
+import { Card, Header, Footer } from '../../Components';
 
 const colorsArr = [
   '#6f42c1',
@@ -183,6 +183,7 @@ function Products() {
           />
         </Box>
       </main>
+      <Footer />
     </>
   );
 }
