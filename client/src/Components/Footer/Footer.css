@@ -1,0 +1,20 @@
+.main-footer{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 10px;
+}
+.footer-left{
+    font-size: 16px;
+    color: #ACABAB;
+}
+.instamart{
+    color: #3AB77D;
+}
+.footer-mid{
+    display: flex;
+    color: #3AB77D;
+}
+.css-4b67si-MuiSvgIcon-roo{
+    color: #3AB77D;
+}

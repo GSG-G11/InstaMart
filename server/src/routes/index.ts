@@ -13,6 +13,7 @@ import {
   getCategories,
   getCategoryProduct,
   uploadImage,
+  deleteOrder,
 
 } from '../controllers';
 import { isAuth } from '../controllers/middleware';
@@ -35,6 +36,7 @@ router.use('/auth', isAuth);
 router.get('/auth/user', authUser);
 router.use('/admin', adminRouter);
 router.post('/order', addOrder);
+router.delete('/order', deleteOrder);
 router.use(notFound);
 router.use(serverError);
 

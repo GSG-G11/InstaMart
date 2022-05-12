@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@mui/styles';
 import { CartProduct, TotalPrice } from '../../Components/Cart';
+import { Footer } from '../../Components';
 
 const useStyle = makeStyles({
   cardContainer: {
@@ -14,11 +15,13 @@ function Cart() {
   const classes = useStyle();
   const [data, setData] = useState(JSON.parse(localStorage.getItem('product')) || []);
   return (
-    <div className={classes.cardContainer}>
-
-      <CartProduct data={data} setData={setData} />
-      <TotalPrice data={data} />
-    </div>
+    <>
+      <div className={classes.cardContainer}>
+        <CartProduct data={data} setData={setData} />
+        <TotalPrice data={data} />
+      </div>
+      <Footer />
+    </>
   );
 }
 

@@ -9,16 +9,17 @@ const { NODE_ENV } = process.env;
 
 const buildFakeData = async () => {
   await sequelize.sync({ force: true });
-  const dbData = await Promise.all([
+  // const dbData =
+  await Promise.all([
     Category.bulkCreate(categories),
     Product.bulkCreate(products),
-    ProductOrder.bulkCreate(productsOrders),
     User.bulkCreate(users),
     Order.bulkCreate(order),
+    // Order.bulkCreate(order),
   ]);
-  dbData.forEach(console.log);
+  await ProductOrder.bulkCreate(productsOrders);
+  // dbData.forEach(console.log);
 };
-
 if (NODE_ENV !== 'test') {
   buildFakeData();
 }
