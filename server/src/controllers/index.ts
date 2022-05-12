@@ -14,10 +14,11 @@ import {
   getProducts,
   uploadImage,
 } from './products';
-import addOrder from './orders';
+import { addOrder, deleteOrder } from './orders';
 
 export {
   addOrder,
+  deleteOrder,
   serveRoot,
   notFound,
   serverError,
