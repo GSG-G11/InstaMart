@@ -96,7 +96,7 @@ function Products() {
   }, []);
   return (
     <>
-      <Header cartitems={[]} />
+      <Header />
       <main className={classes.main}>
         <Container
           sx={{
