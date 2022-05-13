@@ -5,7 +5,7 @@ import addProductValidation from '../validation/addProductValidation';
 
 const addProduct = async (req: Request, res: Response, next: NextFunction) => {
   const {
-    name, price, details, categoryId, quantity,
+    name, price, details, categoryId,
   } = req.body;
   let { imageUrl } = req.body;
   try {
@@ -16,7 +16,7 @@ const addProduct = async (req: Request, res: Response, next: NextFunction) => {
     });
     const productId = newProduct.id;
     await ProductOrder.create({
-      quantity, productId,
+      quantity: 0, productId,
     });
     res.status(200).json({ message: 'Product Added Successfully !' });
   } catch (error: any) {
