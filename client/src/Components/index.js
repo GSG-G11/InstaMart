@@ -10,8 +10,21 @@ import Hero from './hero';
 import Categories from './categories';
 import Footer from './Footer';
 import CustomersReview from './CustomersReview';
+import ProtectedRoute from './ProtectedRoute';
 
 export {
-  CartProduct, TotalPrice, CatProductsSlider,
-  Header, ProductDetails, SignUp, Login, Card, Hero, Categories, LatestProducts, Footer, CustomersReview,
+  CartProduct,
+  TotalPrice,
+  CatProductsSlider,
+  Header,
+  ProductDetails,
+  SignUp,
+  Login,
+  Card,
+  Hero,
+  Categories,
+  LatestProducts,
+  Footer,
+  CustomersReview,
+  ProtectedRoute,
 };
