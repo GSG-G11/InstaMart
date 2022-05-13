@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Instagram, Phone, Twitter, FacebookOutlined, WhatsApp,
 } from '@mui/icons-material';
+import './Footer.css';
 
 function Footer() {
   return (
