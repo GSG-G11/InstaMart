@@ -12,25 +12,6 @@ beforeAll(async () => {
   await buildFakeData();
 });
 
-describe('Delete /api/v1/admin/order', () => {
-  test('success delete order ', (done) => {
-    supertest(app)
-      .delete('/api/v1/admin/order')
-      .set('Cookie', [`token=${process.env.ADMIN}`])
-      .send({
-        id: 1,
-      })
-      .expect(200)
-      .end((err, res) => {
-        if (err) {
-          return done(err);
-        }
-        expect(res.body.message).toBe('Order Deleted Successfully !');
-        return done();
-      });
-  });
-});
-
 describe('Patch /api/v1/admin/order', () => {
   test('success edit order ', (done) => {
     supertest(app)
@@ -105,6 +86,25 @@ describe('Patch /api/v1/admin/order', () => {
           return done(err);
         }
         expect(res.body).toBe('"status" must be a string');
+        return done();
+      });
+  });
+});
+
+describe('Delete /api/v1/admin/order', () => {
+  test('success delete order ', (done) => {
+    supertest(app)
+      .delete('/api/v1/admin/order')
+      .set('Cookie', [`token=${process.env.ADMIN}`])
+      .send({
+        id: 1,
+      })
+      .expect(200)
+      .end((err, res) => {
+        if (err) {
+          return done(err);
+        }
+        expect(res.body.message).toBe('Order Deleted Successfully !');
         return done();
       });
   });
