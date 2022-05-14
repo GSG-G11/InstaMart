@@ -17,7 +17,7 @@ const useStyles = makeStyles({
     width: '246px',
     height: '80%',
     justifyContent: 'space-between',
-    border: '1px solid #ececec',
+    border: '1px solid rgba(0, 0, 0, 0.23)',
     position: 'relative',
     '&:hover': {
       border: '1px solid #3bb77e',
