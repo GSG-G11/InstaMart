@@ -12,7 +12,7 @@ adminRouter.route('/product')
   .post(addProduct)
   .patch(editProduct)
   .delete(deleteProduct);
-adminRouter.patch('/order', editOrder);
+adminRouter.patch('/order/:id', editOrder);
 
 adminRouter.route('/order')
   .get(getOrders)

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-// import ListItemIcon from '@mui/material/ListItemIcon';
 import {
   Table, TableBody, TableCell, tableCellClasses, TableContainer,
   TableHead, TableRow, Paper, TextField,
@@ -32,6 +31,7 @@ const StyledTableRow = styled(TableRow)(() => ({
 export default function OrdersTables() {
   const [orders, setorders] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [editOrder, setEditOrder] = useState({});
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -39,6 +39,17 @@ export default function OrdersTables() {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const updateStatus = async (id, value) => {
+    try {
+      const order = await axios.patch(`/api/v1/admin/order/${id}`, { status: value });
+      if (order && order.data) {
+        setEditOrder(order.data.data);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -53,7 +64,7 @@ export default function OrdersTables() {
       }
     };
     getOrders();
-  }, []);
+  }, [editOrder]);
   return (
     <div className="dashboard">
       <div className="TitleContainer">
@@ -86,19 +97,12 @@ export default function OrdersTables() {
                 <StyledTableCell align="center">{order.paidPrice}</StyledTableCell>
                 <StyledTableCell align="center">{order.isSupplied ? 'Out' : 'In'}</StyledTableCell>
                 <StyledTableCell align="center">{order.address }</StyledTableCell>
-                <StyledTableCell align="center">{order.status }</StyledTableCell>
+                <StyledTableCell align="center">{order.status}</StyledTableCell>
                 <StyledTableCell align="center">{order.date}</StyledTableCell>
                 <StyledTableCell align="center" className="dashicon">
                   <Visibility color="primary" />
                   {' '}
                   <Edit color="success" onClick={handleClick} type="submit" />
-
-                  {/* <button
-                    onClick={handleClick}
-                    type="submit"
-                  >
-                    <Edit color="success" />
-                  </button> */}
                   <Menu
                     anchorEl={anchorEl}
                     id="account-menu"
@@ -107,11 +111,10 @@ export default function OrdersTables() {
                     onClose={handleClose}
                     onClick={handleClose}
                   >
-                    <MenuItem>Pending</MenuItem>
-                    <MenuItem>Rejected</MenuItem>
-                    <MenuItem>Approved</MenuItem>
+                    <MenuItem onClick={() => updateStatus(order.id, 'pending')}>Pending</MenuItem>
+                    <MenuItem onClick={() => updateStatus(order.id, 'Rejected')}>Rejected</MenuItem>
+                    <MenuItem onClick={() => updateStatus(order.id, 'Approved')}>Approved</MenuItem>
                   </Menu>
-
                   {' '}
                   <Delete color="error" />
                   {' '}
@@ -121,6 +124,7 @@ export default function OrdersTables() {
           </TableBody>
         </Table>
       </TableContainer>
+
     </div>
   );
 }

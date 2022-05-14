@@ -37,34 +37,32 @@ function Header() {
   return (
 
     <div className="header-section">
-      <div className="left-section">
-        <div className="logo-section">
-          <img src={appIcon} alt="logo-img" className="logo-img" />
-          <p className="logo-name"> Instamart</p>
-        </div>
-        <div className="navigate-div">
-          <Link className="navigate-word" to="/">
-            Home
-          </Link>
-          <Link className="navigate-word" to="/products">
-            Products
-          </Link>
-          {admin ? (
-            <Link className="navigate-word" to="/dashboard">
-              Dashboard
-            </Link>
-          ) : null }
-        </div>
-      </div>
-      <div className="icons-div">
-        <Link to="/cart">
-          {' '}
-          <div className="shopping-cart-div">
-            <ShoppingCart className="shopping-cart-icon" />
-            <p className="products-number">{cartitems.length || 0}</p>
+      {!admin ? (
+        <div className="left-section">
+          <div className="logo-section">
+            <img src={appIcon} alt="logo-img" className="logo-img" />
+            <p className="logo-name"> Instamart</p>
           </div>
-        </Link>
-
+          <div className="navigate-div">
+            <Link className="navigate-word" to="/">
+              Home
+            </Link>
+            <Link className="navigate-word" to="/products">
+              Products
+            </Link>
+          </div>
+        </div>
+      ) : null }
+      <div className="icons-div">
+        {!admin ? (
+          <Link to="/cart">
+            {' '}
+            <div className="shopping-cart-div">
+              <ShoppingCart className="shopping-cart-icon" />
+              <p className="products-number">{cartitems.length || 0}</p>
+            </div>
+          </Link>
+        ) : null }
         {user ? (
           <>
             <button
