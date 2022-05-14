@@ -3,6 +3,7 @@ import logInValidation from './logInSchema';
 import getProductsValidation from './getProductsValidation';
 import editProductValidation from './editValidation';
 import orderValidation from './orderProductValidation';
+import editOrderValidation from './editOrderValidation';
 
 export {
   orderValidation,
@@ -10,4 +11,5 @@ export {
   signupValidation,
   logInValidation,
   getProductsValidation,
+  editOrderValidation,
 };
