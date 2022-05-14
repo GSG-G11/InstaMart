@@ -1,4 +1,5 @@
 import addOrder from './addOrder';
 import deleteOrder from './deleteOrder';
+import editOrder from './editOrder';
 
-export { addOrder, deleteOrder };
+export { addOrder, deleteOrder, editOrder };
