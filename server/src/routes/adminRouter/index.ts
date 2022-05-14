@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import {
-  addProduct, deleteOrder, deleteProduct, editProduct,
+  addProduct, deleteOrder, deleteProduct, editProduct, editOrder,
 } from '../../controllers';
 import { isAuth, isAdmin } from '../../controllers/middleware';
 
@@ -12,6 +12,8 @@ adminRouter.route('/product')
   .post(addProduct)
   .patch(editProduct)
   .delete(deleteProduct);
+adminRouter.patch('/order', editOrder);
+
 adminRouter.route('/order')
   .delete(deleteOrder);
 export default adminRouter;

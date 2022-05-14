@@ -237,6 +237,18 @@ const productsOrders = [
   { quantity: 5, productId: 1 },
 
 ];
+
+const order = [{
+  date: new Date(),
+  totalPrice: 200,
+  paidPrice: 200,
+  status: 'pending',
+  supplier: 'admin',
+  isSupplied: false,
+  mobile: 599832,
+  address: 'string',
+}];
+
 export {
-  products, categories, users, productsOrders,
+  products, categories, users, productsOrders, order,
 };
