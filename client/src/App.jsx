@@ -4,7 +4,7 @@ import './App.css';
 import SignUp from './Components/SignUp';
 import Login from './Components/Login';
 import {
-  Cart, ProductDetailsPage, Products, Dashboard, Home,
+  Cart, ProductDetailsPage, Products, Dashboard, Home, OrdersTables,
 } from './Pages';
 import ProtectedRoute from './Components/ProtectedRoute';
 import { AuthProvider } from './Hooks/useAuth';
@@ -20,6 +20,7 @@ function App() {
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/order" element={<OrdersTables />} />
             <Route
               path="/dashboard"
               element={(

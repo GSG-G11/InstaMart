@@ -24,7 +24,7 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-export default function CustomizedTables() {
+export default function DashboardTables() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {

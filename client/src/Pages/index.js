@@ -3,7 +3,8 @@ import Cart from './Cart';
 import Products from './Products';
 import Dashboard from './Dashboard';
 import Home from './home';
+import OrdersTables from './Orders';
 
 export {
-  ProductDetailsPage, Cart, Products, Dashboard, Home,
+  ProductDetailsPage, Cart, Products, Dashboard, Home, OrdersTables,
 };

@@ -14,7 +14,6 @@ import {
   getCategoryProduct,
   uploadImage,
   deleteOrder,
-
 } from '../controllers';
 import { isAuth } from '../controllers/middleware';
 import adminRouter from './adminRouter';

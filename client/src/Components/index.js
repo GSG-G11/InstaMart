@@ -10,8 +10,12 @@ import Hero from './hero';
 import Categories from './categories';
 import Footer from './Footer';
 import CustomersReview from './CustomersReview';
+import { DashboardTables, DashboardAside } from './Dashboard';
+import OrdersTables from './Order';
 
 export {
   CartProduct, TotalPrice, CatProductsSlider,
-  Header, ProductDetails, SignUp, Login, Card, Hero, Categories, LatestProducts, Footer, CustomersReview,
+  Header, ProductDetails, SignUp, Login, Card,
+  Hero, Categories, LatestProducts, Footer, CustomersReview,
+  DashboardTables, DashboardAside, OrdersTables,
 };
