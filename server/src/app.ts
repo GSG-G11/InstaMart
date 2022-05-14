@@ -10,8 +10,8 @@ dotenv.config();
 
 const app:Application = express();
 app.disable('etag');
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(express.urlencoded({ limit: '5mb', extended: true }));
+app.use(express.json({ limit: '5mb' }));
 app.use(cookieParser());
 app.use(compression());
 
