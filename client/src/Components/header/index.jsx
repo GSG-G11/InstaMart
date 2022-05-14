@@ -5,9 +5,11 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import {
-  ShoppingCart, AccountCircle, Logout, Login,
+  ShoppingCart,
+  AccountCircle,
+  Logout,
+  Login,
 } from '@mui/icons-material';
-import appIcon from './logo.png';
 import { useAuth } from '../../Hooks/useAuth';
 import { useCart } from '../../Hooks/useCart';
 
@@ -35,11 +37,14 @@ function Header() {
     });
   };
   return (
-
     <div className="header-section">
       <div className="left-section">
         <div className="logo-section">
-          <img src={appIcon} alt="logo-img" className="logo-img" />
+          <img
+            src="https://cdn-icons.flaticon.com/png/512/2203/premium/2203239.png?token=exp=1652535502~hmac=0ae16eda211c8e5c30d5fae5742f427a"
+            alt="logo-img"
+            className="logo-img"
+          />
           <p className="logo-name"> Instamart</p>
         </div>
         <div className="navigate-div">
@@ -53,7 +58,7 @@ function Header() {
             <Link className="navigate-word" to="/dashboard">
               Dashboard
             </Link>
-          ) : null }
+          ) : null}
         </div>
       </div>
       <div className="icons-div">
@@ -67,11 +72,7 @@ function Header() {
 
         {user ? (
           <>
-            <button
-              onClick={handleClick}
-              className="user-info"
-              type="submit"
-            >
+            <button onClick={handleClick} className="user-info" type="submit">
               <AccountCircle className="shopping-cart-icon" />
               <p className="user-name">{user.name}</p>
             </button>
@@ -83,14 +84,17 @@ function Header() {
               onClose={handleClose}
               onClick={handleClose}
             >
-              <MenuItem onClick={() => { logoutFunc(); }}>
+              <MenuItem
+                onClick={() => {
+                  logoutFunc();
+                }}
+              >
                 <ListItemIcon>
                   <Logout fontSize="small" />
                 </ListItemIcon>
                 Logout
               </MenuItem>
             </Menu>
-
           </>
         ) : (
           <button
