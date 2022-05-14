@@ -15,6 +15,7 @@ import {
 import { makeStyles } from '@mui/styles';
 import { useLocation } from 'react-router-dom';
 import { Card, Header, Footer } from '../../Components';
+// import { useCart } from '../../Hooks/useCart';
 
 const colorsArr = [
   '#6f42c1',
@@ -35,7 +36,7 @@ const colorsArr = [
   '#212529'];
 const useStyles = makeStyles({
   main: {
-    height: 'calc(100vh - 79px)',
+    minHeight: 'calc(100vh - 79px)',
     display: 'flex',
     flexDirection: 'column',
   },
@@ -51,6 +52,7 @@ function Products() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  // const { addToCartLS } = useCart();
 
   const handleQChange = ({ target: { value } }) => {
     setIsLoading(true);
@@ -79,7 +81,7 @@ function Products() {
       const { data } = await axios.get(
         `/api/v1/products?q=${q.trim()}&&categoryId=${categoryId
           .toString()
-          .trim()}&&sort=${sort.trim()}&&page=${page}&&limit=4`,
+          .trim()}&&sort=${sort.trim()}&&page=${page}&&limit=8`,
       );
       if (data.totalPages !== totalPages) settotalPages(data.totalPages);
       setProducts(data.data);

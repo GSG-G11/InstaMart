@@ -15,9 +15,18 @@ const useStyles = makeStyles({
     width: '246px',
     height: '80%',
     justifyContent: 'space-between',
+    border: '1px solid #ececec',
     '&:hover': {
       border: '1px solid #3bb77e',
+      boxShadow: 'rgba(0, 0, 0, .3) 0px 3px 8px',
     },
+  },
+  text: {
+    '&:hover': {
+      color: '#3bb77e',
+      transition: '0.5s',
+    },
+
   },
   addBtn: {
     '&:hover': {
@@ -34,11 +43,12 @@ function Card({
   const navigate = useNavigate();
   return (
     <Paper
-      elevation={7}
+      onClick={() => navigate(`/product/${id}`)}
+      elevation={0}
       className={classes.cardContainer}
       sx={{
         borderRadius: '20px',
-        boxShadow: 'rgba(0, 0, 0, 0.14) 0px 3px 8px',
+        marginY: '15px',
       }}
     >
       <Paper
@@ -61,25 +71,34 @@ function Card({
         variant="body2"
         sx={{ alignSelf: 'flex-start', ml: '10px' }}
         color="#adadad"
+        className={classes.text}
       >
         {category}
       </Typography>
 
-      <Typography variant="subtitle1">{name}</Typography>
+      <Typography
+        variant="subtitle1"
+        sx={{ alignSelf: 'flex-start', ml: '10px', fontWeight: 'bold' }}
+        className={classes.text}
+      >
+        {name}
+
+      </Typography>
       <Rating
         name="read-only"
         value={3.5}
         precision={0.5}
         readOnly
         size="small"
-        sx={{ transform: 'scale(0.7)', alignSelf: 'flex-start', ml: '10px' }}
+        sx={{ transform: 'scale(0.7)', alignSelf: 'flex-start', ml: '5px' }}
       />
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'space-around',
+          justifyContent: 'space-between',
           alignContent: 'center',
           width: '100%',
+          paddingX: '15px',
         }}
       >
         <Typography variant="subtitle1" color="#3AB77D" height="100%">
@@ -91,7 +110,10 @@ function Card({
           className={classes.addBtn}
           variant="contained"
           color="success"
-          sx={{ marginBottom: '20px' }}
+          sx={{
+            marginBottom: '20px',
+            paddingX: '15px',
+          }}
           onClick={() => navigate(`/product/${id}`)}
         >
           <ShoppingCart />

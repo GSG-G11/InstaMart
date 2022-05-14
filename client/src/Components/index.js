@@ -13,5 +13,6 @@ import CustomersReview from './CustomersReview';
 
 export {
   CartProduct, TotalPrice, CatProductsSlider,
-  Header, ProductDetails, SignUp, Login, Card, Hero, Categories, LatestProducts, Footer, CustomersReview,
+  Header, ProductDetails, SignUp, Login, Card, Hero, Categories,
+  LatestProducts, Footer, CustomersReview,
 };
