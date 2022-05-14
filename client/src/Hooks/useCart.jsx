@@ -1,5 +1,9 @@
 import React, {
-  createContext, useContext, useEffect, useMemo, useState,
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
 } from 'react';
 import PropTypes from 'prop-types';
 
@@ -7,6 +11,18 @@ export const CartContext = createContext();
 
 export function CartProvider({ children }) {
   const [cartitems, setCartitems] = useState([]);
+
+  const deleteFromLS = (productID) => {
+    const products = localStorage.getItem('cartItems');
+    if (products) {
+      const productsArray = JSON.parse(products);
+      const newProductsArray = productsArray.filter(
+        (product) => product.id !== productID,
+      );
+      localStorage.setItem('cartItems', JSON.stringify(newProductsArray));
+      setCartitems(newProductsArray);
+    }
+  };
 
   const addToCartLS = (productCount, product) => {
     if (productCount) {
@@ -26,7 +42,10 @@ export function CartProvider({ children }) {
           localStorage.setItem('cartItems', JSON.stringify(newProducts));
           setCartitems(newProducts);
         } else {
-          const newProducts = [...productsArray, { ...product, count: +productCount }];
+          const newProducts = [
+            ...productsArray,
+            { ...product, count: +productCount },
+          ];
           setCartitems(newProducts);
           localStorage.setItem('cartItems', JSON.stringify(newProducts));
         }
@@ -49,16 +68,15 @@ export function CartProvider({ children }) {
     CartItems();
   }, []);
 
-  const value = useMemo(() => ({
-    cartitems,
-    addToCartLS,
-  }), [cartitems]);
-  console.log(value);
-  return (
-    <CartContext.Provider value={value}>
-      {children}
-    </CartContext.Provider>
+  const value = useMemo(
+    () => ({
+      cartitems,
+      addToCartLS,
+      deleteFromLS,
+    }),
+    [cartitems],
   );
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
 CartProvider.propTypes = {
