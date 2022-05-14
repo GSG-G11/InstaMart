@@ -52,7 +52,7 @@ export default function DashboardTables() {
           style={{
             backgroundColor: '#3AB77D',
             width: '169px',
-            height: '45px',
+            height: '55px',
             fontWeight: 'bold',
           }}
         >

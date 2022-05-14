@@ -36,7 +36,7 @@ function Header() {
   };
   return (
 
-    <div className="header-section">
+    <div className={`header-section ${admin ? 'admin-header' : ''}`}>
       {!admin ? (
         <div className="left-section">
           <div className="logo-section">

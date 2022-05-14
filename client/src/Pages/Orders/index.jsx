@@ -4,7 +4,15 @@ import { Header, DashboardAside, OrdersTables } from '../../Components';
 
 function OrderPage() {
   return (
-    <OrdersTables />
+    <div>
+      <Header />
+      <div className="order-page-container">
+        {/* <DashboardAside /> */}
+        <div>
+          <OrdersTables />
+        </div>
+      </div>
+    </div>
   );
 }
 export default OrderPage;

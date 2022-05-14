@@ -1,12 +1,17 @@
 import React from 'react';
-// import { LeaderboardTwoTone, BorderAllTwoTone } from '@mui/icons-material';
+import { LeaderboardTwoTone, BorderAllTwoTone } from '@mui/icons-material';
 import './DashboardAside.css';
 
 function DashboardAside() {
   return (
-    <div className="sidebar">
-      <h1>hi</h1>
-    </div>
+    <aside className="sidebar">
+      <div>
+        <LeaderboardTwoTone />
+      </div>
+      <div>
+        <BorderAllTwoTone />
+      </div>
+    </aside>
   );
 }
 export default DashboardAside;
