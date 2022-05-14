@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Paper, Button, Typography, Box, Rating,
+  Paper, Button, Typography, Box, Rating, Alert,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import { ShoppingCart } from '@mui/icons-material';
 import { makeStyles } from '@mui/styles';
 import { Image } from 'cloudinary-react';
+import { useCart } from '../../Hooks/useCart';
 
 const useStyles = makeStyles({
   cardContainer: {
@@ -17,6 +18,7 @@ const useStyles = makeStyles({
     height: '80%',
     justifyContent: 'space-between',
     border: '1px solid #ececec',
+    position: 'relative',
     '&:hover': {
       border: '1px solid #3bb77e',
       boxShadow: 'rgba(0, 0, 0, .3) 0px 3px 8px',
@@ -38,13 +40,15 @@ const useStyles = makeStyles({
 });
 
 function Card({
-  id, name, price, imageUrl, category, color,
+  id, name, price, imageUrl, category, color, product,
 }) {
   const classes = useStyles();
   const navigate = useNavigate();
+  const { addToCartLS } = useCart();
+  const [notification, setNotification] = useState(false);
+
   return (
     <Paper
-      onClick={() => navigate(`/product/${id}`)}
       elevation={0}
       className={classes.cardContainer}
       sx={{
@@ -68,6 +72,8 @@ function Card({
         New
       </Paper>
       <Image
+        style={{ cursor: 'pointer' }}
+        onClick={() => navigate(`/product/${id}`)}
         cloudName="instamart"
         publicId={imageUrl}
         width="195"
@@ -121,12 +127,26 @@ function Card({
             marginBottom: '20px',
             paddingX: '15px',
           }}
-          onClick={() => navigate(`/product/${id}`)}
+          onClick={() => {
+            addToCartLS(1, product);
+            setNotification(true);
+            setTimeout(() => setNotification(false), 3000);
+          }}
         >
           <ShoppingCart />
           Add
         </Button>
       </Box>
+      {notification && (
+      <Alert
+        severity="success"
+        sx={{
+          position: 'absolute', top: 0, zIndex: 20, borderRadius: '20px',
+        }}
+      >
+        Product was added successfully
+      </Alert>
+      )}
     </Paper>
   );
 }
@@ -137,5 +157,18 @@ Card.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
+  product: PropTypes.shape({
+    availableQuantity: PropTypes.string,
+    category: PropTypes.shape(
+      { id: PropTypes.number, name: PropTypes.string, imageUrl: PropTypes.string },
+    ),
+    categoryId: PropTypes.number,
+    createdAt: PropTypes.string,
+    details: PropTypes.string,
+    id: PropTypes.number,
+    imageUrl: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.string,
+  }).isRequired,
 };
 export default Card;

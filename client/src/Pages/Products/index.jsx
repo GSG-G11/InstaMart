@@ -15,7 +15,6 @@ import {
 import { makeStyles } from '@mui/styles';
 import { useLocation } from 'react-router-dom';
 import { Card, Header, Footer } from '../../Components';
-// import { useCart } from '../../Hooks/useCart';
 
 const colorsArr = [
   '#6f42c1',
@@ -52,7 +51,6 @@ function Products() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  // const { addToCartLS } = useCart();
 
   const handleQChange = ({ target: { value } }) => {
     setIsLoading(true);
@@ -162,17 +160,16 @@ function Products() {
         >
           {isLoading ? (
             <CircularProgress sx={{ color: '#3bb77e' }} />
-          ) : products.map(({
-            id, name, price, imageUrl, category: { name: category },
-          }) => (
+          ) : products.map((item) => (
             <Card
-              key={id}
-              id={id}
-              name={name}
-              price={+price}
-              imageUrl={imageUrl}
-              category={category}
-              color={colorsArr[id % colorsArr.length]}
+              product={item}
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              price={+item.price}
+              imageUrl={item.imageUrl}
+              category={item.category.name}
+              color={colorsArr[item.id % colorsArr.length]}
             />
           ))}
 
