@@ -18,12 +18,19 @@ function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/login" element={<Login />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/order" element={<OrdersTables />} />
             <Route
               path="/dashboard"
               element={(
                 <ProtectedRoute redirectPath="/login">
                   <Dashboard />
+                </ProtectedRoute>
+              )}
+            />
+            <Route
+              path="/order"
+              element={(
+                <ProtectedRoute redirectPath="/login">
+                  <OrdersTables />
                 </ProtectedRoute>
               )}
             />

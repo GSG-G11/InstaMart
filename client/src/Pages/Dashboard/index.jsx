@@ -8,17 +8,12 @@ function Dashboard() {
   return (
     <div>
       <Header />
-      <div className="right-side">
-        <DashboardTables />
-      </div>
-
       {/* <div>
-      <DashboardAside />
-      </div>
-      <div className="PageDash">
-        <Header cartitems={[]} />
-        <DashboardTables />
+        <DashboardAside />
       </div> */}
+      <div className="PageDash">
+        <DashboardTables />
+      </div>
     </div>
   );
 }

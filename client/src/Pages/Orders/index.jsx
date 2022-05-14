@@ -6,11 +6,11 @@ function OrderPage() {
   return (
     <div>
       <Header />
-      <div className="order-page-container">
-        {/* <DashboardAside /> */}
-        <div>
-          <OrdersTables />
-        </div>
+      {/* <div>
+        <DashboardAside />
+      </div> */}
+      <div className="PageOrrder">
+        <OrdersTables />
       </div>
     </div>
   );
