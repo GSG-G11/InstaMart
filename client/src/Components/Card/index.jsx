@@ -6,6 +6,7 @@ import {
 import PropTypes from 'prop-types';
 import { ShoppingCart } from '@mui/icons-material';
 import { makeStyles } from '@mui/styles';
+import { Image } from 'cloudinary-react';
 
 const useStyles = makeStyles({
   cardContainer: {
@@ -66,7 +67,13 @@ function Card({
       >
         New
       </Paper>
-      <img src={imageUrl} alt={name} width="80%" />
+      <Image
+        cloudName="instamart"
+        publicId={imageUrl}
+        width="195"
+        height="195"
+        crop="scale"
+      />
       <Typography
         variant="body2"
         sx={{ alignSelf: 'flex-start', ml: '10px' }}
