@@ -1,0 +1,116 @@
+.cart-item-name-image {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+}
+.cart-item-image {
+  max-width: 120px;
+  border: 1px solid #ececec;
+  border-radius: 15px;
+}
+.cart-item-name {
+  color: #253d4e;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  transition-duration: 0.3s;
+}
+.cart-item-price {
+  font-size: 24px;
+  color: #7e7e7e;
+}
+.cart-item-total-price {
+  font-size: 24px;
+  color: #3bb77e;
+  font-weight: 500;
+}
+.cart-item-name:hover {
+  color: #3bb77e;
+}
+
+.product-count-input .MuiOutlinedInput-root:hover input {
+  border: 1px solid #3bb77e;
+}
+.product-count-input input {
+  border: 1px solid #3bb77e;
+  max-width: 60px;
+  border-radius: 4px;
+}
+.cart-item-name-rating .css-1lauo1g-MuiRating-root {
+  font-size: 0.7rem;
+}
+.delete-item svg {
+  cursor: pointer;
+}
+.cart-item-name-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.table-raw-title.MuiTableCell-sizeMedium {
+  font-size: 16px;
+  font-weight: 500;
+}
+.cart-title-number-section {
+  padding: 31px 0 20px 74px;
+}
+
+.cart-title-number-section .cart-title-section {
+  font-size: 37px;
+  font-weight: 500;
+}
+
+.cart-title-number-section .cart-items-number-p {
+  font-size: 15px;
+  color: #7e7e7e;
+}
+.cart-title-number-section .cart-items-number-p .cart-items-number {
+  color: #3bb77e;
+}
+.checkout-container {
+  width: 1200px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-bottom: 120px;
+}
+
+.checkout-container-content {
+  width: 300px;
+  border: 1px solid #ececec;
+  border-radius: 4px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+}
+.checkout-container .checkout-button {
+  padding: 0;
+  color: #3bb77e;
+  width: 100%;
+  background-color: #3bb77e;
+  color: #fff;
+  border-radius: 0;
+  height: 40px;
+  font-weight: bold;
+}
+.checkout-container .total-price {
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 20px;
+  color: #7e7e7e;
+}
+.checkout-container .checkout-button:hover {
+  background-color: #3bb77dde;
+  color: #fff;
+}
+.total-price-value {
+  color: #3bb77e;
+}

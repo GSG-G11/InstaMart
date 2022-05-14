@@ -1,4 +1,4 @@
-import { CartProduct, TotalPrice } from './Cart';
+import CartDetails from './Cart';
 import CatProductsSlider from './catProductsSlider';
 import Header from './header';
 import ProductDetails from './ProductDetailsCard';
@@ -13,8 +13,7 @@ import CustomersReview from './CustomersReview';
 import ProtectedRoute from './ProtectedRoute';
 
 export {
-  CartProduct,
-  TotalPrice,
+  CartDetails,
   CatProductsSlider,
   Header,
   ProductDetails,
