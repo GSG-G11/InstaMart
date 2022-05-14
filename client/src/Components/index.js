@@ -12,10 +12,24 @@ import Footer from './Footer';
 import CustomersReview from './CustomersReview';
 import { DashboardTables, DashboardAside } from './Dashboard';
 import OrdersTables from './Order';
+import ProtectedRoute from './ProtectedRoute';
 
 export {
-  CartProduct, TotalPrice, CatProductsSlider,
-  Header, ProductDetails, SignUp, Login, Card,
-  Hero, Categories, LatestProducts, Footer, CustomersReview,
-  DashboardTables, DashboardAside, OrdersTables,
+  CartProduct,
+  TotalPrice,
+  CatProductsSlider,
+  Header,
+  ProductDetails,
+  SignUp,
+  Login,
+  Card,
+  Hero,
+  Categories,
+  LatestProducts,
+  Footer,
+  CustomersReview,
+  ProtectedRoute,
+  DashboardTables,
+  DashboardAside,
+  OrdersTables,
 };

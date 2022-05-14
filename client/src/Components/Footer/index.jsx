@@ -1,9 +1,7 @@
 import React from 'react';
-import PhoneIcon from '@mui/icons-material/Phone';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import {
+  Instagram, Phone, Twitter, FacebookOutlined, WhatsApp,
+} from '@mui/icons-material';
 import './Footer.css';
 
 function Footer() {
@@ -23,14 +21,14 @@ function Footer() {
           </p>
         </div>
         <div className="footer-mid">
-          <PhoneIcon color="disabled" />
+          <Phone color="disabled" />
           <p>1900 - 6666</p>
         </div>
         <div className="footer-right">
-          <TwitterIcon sx={{ color: '#3AB77D' }} />
-          <InstagramIcon sx={{ color: '#3AB77D' }} />
-          <WhatsAppIcon sx={{ color: '#3AB77D' }} />
-          <FacebookOutlinedIcon sx={{ color: '#3AB77D' }} />
+          <Twitter sx={{ color: '#3AB77D' }} />
+          <Instagram sx={{ color: '#3AB77D' }} />
+          <WhatsApp sx={{ color: '#3AB77D' }} />
+          <FacebookOutlined sx={{ color: '#3AB77D' }} />
         </div>
       </div>
     </>

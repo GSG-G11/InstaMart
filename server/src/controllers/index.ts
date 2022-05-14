@@ -14,7 +14,10 @@ import {
   getProducts,
   uploadImage,
 } from './products';
-import { getOrders, addOrder, deleteOrder } from './orders';
+
+import {
+  getOrders, addOrder, deleteOrder, editOrder,
+} from './orders';
 
 export {
   addOrder,
@@ -35,4 +38,5 @@ export {
   getCategories,
   getCategoryProduct,
   getOrders,
+  editOrder,
 };

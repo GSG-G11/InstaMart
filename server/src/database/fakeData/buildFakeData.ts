@@ -1,8 +1,8 @@
 import sequelize, {
-  Category, Product, User, ProductOrder,
+  Category, Product, User, ProductOrder, Order,
 } from '..';
 import {
-  categories, products, users, productsOrders,
+  categories, products, users, productsOrders, order,
 } from './fakeData';
 
 const { NODE_ENV } = process.env;
@@ -14,6 +14,7 @@ const buildFakeData = async () => {
     Category.bulkCreate(categories),
     Product.bulkCreate(products),
     User.bulkCreate(users),
+    Order.bulkCreate(order),
     // Order.bulkCreate(order),
   ]);
   await ProductOrder.bulkCreate(productsOrders);
