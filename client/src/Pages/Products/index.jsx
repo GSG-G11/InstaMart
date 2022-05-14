@@ -35,7 +35,7 @@ const colorsArr = [
   '#212529'];
 const useStyles = makeStyles({
   main: {
-    height: 'calc(100vh - 79px)',
+    minHeight: 'calc(100vh - 79px)',
     display: 'flex',
     flexDirection: 'column',
   },
@@ -79,7 +79,7 @@ function Products() {
       const { data } = await axios.get(
         `/api/v1/products?q=${q.trim()}&&categoryId=${categoryId
           .toString()
-          .trim()}&&sort=${sort.trim()}&&page=${page}&&limit=4`,
+          .trim()}&&sort=${sort.trim()}&&page=${page}&&limit=8`,
       );
       if (data.totalPages !== totalPages) settotalPages(data.totalPages);
       setProducts(data.data);
@@ -160,17 +160,16 @@ function Products() {
         >
           {isLoading ? (
             <CircularProgress sx={{ color: '#3bb77e' }} />
-          ) : products.map(({
-            id, name, price, imageUrl, category: { name: category },
-          }) => (
+          ) : products.map((item) => (
             <Card
-              key={id}
-              id={id}
-              name={name}
-              price={+price}
-              imageUrl={imageUrl}
-              category={category}
-              color={colorsArr[id % colorsArr.length]}
+              product={item}
+              key={item.id}
+              id={item.id}
+              name={item.name}
+              price={+item.price}
+              imageUrl={item.imageUrl}
+              category={item.category.name}
+              color={colorsArr[item.id % colorsArr.length]}
             />
           ))}
 
