@@ -3,10 +3,12 @@ import {
   Table, TableBody, TableCell, tableCellClasses, TableContainer,
   TableHead, TableRow, Paper, Button, TextField,
   styled,
+  IconButton,
 } from '@mui/material';
 import axios from 'axios';
 import './DashboardTables.css';
 import { Delete, Edit } from '@mui/icons-material';
+import ProductFormModal from '../ProductFormModal/ProductFormModal';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -26,6 +28,11 @@ const StyledTableRow = styled(TableRow)(() => ({
 
 export default function CustomizedTables() {
   const [products, setProducts] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [id, setId] = useState(0);
+  const [item, setItem] = useState({
+    name: '', imageUrl: '', price: 0, details: '', categoryId: 1,
+  });
 
   useEffect(() => {
     const getProducts = async () => {
@@ -42,6 +49,13 @@ export default function CustomizedTables() {
   }, []);
   return (
     <div className="dashboard">
+      <ProductFormModal
+        id={id}
+        open={open}
+        setOpen={setOpen}
+        product={item}
+      />
+
       <div className="TitleContainer">
         <h2>Products</h2>
       </div>
@@ -54,6 +68,13 @@ export default function CustomizedTables() {
             width: '169px',
             height: '45px',
             fontWeight: 'bold',
+          }}
+          onClick={() => {
+            setId(0);
+            setOpen(true);
+            setItem({
+              name: '', imageUrl: '', price: 0, details: '', categoryId: 1,
+            });
           }}
         >
           Add Product
@@ -81,9 +102,20 @@ export default function CustomizedTables() {
                 <StyledTableCell align="center">{product.price}</StyledTableCell>
                 <StyledTableCell align="center">{product.details}</StyledTableCell>
                 <StyledTableCell align="center" className="dashicon">
-                  <Edit color="success" />
+                  <IconButton
+                    onClick={() => {
+                      setId(product.id);
+                      setItem(product);
+                      setOpen(true);
+                    }}
+                  >
+                    <Edit color="success" />
+                  </IconButton>
                   {' '}
-                  <Delete color="error" />
+                  <IconButton>
+                    <Delete color="error" />
+                  </IconButton>
+
                   {' '}
                 </StyledTableCell>
               </StyledTableRow>

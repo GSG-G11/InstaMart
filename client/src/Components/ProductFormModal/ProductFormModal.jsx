@@ -35,16 +35,14 @@ const { textField } = makeStyles(() => ({
   },
 }));
 const gridWidth = 6;
-function ProductFormModal({ id }) {
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+function ProductFormModal({
+  id, open, setOpen, product,
+}) {
   const handleClose = () => setOpen(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [values, setValues] = useState({
-    name: '', imageUrl: '', price: 0, details: '', categoryId: 1,
-  });
+  const [values, setValues] = useState(product);
   const [errorMsgs, setErrorMsgs] = useState({
     name: '', imageUrl: '', price: '', details: '', categoryId: '',
   });
@@ -84,11 +82,20 @@ function ProductFormModal({ id }) {
     if (validateInputs()) {
       setIsLoading(true);
       if (id) {
+        // refactor to async/await later
         axios.patch('/admin/product', { id, ...values }, {
           onUploadProgress: (progressEvent) => {
             setUploadProgress(parseInt(((progressEvent.loaded * 100) / progressEvent.total), 10));
           },
-        });
+        }).then(() => {
+          setIsLoading(false);
+          handleClose();
+        })
+          .catch((err) => {
+            setIsLoading(false);
+            // notify err
+            alert(err);
+          });
       } else {
         axios.post('/api/v1/admin/product', values, {
           onUploadProgress: (progressEvent) => {
@@ -118,29 +125,19 @@ function ProductFormModal({ id }) {
     setErrorMsgs({
       name: '', imageUrl: '', price: '', details: '', categoryId: '',
     });
-    setValues({
-      name: '', imageUrl: '', price: 0, details: '', categoryId: 1,
-    });
+    setValues(product);
   }, [open]);
   return (
-    <div>
-
-      <Button
-        onClick={handleOpen}
-        variant="contained"
-      >
-        Open modal
-      </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-add-edit-product"
-        aria-describedby="modal-add-edit-product-form"
-      >
-        <Box sx={style}>
-          <form onSubmit={handleSubmit}>
-            <Grid container spacing={3}>
-              {isLoading && (
+    <Modal
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="modal-add-edit-product"
+      aria-describedby="modal-add-edit-product-form"
+    >
+      <Box sx={style}>
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={3}>
+            {isLoading && (
               <CircularProgress
                 variant="determinate"
                 value={uploadProgress}
@@ -153,130 +150,138 @@ function ProductFormModal({ id }) {
 
                 }}
               />
-              )}
-              <Grid item md={gridWidth}>
-                <Grid container spacing={1}>
-                  <Grid item xs={12}>
+            )}
+            <Grid item md={gridWidth}>
+              <Grid container spacing={1}>
+                <Grid item xs={12}>
 
-                    <TextField
-                      fullWidth
-                      className={textField}
-                      variant="outlined"
-                      label="Product Name"
-                      name="name"
-                      value={values.name}
-                      onChange={handleInputChange}
-                      error={errorMsgs.name}
-                      helperText={errorMsgs.name}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12}>
-
-                    <TextField
-                      fullWidth
-                      className={textField}
-                      variant="outlined"
-                      label="Product Price"
-                      name="price"
-                      value={values.price}
-                      onChange={handleInputChange}
-                      type="number"
-                      inputProps={{
-                        inputMode: 'numeric', pattern: '[0-9]*', min: 0, step: 0.1,
-                      }}
-                      error={errorMsgs.price}
-                      helperText={errorMsgs.price}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormControl
-                      fullWidth
-                      error={errorMsgs.categoryId}
-                      helperText={errorMsgs.categoryId}
-                    >
-                      <InputLabel id="demo-simple-select-label">Category</InputLabel>
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={values.categoryId}
-                        label="Category"
-                        name="categoryId"
-                        onChange={handleInputChange}
-                      >
-                        {categories.map(({ id: value, name }) => (
-                          <MenuItem
-                            className={textField}
-                            key={name}
-                            value={value}
-                          >
-                            {name}
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item md={gridWidth}>
-                <Grid container spacing={1}>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      multiline
-                      className={textField}
-                      variant="outlined"
-                      label="Product Details"
-                      name="details"
-                      rows={5}
-                      value={values.details}
-                      onChange={handleInputChange}
-                      error={errorMsgs.details}
-                      helperText={errorMsgs.details}
-
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FormControl
-                      error={errorMsgs.imageUrl}
-                    >
-                      <span>Product Image </span>
-                      <Input
-                        type="file"
-                        name="image"
-                        id="product-image"
-                        accept=".gif,.jpg,.jpeg,.png"
-                        onChange={handleImgSelect}
-                      />
-                      <FormHelperText id="my-helper-text">{errorMsgs.imageUrl}</FormHelperText>
-                    </FormControl>
-
-                  </Grid>
+                  <TextField
+                    fullWidth
+                    className={textField}
+                    variant="outlined"
+                    label="Product Name"
+                    name="name"
+                    value={values.name}
+                    onChange={handleInputChange}
+                    error={errorMsgs.name}
+                    helperText={errorMsgs.name}
+                  />
                 </Grid>
 
+                <Grid item xs={12}>
+
+                  <TextField
+                    fullWidth
+                    className={textField}
+                    variant="outlined"
+                    label="Product Price"
+                    name="price"
+                    value={values.price}
+                    onChange={handleInputChange}
+                    type="number"
+                    inputProps={{
+                      inputMode: 'numeric', pattern: '[0-9]*', min: 0, step: 0.1,
+                    }}
+                    error={errorMsgs.price}
+                    helperText={errorMsgs.price}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl
+                    fullWidth
+                    error={errorMsgs.categoryId}
+                    helperText={errorMsgs.categoryId}
+                  >
+                    <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={values.categoryId}
+                      label="Category"
+                      name="categoryId"
+                      onChange={handleInputChange}
+                    >
+                      {categories.map(({ id: value, name }) => (
+                        <MenuItem
+                          className={textField}
+                          key={name}
+                          value={value}
+                        >
+                          {name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Grid>
               </Grid>
-              <Grid item xs={12}>
-                <Button
-                  disabled={isLoading}
-                  type="submit"
-                  variant="contained"
+            </Grid>
+            <Grid item md={gridWidth}>
+              <Grid container spacing={1}>
+                <Grid item xs={12}>
+                  <TextField
+                    fullWidth
+                    multiline
+                    className={textField}
+                    variant="outlined"
+                    label="Product Details"
+                    name="details"
+                    rows={5}
+                    value={values.details}
+                    onChange={handleInputChange}
+                    error={errorMsgs.details}
+                    helperText={errorMsgs.details}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl
+                    error={errorMsgs.imageUrl}
+                  >
+                    <span>Product Image </span>
+                    <Input
+                      type="file"
+                      name="image"
+                      id="product-image"
+                      accept=".gif,.jpg,.jpeg,.png"
+                      onChange={handleImgSelect}
+                    />
+                    <FormHelperText id="my-helper-text">{errorMsgs.imageUrl}</FormHelperText>
+                  </FormControl>
 
-                >
-                  Submit
-
-                </Button>
+                </Grid>
               </Grid>
 
             </Grid>
-          </form>
-        </Box>
-      </Modal>
-    </div>
+            <Grid item xs={12}>
+              <Button
+                disabled={isLoading}
+                type="submit"
+                variant="contained"
+              >
+                Submit
+
+              </Button>
+            </Grid>
+
+          </Grid>
+        </form>
+      </Box>
+    </Modal>
   );
 }
 
 ProductFormModal.propTypes = {
   id: PropTypes.number.isRequired,
+  open: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired,
+  product: PropTypes.shape({
+
+    name: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    details: PropTypes.string.isRequired,
+    categoryId: PropTypes.number.isRequired,
+
+  }).isRequired,
 };
 
 export default ProductFormModal;
