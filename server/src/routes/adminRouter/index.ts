@@ -12,9 +12,10 @@ adminRouter.route('/product')
   .post(addProduct)
   .patch(editProduct)
   .delete(deleteProduct);
-adminRouter.patch('/order/:id', editOrder);
+adminRouter.route('/order/:id')
+  .patch(editOrder)
+  .delete(deleteOrder);
 
 adminRouter.route('/order')
-  .get(getOrders)
-  .delete(deleteOrder);
+  .get(getOrders);
 export default adminRouter;

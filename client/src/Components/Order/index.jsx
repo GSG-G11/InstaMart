@@ -51,7 +51,16 @@ export default function OrdersTables() {
       console.log(err);
     }
   };
-
+  const handleDelete = async (id) => {
+    try {
+      const order = await axios.delete(`/api/v1/admin/order/${id}`);
+      if (order && order.data) {
+        setEditOrder({});
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
     const getOrders = async () => {
       try {
@@ -128,7 +137,7 @@ export default function OrdersTables() {
                     <MenuItem onClick={() => updateStatus(order.id, 'Approved')}>Approved</MenuItem>
                   </Menu>
                   {' '}
-                  <Delete color="error" />
+                  <Delete color="error" onClick={() => handleDelete(order.id)} />
                   {' '}
                 </StyledTableCell>
               </StyledTableRow>

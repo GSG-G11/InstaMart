@@ -247,6 +247,16 @@ const order = [{
   isSupplied: false,
   mobile: 599832,
   address: 'string',
+},
+{
+  date: new Date(),
+  totalPrice: 200,
+  paidPrice: 200,
+  status: 'pending',
+  supplier: 'admin',
+  isSupplied: false,
+  mobile: 599832,
+  address: 'string',
 }];
 
 export {
