@@ -87,14 +87,11 @@ describe('Patch /api/v1/admin/order', () => {
   });
 });
 
-describe('Delete /api/v1/admin/order', () => {
+describe('Delete /api/v1/admin/order/1', () => {
   test('success delete order ', (done) => {
     supertest(app)
-      .delete('/api/v1/admin/order')
+      .delete('/api/v1/admin/order/1')
       .set('Cookie', [`token=${process.env.ADMIN}`])
-      .send({
-        id: 1,
-      })
       .expect(200)
       .end((err, res) => {
         if (err) {
