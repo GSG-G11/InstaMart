@@ -10,7 +10,7 @@ const editOrder = async (req:Request, res:Response, next:NextFunction) => {
     await editOrderValidation(req);
     const result = await Order.update({ status }, { where: { id } });
     if (!result[0]) {
-      res.status(404).json({ success: false, message: 'Order Not found !' });
+      res.status(400).json({ success: false, message: 'Bad Request!' });
     } else {
       const order = await Order.findOne({
         where: { id },
