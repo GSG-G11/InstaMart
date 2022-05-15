@@ -8,14 +8,13 @@ const editOrder = async (req:Request, res:Response, next:NextFunction) => {
   const { id } = req.params;
   try {
     await editOrderValidation(req);
-    const result = await Order.update({ status }, { where: { id } });
-    if (!result[0]) {
-      res.status(400).json({ success: false, message: 'Bad Request!' });
+    const result = await Order.findOne({ where: { id } });
+    if (result) {
+      result.status = status;
+      await result.save();
+      res.status(200).json({ message: 'Order Updated Successfully !', data: result });
     } else {
-      const order = await Order.findOne({
-        where: { id },
-      });
-      res.status(200).json({ message: 'Order Updated Successfully !', data: order });
+      res.status(400).json({ success: false, message: 'Bad Request!' });
     }
   } catch (error:any) {
     if (error.details) {
