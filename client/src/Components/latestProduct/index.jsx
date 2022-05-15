@@ -71,21 +71,16 @@ function LatestProducts() {
               {products
                 .slice(0, 20)
                 .map(
-                  ({
-                    id,
-                    name,
-                    price,
-                    imageUrl,
-                    category: { name: category },
-                  }) => (
+                  (item) => (
                     <Card
-                      key={id}
-                      id={id}
-                      name={name}
-                      price={+price}
-                      imageUrl={imageUrl}
-                      category={category}
-                      color={colorsArr[id % colorsArr.length]}
+                      product={item}
+                      key={item.id}
+                      id={item.id}
+                      name={item.name}
+                      price={+item.price}
+                      imageUrl={item.imageUrl}
+                      category={item.category.name}
+                      color={colorsArr[item.id % colorsArr.length]}
                     />
                   ),
                 )}
