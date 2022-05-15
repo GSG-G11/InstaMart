@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Categories, Hero, LatestProducts, Header,
+  Categories, Hero, LatestProducts, Header, CustomersReview, Footer,
 } from '../../Components';
 
 function Home() {
@@ -10,7 +10,8 @@ function Home() {
       <Hero />
       <Categories />
       <LatestProducts />
-
+      <CustomersReview />
+      <Footer />
     </div>
   );
 }

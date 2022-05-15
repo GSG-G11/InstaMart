@@ -1,5 +1,7 @@
 import { Router } from 'express';
-import { addProduct, deleteProduct, editProduct } from '../../controllers';
+import {
+  addProduct, deleteOrder, deleteProduct, editProduct, editOrder,
+} from '../../controllers';
 import { isAuth, isAdmin } from '../../controllers/middleware';
 
 const adminRouter = Router();
@@ -10,5 +12,8 @@ adminRouter.route('/product')
   .post(addProduct)
   .patch(editProduct)
   .delete(deleteProduct);
+adminRouter.patch('/order', editOrder);
 
+adminRouter.route('/order')
+  .delete(deleteOrder);
 export default adminRouter;

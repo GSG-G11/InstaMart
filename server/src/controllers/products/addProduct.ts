@@ -8,6 +8,7 @@ const addProduct = async (req: Request, res: Response, next: NextFunction) => {
     name, price, details, categoryId,
   } = req.body;
   let { imageUrl } = req.body;
+
   try {
     await addProductValidation(req);
     imageUrl = await receiveImage(imageUrl);

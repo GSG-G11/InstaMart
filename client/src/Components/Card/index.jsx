@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Paper, Button, Typography, Box, Rating,
+  Paper, Button, Typography, Box, Rating, Alert,
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import { ShoppingCart } from '@mui/icons-material';
 import { makeStyles } from '@mui/styles';
+import { Image } from 'cloudinary-react';
+import { useCart } from '../../Hooks/useCart';
 
 const useStyles = makeStyles({
   cardContainer: {
@@ -15,9 +17,19 @@ const useStyles = makeStyles({
     width: '246px',
     height: '80%',
     justifyContent: 'space-between',
+    border: '1px solid rgba(0, 0, 0, 0.23)',
+    position: 'relative',
     '&:hover': {
       border: '1px solid #3bb77e',
+      boxShadow: 'rgba(0, 0, 0, .3) 0px 3px 8px',
     },
+  },
+  text: {
+    '&:hover': {
+      color: '#3bb77e',
+      transition: '0.5s',
+    },
+
   },
   addBtn: {
     '&:hover': {
@@ -28,17 +40,20 @@ const useStyles = makeStyles({
 });
 
 function Card({
-  id, name, price, imageUrl, category, color,
+  id, name, price, imageUrl, category, color, product,
 }) {
   const classes = useStyles();
   const navigate = useNavigate();
+  const { addToCartLS } = useCart();
+  const [notification, setNotification] = useState(false);
+
   return (
     <Paper
-      elevation={7}
+      elevation={0}
       className={classes.cardContainer}
       sx={{
         borderRadius: '20px',
-        boxShadow: 'rgba(0, 0, 0, 0.14) 0px 3px 8px',
+        marginY: '15px',
       }}
     >
       <Paper
@@ -56,30 +71,47 @@ function Card({
       >
         New
       </Paper>
-      <img src={imageUrl} alt={name} width="80%" />
+      <Image
+        style={{ cursor: 'pointer' }}
+        onClick={() => navigate(`/product/${id}`)}
+        cloudName="instamart"
+        publicId={imageUrl}
+        width="195"
+        height="195"
+        crop="scale"
+      />
       <Typography
         variant="body2"
         sx={{ alignSelf: 'flex-start', ml: '10px' }}
         color="#adadad"
+        className={classes.text}
       >
         {category}
       </Typography>
 
-      <Typography variant="subtitle1">{name}</Typography>
+      <Typography
+        variant="subtitle1"
+        sx={{ alignSelf: 'flex-start', ml: '10px', fontWeight: 'bold' }}
+        className={classes.text}
+      >
+        {name}
+
+      </Typography>
       <Rating
         name="read-only"
         value={3.5}
         precision={0.5}
         readOnly
         size="small"
-        sx={{ transform: 'scale(0.7)', alignSelf: 'flex-start', ml: '10px' }}
+        sx={{ transform: 'scale(0.7)', alignSelf: 'flex-start', ml: '5px' }}
       />
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'space-around',
+          justifyContent: 'space-between',
           alignContent: 'center',
           width: '100%',
+          paddingX: '15px',
         }}
       >
         <Typography variant="subtitle1" color="#3AB77D" height="100%">
@@ -91,13 +123,30 @@ function Card({
           className={classes.addBtn}
           variant="contained"
           color="success"
-          sx={{ marginBottom: '20px' }}
-          onClick={() => navigate(`/product/${id}`)}
+          sx={{
+            marginBottom: '20px',
+            paddingX: '15px',
+          }}
+          onClick={() => {
+            addToCartLS(1, product);
+            setNotification(true);
+            setTimeout(() => setNotification(false), 3000);
+          }}
         >
           <ShoppingCart />
           Add
         </Button>
       </Box>
+      {notification && (
+      <Alert
+        severity="success"
+        sx={{
+          position: 'absolute', top: 0, zIndex: 20, borderRadius: '20px',
+        }}
+      >
+        Product was added successfully
+      </Alert>
+      )}
     </Paper>
   );
 }
@@ -108,5 +157,18 @@ Card.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
+  product: PropTypes.shape({
+    availableQuantity: PropTypes.string,
+    category: PropTypes.shape(
+      { id: PropTypes.number, name: PropTypes.string, imageUrl: PropTypes.string },
+    ),
+    categoryId: PropTypes.number,
+    createdAt: PropTypes.string,
+    details: PropTypes.string,
+    id: PropTypes.number,
+    imageUrl: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.string,
+  }).isRequired,
 };
 export default Card;
