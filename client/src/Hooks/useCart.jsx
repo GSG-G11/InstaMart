@@ -24,6 +24,11 @@ export function CartProvider({ children }) {
     }
   };
 
+  const deleteCartFromLs = () => {
+    localStorage.removeItem('cartItems');
+    setCartitems([]);
+  };
+
   const addToCartLS = (productCount, product) => {
     if (productCount) {
       const products = localStorage.getItem('cartItems');
@@ -73,6 +78,7 @@ export function CartProvider({ children }) {
       cartitems,
       addToCartLS,
       deleteFromLS,
+      deleteCartFromLs,
     }),
     [cartitems],
   );
