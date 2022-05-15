@@ -15,26 +15,12 @@ function CheckoutModal({
   const { cartitems, deleteCartFromLs } = useCart();
   const { user } = useAuth();
 
-  //   const [errorMsgs, setErrorMsgs] = useState({
-  //     address: '',
-  //     mobile: '',
-  //     paidAmount: '',
-  //   });
   const [values, setValues] = useState({
     address: '',
     mobile: '',
     paidAmount: 0,
   });
   const [isLoading, setIsLoading] = useState(false);
-
-  //   const validateInputs = () => {
-  //     const msgs = {};
-  //     msgs.mobile = values.mobile ? '' : 'Enter Your Mobile number , Please ';
-  //     msgs.address = values.address ? '' : 'Enter Your Mobile Address , Please';
-  //     msgs.paidAmount = values.paidAmount ? '' : 'Enter The paid amount , Please';
-  //     setErrorMsgs(msgs);
-  //     return Object.values(msgs).every((msg) => msg === '');
-  //   };
 
   const handleInputChange = ({ target: { name, value } }) => {
     setValues({ ...values, [name]: value });
