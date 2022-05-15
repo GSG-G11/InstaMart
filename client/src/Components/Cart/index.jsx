@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Table,
   TableBody,
@@ -13,10 +13,12 @@ import {
   Rating,
   Typography,
   Button,
+  Alert,
 } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 import { useCart } from '../../Hooks/useCart';
 import './style.css';
+import CheckoutModal from '../checkoutModal';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -36,9 +38,12 @@ const StyledTableRow = styled(TableRow)(() => ({
 
 function CartDetails() {
   const { cartitems, addToCartLS, deleteFromLS } = useCart();
+  const [open, setOpen] = useState(false);
+  const [errorAlert, setErrorAlert] = useState(false);
+  const [succcessAlert, setSucccessAlert] = useState(false);
 
   return (
-    <div>
+    <div className="cart-container">
       <div className="cart-title-number-section">
         <Typography className="cart-title-section"> Your Cart</Typography>
         <Typography className="cart-items-number-p">
@@ -104,7 +109,6 @@ function CartDetails() {
                     </div>
                   </div>
                 </StyledTableCell>
-                {/* <StyledTableCell align="center">{item.name}</StyledTableCell> */}
                 <StyledTableCell align="center">
                   <p className="cart-item-price">
                     $
@@ -150,9 +154,7 @@ function CartDetails() {
           <Typography className="total-price">
             Total Price:
             {' '}
-            <span
-              className="total-price-value"
-            >
+            <span className="total-price-value">
               {`$${cartitems.reduce(
                 (previousValue, currentValue) => previousValue
                  + +currentValue.price * currentValue.count,
@@ -161,11 +163,35 @@ function CartDetails() {
             </span>
             {' '}
           </Typography>
-          <Button type="primary" className="checkout-button">
+          <Button
+            type="primary"
+            className="checkout-button"
+            onClick={() => setOpen(true)}
+          >
             Checkout
           </Button>
         </div>
       </div>
+      <CheckoutModal
+        open={open}
+        setOpen={setOpen}
+        setErrorAlert={setErrorAlert}
+        setSucccessAlert={setSucccessAlert}
+      />
+      {errorAlert ? (
+        <>
+          {' '}
+          <Alert severity="error" className="alert-message">
+            Request failed
+            {' '}
+          </Alert>
+        </>
+      ) : null}
+      {succcessAlert ? (
+        <Alert severity="info" className="alert-message">
+          Order Successfully send, we will replay soon
+        </Alert>
+      ) : null}
     </div>
   );
 }
