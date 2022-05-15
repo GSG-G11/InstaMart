@@ -12,6 +12,8 @@ import {
   Select,
   MenuItem,
   CircularProgress,
+  Input,
+  FormHelperText,
 } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
@@ -43,7 +45,20 @@ function ProductFormModal({ id }) {
   const [values, setValues] = useState({
     name: '', imageUrl: '', price: 0, details: '', categoryId: 1,
   });
+  const [errorMsgs, setErrorMsgs] = useState({
+    name: '', imageUrl: '', price: '', details: '', categoryId: '',
+  });
 
+  const validateInputs = () => {
+    const msgs = {};
+    msgs.categoryId = values.categoryId ? '' : 'You are probably not connected to server at the moment.';
+    msgs.details = values.details ? '' : 'Details field is required';
+    msgs.imageUrl = values.imageUrl ? '' : 'Product should have a valid image.';
+    msgs.name = values.name ? '' : 'Product should have name.';
+    msgs.price = values.price ? '' : 'Price should be greater than zero.';
+    setErrorMsgs(msgs);
+    return Object.values(msgs).every((msg) => msg === '');
+  };
   const handleInputChange = ({ target: { name, value } }) => {
     setValues({ ...values, [name]: value });
   };
@@ -66,27 +81,29 @@ function ProductFormModal({ id }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    if (id) {
-      axios.patch('/admin/product', { id, ...values }, {
-        onUploadProgress: (progressEvent) => {
-          setUploadProgress(parseInt(((progressEvent.loaded * 100) / progressEvent.total), 10));
-        },
-      });
-    } else {
-      axios.post('/api/v1/admin/product', values, {
-        onUploadProgress: (progressEvent) => {
-          setUploadProgress(parseInt(((progressEvent.loaded * 100) / progressEvent.total), 10));
-        },
-      })
-        .then(() => {
-          setIsLoading(false);
-          handleClose();
-        })
-        .catch(() => {
-          setIsLoading(false);
-          // notify err
+    if (validateInputs()) {
+      setIsLoading(true);
+      if (id) {
+        axios.patch('/admin/product', { id, ...values }, {
+          onUploadProgress: (progressEvent) => {
+            setUploadProgress(parseInt(((progressEvent.loaded * 100) / progressEvent.total), 10));
+          },
         });
+      } else {
+        axios.post('/api/v1/admin/product', values, {
+          onUploadProgress: (progressEvent) => {
+            setUploadProgress(parseInt(((progressEvent.loaded * 100) / progressEvent.total), 10));
+          },
+        })
+          .then(() => {
+            setIsLoading(false);
+            handleClose();
+          })
+          .catch(() => {
+            setIsLoading(false);
+            // notify err
+          });
+      }
     }
   };
   useEffect(() => {
@@ -97,6 +114,14 @@ function ProductFormModal({ id }) {
       setCategories(data);
     })();
   }, []);
+  useEffect(() => {
+    setErrorMsgs({
+      name: '', imageUrl: '', price: '', details: '', categoryId: '',
+    });
+    setValues({
+      name: '', imageUrl: '', price: 0, details: '', categoryId: 1,
+    });
+  }, [open]);
   return (
     <div>
 
@@ -141,6 +166,8 @@ function ProductFormModal({ id }) {
                       name="name"
                       value={values.name}
                       onChange={handleInputChange}
+                      error={errorMsgs.name}
+                      helperText={errorMsgs.name}
                     />
                   </Grid>
 
@@ -155,14 +182,19 @@ function ProductFormModal({ id }) {
                       value={values.price}
                       onChange={handleInputChange}
                       type="number"
-                      min="0"
                       inputProps={{
                         inputMode: 'numeric', pattern: '[0-9]*', min: 0, step: 0.1,
                       }}
+                      error={errorMsgs.price}
+                      helperText={errorMsgs.price}
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <FormControl fullWidth>
+                    <FormControl
+                      fullWidth
+                      error={errorMsgs.categoryId}
+                      helperText={errorMsgs.categoryId}
+                    >
                       <InputLabel id="demo-simple-select-label">Category</InputLabel>
                       <Select
                         labelId="demo-simple-select-label"
@@ -199,17 +231,26 @@ function ProductFormModal({ id }) {
                       rows={5}
                       value={values.details}
                       onChange={handleInputChange}
+                      error={errorMsgs.details}
+                      helperText={errorMsgs.details}
+
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <span>Product Image </span>
-                    <input
-                      type="file"
-                      name="image"
-                      id="product-image"
-                      accept=".gif,.jpg,.jpeg,.png"
-                      onChange={handleImgSelect}
-                    />
+                    <FormControl
+                      error={errorMsgs.imageUrl}
+                    >
+                      <span>Product Image </span>
+                      <Input
+                        type="file"
+                        name="image"
+                        id="product-image"
+                        accept=".gif,.jpg,.jpeg,.png"
+                        onChange={handleImgSelect}
+                      />
+                      <FormHelperText id="my-helper-text">{errorMsgs.imageUrl}</FormHelperText>
+                    </FormControl>
+
                   </Grid>
                 </Grid>
 
