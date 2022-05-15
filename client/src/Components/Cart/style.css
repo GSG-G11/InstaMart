@@ -114,3 +114,11 @@
 .total-price-value {
   color: #3bb77e;
 }
+.cart-container{
+  position: relative;
+}
+.alert-message{
+  position: absolute;
+  top: 90px;
+  right: 0px;
+}
