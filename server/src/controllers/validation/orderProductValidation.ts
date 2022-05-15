@@ -7,19 +7,13 @@ const orderValidation = (req: Request) => {
       .items({
         id: Joi.number()
           .required(),
-        name: Joi.string()
-          .required(),
-        imageUrl: Joi.string()
-          .required(),
-        price: Joi.string()
-          .required(),
         quantity: Joi.number()
           .required(),
-        isSupplied: Joi.boolean(),
       }),
+    isSupplied: Joi.boolean().required(),
     date: Joi.date().raw().required(),
     paidPrice: Joi.number().required(),
-    mobile: Joi.number().required(),
+    mobile: Joi.string().required(),
     address: Joi.string().required(),
   });
 
