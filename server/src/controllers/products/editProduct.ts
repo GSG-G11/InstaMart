@@ -7,9 +7,12 @@ const editProduct = async (req:Request, res:Response, next:NextFunction) => {
   const {
     id, name, price, details, categoryId,
   } = req.body;
+
   let { imageUrl } = req.body;
   try {
-    imageUrl = receiveImage(imageUrl);
+    if (imageUrl.startsWith('data:image')) {
+      imageUrl = await receiveImage(imageUrl);
+    }
     await editProductValidation(req);
     await Product.upsert({
       id, name, imageUrl, price, details, categoryId,

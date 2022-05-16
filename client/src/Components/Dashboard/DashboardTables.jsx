@@ -29,7 +29,8 @@ const StyledTableRow = styled(TableRow)(() => ({
 export default function CustomizedTables() {
   const [products, setProducts] = useState([]);
   const [open, setOpen] = useState(false);
-  const [id, setId] = useState(0);
+  const [idN, setId] = useState(0);
+  const [dataChangeToggle, setDataChangeToggle] = useState(false);
   const [item, setItem] = useState({
     name: '', imageUrl: '', price: 0, details: '', categoryId: 1,
   });
@@ -46,14 +47,16 @@ export default function CustomizedTables() {
       }
     };
     getProducts();
-  }, []);
+  }, [dataChangeToggle]);
   return (
     <div className="dashboard">
       <ProductFormModal
-        id={id}
+        id={idN}
         open={open}
         setOpen={setOpen}
         product={item}
+        setDataChangeToggle={setDataChangeToggle}
+        dataChangeToggle={dataChangeToggle}
       />
 
       <div className="TitleContainer">
@@ -94,18 +97,22 @@ export default function CustomizedTables() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {products.map((product) => (
-              <StyledTableRow key={product.id}>
-                <StyledTableCell align="center">{product.id}</StyledTableCell>
-                <StyledTableCell align="center">{product.name}</StyledTableCell>
-                <StyledTableCell align="center">{product.category.name}</StyledTableCell>
-                <StyledTableCell align="center">{product.price}</StyledTableCell>
-                <StyledTableCell align="center">{product.details}</StyledTableCell>
+            {products.map(({
+              id, name, categoryId, price, details, imageUrl, category,
+            }) => (
+              <StyledTableRow key={id}>
+                <StyledTableCell align="center">{id}</StyledTableCell>
+                <StyledTableCell align="center">{name}</StyledTableCell>
+                <StyledTableCell align="center">{category.name}</StyledTableCell>
+                <StyledTableCell align="center">{price}</StyledTableCell>
+                <StyledTableCell align="center">{details}</StyledTableCell>
                 <StyledTableCell align="center" className="dashicon">
                   <IconButton
                     onClick={() => {
-                      setId(product.id);
-                      setItem(product);
+                      setId(id);
+                      setItem({
+                        id, name, categoryId, price, details, imageUrl,
+                      });
                       setOpen(true);
                     }}
                   >

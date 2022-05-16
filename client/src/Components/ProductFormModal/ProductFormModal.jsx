@@ -36,7 +36,7 @@ const { textField } = makeStyles(() => ({
 }));
 const gridWidth = 6;
 function ProductFormModal({
-  id, open, setOpen, product,
+  id, open, setOpen, product, setDataChangeToggle, dataChangeToggle,
 }) {
   const handleClose = () => setOpen(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -83,18 +83,18 @@ function ProductFormModal({
       setIsLoading(true);
       if (id) {
         // refactor to async/await later
-        axios.patch('/admin/product', { id, ...values }, {
+        axios.patch('/api/v1/admin/product', { id, ...values }, {
           onUploadProgress: (progressEvent) => {
             setUploadProgress(parseInt(((progressEvent.loaded * 100) / progressEvent.total), 10));
           },
         }).then(() => {
           setIsLoading(false);
           handleClose();
+          setDataChangeToggle(!dataChangeToggle);
         })
-          .catch((err) => {
+          .catch(() => {
             setIsLoading(false);
             // notify err
-            alert(err);
           });
       } else {
         axios.post('/api/v1/admin/product', values, {
@@ -105,6 +105,7 @@ function ProductFormModal({
           .then(() => {
             setIsLoading(false);
             handleClose();
+            setDataChangeToggle(!dataChangeToggle);
           })
           .catch(() => {
             setIsLoading(false);
@@ -273,6 +274,9 @@ ProductFormModal.propTypes = {
   id: PropTypes.number.isRequired,
   open: PropTypes.bool.isRequired,
   setOpen: PropTypes.func.isRequired,
+  dataChangeToggle: PropTypes.bool.isRequired,
+  setDataChangeToggle: PropTypes.func.isRequired,
+
   product: PropTypes.shape({
 
     name: PropTypes.string.isRequired,
