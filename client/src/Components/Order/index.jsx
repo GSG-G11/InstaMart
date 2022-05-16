@@ -11,6 +11,7 @@ import './order.css';
 import {
   Delete, Edit, Visibility,
 } from '@mui/icons-material';
+import ProductOrderModel from '../ProductOrderModel';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -32,7 +33,9 @@ export default function OrdersTables() {
   const [orders, setorders] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [editOrder, setEditOrder] = useState({});
+  const [orderId, setOrderId] = useState(0);
   const open = Boolean(anchorEl);
+  const [openModalProduct, setOpenModalProduct] = useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -42,6 +45,7 @@ export default function OrdersTables() {
   };
 
   const updateStatus = async (id, value) => {
+    console.log(id);
     try {
       const order = await axios.patch(`/api/v1/admin/order/${id}`, { status: value });
       if (order && order.data) {
@@ -121,7 +125,13 @@ export default function OrdersTables() {
                 <StyledTableCell align="center">{order.status}</StyledTableCell>
                 <StyledTableCell align="center">{new Date(order.date).toLocaleString()}</StyledTableCell>
                 <StyledTableCell align="center" className="dashicon">
-                  <Visibility color="primary" />
+                  <Visibility
+                    color="primary"
+                    onClick={() => {
+                      setOpenModalProduct(true);
+                      setOrderId(order.id);
+                    }}
+                  />
                   {' '}
                   <Edit color="success" onClick={handleClick} type="submit" />
                   <Menu
@@ -145,6 +155,12 @@ export default function OrdersTables() {
           </TableBody>
         </Table>
       </TableContainer>
+      <ProductOrderModel
+        open={openModalProduct}
+        setOpen={setOpenModalProduct}
+        orders={orders}
+        orderId={orderId}
+      />
 
     </div>
   );

@@ -235,6 +235,8 @@ const productsOrders = [
   { quantity: 0, productId: 20 },
   { quantity: 10, productId: 1 },
   { quantity: 5, productId: 1 },
+  { quantity: 1, productId: 1, orderId: 1 },
+  { quantity: 5, productId: 2, orderId: 1 },
 
 ];
 

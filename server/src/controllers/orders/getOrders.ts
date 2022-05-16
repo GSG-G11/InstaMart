@@ -1,9 +1,13 @@
 import { Request, NextFunction, Response } from 'express';
-import { Order } from '../../database';
+import { Order, Product } from '../../database';
 
 const getOrders = async (req:Request, res: Response, next: NextFunction) => {
   try {
-    const orders = await Order.findAll();
+    const orders = await Order.findAll(
+      {
+        include: [Product],
+      },
+    );
     return res.json({
       status: 200,
       data: orders,
