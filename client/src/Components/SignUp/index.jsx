@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, TextField, Typography } from '@mui/material';
 import { useNavigate, Link } from 'react-router-dom';
-import logo from '../../images/logo1.png';
+import logo from '../../assets/logo.png';
 import './SignUp.css';
 import image from '../../images/SignUp.jpeg';
 import { useAuth } from '../../Hooks/useAuth';
