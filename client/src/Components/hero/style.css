@@ -1,21 +1,26 @@
-.hero-section{
-    position: relative;
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
-.hero-image{
-    min-width: 100%;
-    opacity: 0.5;
-    height: 415px;
-    object-fit: cover;
-    object-position: center;
+.hero-image {
+  height: 415px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 14px;
+  background-size: contain;
+  background-position: bottom;
+  margin-top: 35px;
+  width: 1267px;
 }
-.welcome-message{
-    position: absolute;
-    top: 128px;
-    right: 63px;
-    font-weight: bold;
-    font-size: 30px;
-    color: #403d3da6;
-}
-.app-title-hero{
-    color:#3bb77e ;
+.welcome-message {
+  position: absolute;
+  top: 163px;
+  right: 157px;
+  font-weight: 500;
+  font-size: 43px;
+  color: #050505;
+  text-align: center;
 }
