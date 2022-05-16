@@ -59,7 +59,6 @@ function CartDetails() {
       </div>
       <TableContainer
         component={Paper}
-        style={{ width: 1200, margin: 70, marginTop: 20 }}
       >
         <Table aria-label="simple table">
           <TableHead>
