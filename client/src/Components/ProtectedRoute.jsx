@@ -6,7 +6,7 @@ import { useAuth } from '../Hooks/useAuth';
 function ProtectedRoute({ redirectPath = '/', children }) {
   const { user, loading } = useAuth();
   if (loading) return <p>loading...</p>;
-  if (!user) {
+  if (!user || !user.isAdmin) {
     return <Navigate to={redirectPath} />;
   }
   return children;

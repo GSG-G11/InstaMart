@@ -51,7 +51,7 @@ function CatProductsSlider({ catID, setErrorAlert }) {
   };
   return (
     <div className="cat-products-continer">
-      <h2>Related Products</h2>
+      <h2 className="related-section-title">Related Products</h2>
       {products.length ? (
         <Slider
           className="products-slider"
@@ -60,23 +60,20 @@ function CatProductsSlider({ catID, setErrorAlert }) {
           slidesToShow={settings.slidesToShow}
           slidesToScroll={settings.slidesToScroll}
         >
-          {products.map(
-            ({
-              id, name, price, imageUrl,
-            }) => (
-              <Card
-                key={id}
-                id={id}
-                name={name}
-                price={+price}
-                imageUrl={imageUrl}
-                color={colorsArr[id % colorsArr.length]}
-              />
-            ),
-          )}
+          {products.map(({
+            id, name, price, imageUrl,
+          }) => (
+            <Card
+              key={id}
+              id={id}
+              name={name}
+              price={+price}
+              imageUrl={imageUrl}
+              color={colorsArr[id % colorsArr.length]}
+            />
+          ))}
         </Slider>
       ) : null}
-
     </div>
   );
 }
