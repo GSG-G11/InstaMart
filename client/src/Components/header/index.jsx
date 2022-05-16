@@ -37,12 +37,12 @@ function Header() {
   return (
 
     <div className={`header-section ${admin ? 'admin-header' : ''}`}>
-      {!admin ? (
-        <div className="left-section">
-          <div className="logo-section">
-            <img src={appIcon} alt="logo-img" className="logo-img" />
-            <p className="logo-name"> Instamart</p>
-          </div>
+      <div className="left-section">
+        <div className="logo-section">
+          <img src={appIcon} alt="logo-img" className="logo-img" />
+          <p className="logo-name"> Instamart</p>
+        </div>
+        {!admin ? (
           <div className="navigate-div">
             <Link className="navigate-word" to="/">
               Home
@@ -51,8 +51,9 @@ function Header() {
               Products
             </Link>
           </div>
-        </div>
-      ) : null }
+        ) : null }
+      </div>
+
       <div className="icons-div">
         {!admin ? (
           <Link to="/cart">

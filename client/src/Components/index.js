@@ -10,8 +10,8 @@ import Hero from './hero';
 import Categories from './categories';
 import Footer from './Footer';
 import CustomersReview from './CustomersReview';
-import { DashboardTables, DashboardAside } from './Dashboard';
-import OrdersTables from './Order';
+import DashboardTable from './Dashboard';
+import OrdersTable from './Order';
 import ProtectedRoute from './ProtectedRoute';
 
 export {
@@ -29,7 +29,6 @@ export {
   Footer,
   CustomersReview,
   ProtectedRoute,
-  DashboardTables,
-  DashboardAside,
-  OrdersTables,
+  DashboardTable,
+  OrdersTable,
 };

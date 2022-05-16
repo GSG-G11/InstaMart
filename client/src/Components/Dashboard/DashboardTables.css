@@ -1,20 +1,18 @@
-.dashboard{
-    display: flex;
-    flex-direction: column;
-    width: 95vw;
-}
 .TitleContainer{
     font-size: 24;
     font-weight: bold;
-    padding: 30px 0 0 80px;
 }
 .inputSearchAndButton{
     display: flex;
     justify-content: space-between;
-    padding: 30px 70px 30px 70px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 .inputSearch{
     background-color: #FAFAFB;
     color: #000000;
-    width: 800px;
+    width: 65%;
+}
+.table-container{
+    padding: 30px 35px;
 }

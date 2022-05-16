@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import { SignUp, Login, ProtectedRoute } from './Components';
 import {
-  Cart, ProductDetailsPage, Products, Dashboard, Home, OrdersTables,
+  Cart, ProductDetailsPage, Products, Dashboard, Home,
 } from './Pages';
 import { AuthProvider } from './Hooks/useAuth';
 import { CartProvider } from './Hooks/useCart';
@@ -26,14 +26,14 @@ function App() {
                 </ProtectedRoute>
               )}
             />
-            <Route
+            {/* <Route
               path="/order"
               element={(
                 <ProtectedRoute redirectPath="/login">
                   <OrdersTables />
                 </ProtectedRoute>
               )}
-            />
+            /> */}
             <Route path="/signup" element={<SignUp />} />
             <Route path="/product/:id" element={<ProductDetailsPage />} />
           </Routes>

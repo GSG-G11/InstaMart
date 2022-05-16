@@ -7,7 +7,6 @@ import {
   styled,
 } from '@mui/material';
 import axios from 'axios';
-import './order.css';
 import {
   Delete, Edit, Visibility,
 } from '@mui/icons-material';
@@ -29,25 +28,25 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-export default function OrdersTables() {
+export default function OrdersTable() {
   const [orders, setorders] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [editOrder, setEditOrder] = useState({});
-  const [orderId, setOrderId] = useState(0);
+  const [orderId, setOrderId] = useState();
   const open = Boolean(anchorEl);
   const [openModalProduct, setOpenModalProduct] = useState(false);
 
-  const handleClick = (event) => {
+  const handleClick = (event, id) => {
+    setOrderId(id);
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const updateStatus = async (id, value) => {
-    console.log(id);
+  const updateStatus = async (value) => {
     try {
-      const order = await axios.patch(`/api/v1/admin/order/${id}`, { status: value });
+      const order = await axios.patch(`/api/v1/admin/order/${orderId}`, { status: value });
       if (order && order.data) {
         setEditOrder(order.data.data);
       }
@@ -79,18 +78,17 @@ export default function OrdersTables() {
     getOrders();
   }, [editOrder]);
   return (
-    <div className="dashboard">
+    <div className="table-container">
       <div className="TitleContainer">
         <h2>Orders</h2>
       </div>
       <div className="inputSearchAndButton">
-        <TextField size="large" label="Search" className="inputSearch" variant="filled" />
+        <TextField size="Normal" label="Search" className="inputSearch" />
         <Button
           variant="contained"
           style={{
             backgroundColor: '#3AB77D',
             width: '169px',
-            height: '55px',
             fontWeight: 'bold',
           }}
         >
@@ -98,7 +96,7 @@ export default function OrdersTables() {
 
         </Button>
       </div>
-      <TableContainer component={Paper} style={{ width: 1200, margin: 70, marginTop: 20 }}>
+      <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -133,18 +131,18 @@ export default function OrdersTables() {
                     }}
                   />
                   {' '}
-                  <Edit color="success" onClick={handleClick} type="submit" />
+                  <Edit color="success" onClick={(e) => handleClick(e, order.id)} type="submit" />
                   <Menu
                     anchorEl={anchorEl}
-                    id="account-menu"
+                    // id="account-menu"
                     className="profile-menu"
                     open={open}
                     onClose={handleClose}
                     onClick={handleClose}
                   >
-                    <MenuItem onClick={() => updateStatus(order.id, 'Pending')}>Pending</MenuItem>
-                    <MenuItem onClick={() => updateStatus(order.id, 'Rejected')}>Rejected</MenuItem>
-                    <MenuItem onClick={() => updateStatus(order.id, 'Approved')}>Approved</MenuItem>
+                    <MenuItem onClick={() => updateStatus('pending')}>Pending</MenuItem>
+                    <MenuItem onClick={() => updateStatus('Rejected')}>Rejected</MenuItem>
+                    <MenuItem onClick={() => updateStatus('Approved')}>Approved</MenuItem>
                   </Menu>
                   {' '}
                   <Delete color="error" onClick={() => handleDelete(order.id)} />
