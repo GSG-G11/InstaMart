@@ -240,7 +240,7 @@ const productsOrders = [
 
 const order = [{
   date: new Date(),
-  totalPrice: 200,
+  totalPrice: 100,
   paidPrice: 200,
   status: 'pending',
   supplier: 'admin',
@@ -253,6 +253,16 @@ const order = [{
   totalPrice: 200,
   paidPrice: 200,
   status: 'pending',
+  supplier: 'admin',
+  isSupplied: false,
+  mobile: 599832,
+  address: 'string',
+},
+{
+  date: new Date(),
+  totalPrice: 300,
+  paidPrice: 200,
+  status: 'approved',
   supplier: 'admin',
   isSupplied: false,
   mobile: 599832,

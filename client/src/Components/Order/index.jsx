@@ -90,7 +90,7 @@ export default function OrdersTables() {
             fontWeight: 'bold',
           }}
         >
-          Add Product
+          Add Order
 
         </Button>
       </div>
@@ -119,7 +119,7 @@ export default function OrdersTables() {
                 <StyledTableCell align="center">{order.isSupplied ? 'Out' : 'In'}</StyledTableCell>
                 <StyledTableCell align="center">{order.address }</StyledTableCell>
                 <StyledTableCell align="center">{order.status}</StyledTableCell>
-                <StyledTableCell align="center">{order.date}</StyledTableCell>
+                <StyledTableCell align="center">{new Date(order.date).toLocaleString()}</StyledTableCell>
                 <StyledTableCell align="center" className="dashicon">
                   <Visibility color="primary" />
                   {' '}
@@ -132,7 +132,7 @@ export default function OrdersTables() {
                     onClose={handleClose}
                     onClick={handleClose}
                   >
-                    <MenuItem onClick={() => updateStatus(order.id, 'pending')}>Pending</MenuItem>
+                    <MenuItem onClick={() => updateStatus(order.id, 'Pending')}>Pending</MenuItem>
                     <MenuItem onClick={() => updateStatus(order.id, 'Rejected')}>Rejected</MenuItem>
                     <MenuItem onClick={() => updateStatus(order.id, 'Approved')}>Approved</MenuItem>
                   </Menu>
