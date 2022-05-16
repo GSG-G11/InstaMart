@@ -38,8 +38,12 @@
   line-height: 24px;
 }
 .products-slider .slick-list {
-    padding: 16px;
+  padding: 16px;
 }
 .products-slider-card .products-slider-card-image {
   width: 210px;
+}
+.related-section-title {
+  font-size: 22px;
+  font-weight: 600;
 }
