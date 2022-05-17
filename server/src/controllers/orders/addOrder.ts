@@ -15,7 +15,6 @@ interface User {
 interface ModRequest extends Request{
   user?:User
   }
-
 const addOrder = async (req:ModRequest, res:Response, next:NextFunction) => {
   const {
     date, paidPrice, productArray, isSupplied = false, mobile, address,
@@ -56,6 +55,9 @@ const addOrder = async (req:ModRequest, res:Response, next:NextFunction) => {
     order.totalPrice = Number(totalPrice[0].orderId);
     await order.save({ transaction: t });
     await t.commit();
+
+    const io = req.app.get('socketio');
+    io.emit('notification', { message: 'You Received an Order Check it Out' });
 
     return res.status(200).json({ success: true, message: 'Order added successfully!' });
   } catch (err:any) {
