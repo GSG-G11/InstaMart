@@ -93,3 +93,8 @@
 .profile-menu .MuiList-root { 
 padding: 5px 0;
 }
+.notification-alert{
+  position: fixed;
+  top: 80px;
+  right: 0;
+}
