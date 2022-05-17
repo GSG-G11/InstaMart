@@ -81,7 +81,8 @@ function ProductDetails({ setOpen }) {
                     className="add-product-number"
                     onClick={() => {
                       addToCartLS(productCount, product);
-                      setOpen();
+                      setOpen(true);
+                      setTimeout(() => setOpen(false), 5000);
                     }}
                   >
                     Add To Cart

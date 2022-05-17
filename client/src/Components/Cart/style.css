@@ -41,9 +41,6 @@
   color: #3bb77e;
 }
 
-.product-count-input .MuiOutlinedInput-root:hover input {
-  border: 1px solid #3bb77e;
-}
 .product-count-input input {
   max-width: 60px;
   border-radius: 4px;
@@ -125,7 +122,7 @@
   position: relative;
 }
 .alert-message{
-  position: absolute;
-  top: 90px;
+  position: fixed;
+  top: 80px;
   right: 0px;
 }
