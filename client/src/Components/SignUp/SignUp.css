@@ -30,8 +30,9 @@ object-fit:cover ;
     gap:9px
 }
 .logo-image-title{ 
-    width: 50%;
+    width: 30%;
     margin: 0 auto;
+    object-fit: cover;
 }
 .logoPart{
     display: flex;

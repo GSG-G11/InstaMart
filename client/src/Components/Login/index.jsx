@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   loginContainer: {
     display: 'flex',
 
-    height: 'calc(100vh - 69px)',
+    height: '100vh',
   },
   img: {
     height: '100%',
@@ -73,7 +73,7 @@ function Login() {
       <img className={classes.img} src="https://images.pexels.com/photos/2292919/pexels-photo-2292919.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="img" />
       <form className={classes.formStyle} onSubmit={(e) => handelSubmit(e)}>
         <img className={classes.logo} src={logo} alt="img" />
-        <h1 className={classes.head}>welcome to Instashop</h1>
+        <h1 className={classes.head}>Welcome To Instashop</h1>
         <TextField className={classes.textFld} variant="outlined" type="email" placeholder=" Enter your email" onChange={(e) => setEmail(e.target.value)} required />
         <TextField className={classes.textFld} variant="outlined" type="password" placeholder=" Password" onChange={(e) => setPassword(e.target.value)} required />
         {errorMsg ? <Typography component="h4" style={{ color: 'red', paddingBottom: '20px' }}>{errorMsg}</Typography> : null}

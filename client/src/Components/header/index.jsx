@@ -12,6 +12,7 @@ import {
 } from '@mui/icons-material';
 import { useAuth } from '../../Hooks/useAuth';
 import { useCart } from '../../Hooks/useCart';
+import logo from '../../assets/logo.png';
 
 function Header() {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ function Header() {
       <div className="left-section">
         <div className="logo-section">
           <img
-            src="https://cdn-icons.flaticon.com/png/512/2203/premium/2203239.png?token=exp=1652535502~hmac=0ae16eda211c8e5c30d5fae5742f427a"
+            src={logo}
             alt="logo-img"
             className="logo-img"
           />
