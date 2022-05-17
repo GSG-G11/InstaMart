@@ -5,6 +5,7 @@ import {
   Tabs, Tab, Typography, Box,
 } from '@mui/material';
 import { DashboardTable, OrdersTable, Header } from '../../Components';
+import './dashboard.css';
 
 function TabPanel(props) {
   const {
@@ -14,6 +15,7 @@ function TabPanel(props) {
   return (
     <div
       role="tabpanel"
+      className="tabpanel-container"
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
