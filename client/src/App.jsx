@@ -26,6 +26,14 @@ function App() {
                 </ProtectedRoute>
               )}
             />
+            {/* <Route
+              path="/order"
+              element={(
+                <ProtectedRoute redirectPath="/login">
+                  <OrdersTables />
+                </ProtectedRoute>
+              )}
+            /> */}
             <Route path="/signup" element={<SignUp />} />
             <Route path="/product/:id" element={<ProductDetailsPage />} />
           </Routes>

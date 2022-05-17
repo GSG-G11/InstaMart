@@ -1,0 +1,31 @@
+.view-product-modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.view-product-table.MuiTable-root{
+    width: 500px;
+border-radius: 5px;}
+
+.table-product-head.MuiTableCell-root{
+    font-weight: bold;
+}
+.view-modal-table{
+    background-color: #fff;
+    border-radius: 8px;
+    position: relative;
+    padding: 20px;
+}
+.cancl-btn-view-modal{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #3bb77e;
+    background-color: #fff;
+    top:10px;
+    right: 10px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}

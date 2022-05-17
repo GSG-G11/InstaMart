@@ -93,3 +93,6 @@
 .profile-menu .MuiList-root { 
 padding: 5px 0;
 }
+.admin-header{
+  justify-content: space-between;
+}

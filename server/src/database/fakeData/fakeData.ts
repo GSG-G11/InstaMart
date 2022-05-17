@@ -235,14 +235,36 @@ const productsOrders = [
   { quantity: 0, productId: 20 },
   { quantity: 10, productId: 1 },
   { quantity: 5, productId: 1 },
+  { quantity: 1, productId: 1, orderId: 1 },
+  { quantity: 5, productId: 2, orderId: 1 },
 
 ];
 
 const order = [{
   date: new Date(),
+  totalPrice: 100,
+  paidPrice: 200,
+  status: 'pending',
+  supplier: 'admin',
+  isSupplied: false,
+  mobile: 599832,
+  address: 'string',
+},
+{
+  date: new Date(),
   totalPrice: 200,
   paidPrice: 200,
   status: 'pending',
+  supplier: 'admin',
+  isSupplied: false,
+  mobile: 599832,
+  address: 'string',
+},
+{
+  date: new Date(),
+  totalPrice: 300,
+  paidPrice: 200,
+  status: 'approved',
   supplier: 'admin',
   isSupplied: false,
   mobile: 599832,

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import {
-  addProduct, deleteOrder, deleteProduct, editProduct, editOrder,
+  addProduct, deleteOrder, deleteProduct, editProduct, editOrder, getOrders,
 } from '../../controllers';
 import { isAuth, isAdmin } from '../../controllers/middleware';
 
@@ -12,8 +12,10 @@ adminRouter.route('/product')
   .post(addProduct)
   .patch(editProduct)
   .delete(deleteProduct);
-adminRouter.patch('/order', editOrder);
+adminRouter.route('/order/:id')
+  .patch(editOrder)
+  .delete(deleteOrder);
 
 adminRouter.route('/order')
-  .delete(deleteOrder);
+  .get(getOrders);
 export default adminRouter;
