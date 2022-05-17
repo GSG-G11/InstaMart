@@ -34,10 +34,10 @@ function Header() {
     if (socket && admin) {
       socket.on('notification', (data) => {
         setNotificationOrder(data.message);
-        setTimeout(() => setNotificationOrder(null), 5000);
+        setTimeout(() => setNotificationOrder(null), 3000);
       });
     }
-  }, [socket]);
+  }, []);
   const logoutFunc = () => {
     logout((error) => {
       if (!error) {
@@ -119,7 +119,17 @@ function Header() {
         )}
       </div>
       {notificationOrder ? (
-        <Alert className="notification-alert" severity="info">{notificationOrder}</Alert>
+        <Alert className="notification-alert" severity="info">
+          {notificationOrder}
+          <button
+            type="submit"
+            onClick={() => { setNotificationOrder(null); }}
+            className="notification-alert-cancle"
+          >
+            x
+
+          </button>
+        </Alert>
       ) : null}
     </div>
   );
