@@ -12,13 +12,12 @@ beforeAll(async () => {
   await buildFakeData();
 });
 
-describe('Patch /api/v1/admin/order', () => {
+describe('Patch /api/v1/admin/order/2', () => {
   test('success edit order ', (done) => {
     supertest(app)
-      .patch('/api/v1/admin/order')
+      .patch('/api/v1/admin/order/1')
       .set('Cookie', [`token=${process.env.ADMIN}`])
       .send({
-        id: 1,
         status: 'rejected',
       })
       .expect(200)
@@ -35,18 +34,17 @@ describe('Patch /api/v1/admin/order', () => {
 describe('Patch /api/v1/admin/order', () => {
   test('not found order id ', (done) => {
     supertest(app)
-      .patch('/api/v1/admin/order')
+      .patch('/api/v1/admin/order/9')
       .set('Cookie', [`token=${process.env.ADMIN}`])
       .send({
-        id: 900,
         status: 'rejected',
       })
-      .expect(404)
+      .expect(400)
       .end((err, res) => {
         if (err) {
           return done(err);
         }
-        expect(res.body.message).toBe('Order Not found !');
+        expect(res.body.message).toBe('Bad Request!');
         return done();
       });
   });
@@ -55,9 +53,8 @@ describe('Patch /api/v1/admin/order', () => {
 describe('Patch /api/v1/admin/order', () => {
   test('Unauthorized admin ', (done) => {
     supertest(app)
-      .patch('/api/v1/admin/order')
+      .patch('/api/v1/admin/order/1')
       .send({
-        id: 1,
         status: 'rejected',
       })
       .expect(401)
@@ -74,10 +71,9 @@ describe('Patch /api/v1/admin/order', () => {
 describe('Patch /api/v1/admin/order', () => {
   test('Validation error', (done) => {
     supertest(app)
-      .patch('/api/v1/admin/order')
+      .patch('/api/v1/admin/order/1')
       .set('Cookie', [`token=${process.env.ADMIN}`])
       .send({
-        id: 1,
         status: 44,
       })
       .expect(422)
@@ -91,14 +87,11 @@ describe('Patch /api/v1/admin/order', () => {
   });
 });
 
-describe('Delete /api/v1/admin/order', () => {
+describe('Delete /api/v1/admin/order/1', () => {
   test('success delete order ', (done) => {
     supertest(app)
-      .delete('/api/v1/admin/order')
+      .delete('/api/v1/admin/order/1')
       .set('Cookie', [`token=${process.env.ADMIN}`])
-      .send({
-        id: 1,
-      })
       .expect(200)
       .end((err, res) => {
         if (err) {

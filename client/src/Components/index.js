@@ -1,4 +1,4 @@
-import { CartProduct, TotalPrice } from './Cart';
+import CartDetails from './Cart';
 import CatProductsSlider from './catProductsSlider';
 import Header from './header';
 import ProductDetails from './ProductDetailsCard';
@@ -10,11 +10,12 @@ import Hero from './hero';
 import Categories from './categories';
 import Footer from './Footer';
 import CustomersReview from './CustomersReview';
+import DashboardTable from './Dashboard';
+import OrdersTable from './Order';
 import ProtectedRoute from './ProtectedRoute';
 
 export {
-  CartProduct,
-  TotalPrice,
+  CartDetails,
   CatProductsSlider,
   Header,
   ProductDetails,
@@ -27,4 +28,6 @@ export {
   Footer,
   CustomersReview,
   ProtectedRoute,
+  DashboardTable,
+  OrdersTable,
 };

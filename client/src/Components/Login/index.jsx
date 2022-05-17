@@ -4,32 +4,25 @@ import {
 } from 'react-router-dom';
 import { Button, TextField, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-
-import logo from '../../assets/logo.png';
 import { useAuth } from '../../Hooks/useAuth';
 
 const useStyles = makeStyles({
   head: {
     height: '80px',
+    color: '#7e7e7e',
   },
   signInBtn: {
-
     width: '200px',
   },
 
   loginContainer: {
     display: 'flex',
-
-    height: 'calc(100vh - 69px)',
+    height: '100vh',
   },
   img: {
     height: '100%',
     width: '50%',
     objectFit: 'cover',
-  },
-  logo: {
-    height: '300px',
-    width: '500px',
   },
   formStyle: {
     display: 'flex',
@@ -39,8 +32,10 @@ const useStyles = makeStyles({
     width: '100%',
   },
   textFld: {
-    width: '400px',
-    height: '100px',
+    '&.MuiFormControl-root': {
+      width: '400px',
+      marginBottom: '10px',
+    },
   },
 });
 
@@ -72,8 +67,12 @@ function Login() {
 
       <img className={classes.img} src="https://images.pexels.com/photos/2292919/pexels-photo-2292919.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="img" />
       <form className={classes.formStyle} onSubmit={(e) => handelSubmit(e)}>
-        <img className={classes.logo} src={logo} alt="img" />
-        <h1 className={classes.head}>welcome to Instashop</h1>
+        <img
+          className={classes.logo}
+          src="https://i.ibb.co/ZYQs4LQ/grocery-cart.png"
+          alt="img"
+        />
+        <h1 className={classes.head}>Welcome To Instashop</h1>
         <TextField className={classes.textFld} variant="outlined" type="email" placeholder=" Enter your email" onChange={(e) => setEmail(e.target.value)} required />
         <TextField className={classes.textFld} variant="outlined" type="password" placeholder=" Password" onChange={(e) => setPassword(e.target.value)} required />
         {errorMsg ? <Typography component="h4" style={{ color: 'red', paddingBottom: '20px' }}>{errorMsg}</Typography> : null}

@@ -1,0 +1,70 @@
+.checkout-form {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 40px;
+  border-radius: 6px;
+}
+.checkout-form-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.address-input.MuiInputBase-root,
+.mobile-input.MuiInputBase-root {
+  max-width: 400px;
+  height: 50px;
+}
+.submit-checkout-section {
+  display: flex;
+  justify-content: flex-end;
+}
+.checkout-submit.MuiButton-root {
+  background-color: #3bb77e;
+  color: white;
+  width: 200px;
+  height: 40px;
+  font-weight: 600;
+}
+.checkout-submit.MuiButton-root:hover {
+  background-color: white;
+  color: #3bb77e;
+  border: 1px solid #3bb77e;
+}
+
+.logIn-message-div p {
+  font-size: 22px;
+  font-weight: 500;
+}
+.logIn-message-div a {
+  color: #3bb77e;
+  text-decoration: none;
+}
+.modal-title {
+  font-size: 20px;
+}
+.modal-content {
+  background-color: #ffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 30px;
+  border-radius: 5px;
+  position:relative;
+}
+.cancle-btn {
+  background: none;
+  border: 1px solid #3bb77e;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  padding: 1px;
+  align-self: flex-end;
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+}

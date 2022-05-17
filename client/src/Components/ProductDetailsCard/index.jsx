@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { Button, TextField, Alert } from '@mui/material';
+import {
+  Button, TextField, Alert, Rating,
+} from '@mui/material';
 import CatProductsSlider from '../catProductsSlider';
 import './style.css';
 import { useCart } from '../../Hooks/useCart';
+import CategoriesAside from '../categoriesAside';
 
 function ProductDetails({ setOpen }) {
   const { addToCartLS } = useCart();
@@ -45,11 +48,21 @@ function ProductDetails({ setOpen }) {
               />
             </div>
             <div className="product-info">
-              <div className="product-category">{product.category.name}</div>
               <div className="product-info-container">
                 <div className="product-details-info">
+                  <p className="product-category">{product.category.name}</p>
                   {' '}
                   <p className="product-name">{product.name}</p>
+                  <Rating
+                    name="read-only"
+                    value={3.5}
+                    precision={0.5}
+                    readOnly
+                    size="small"
+                    sx={{
+                      transform: 'scale(1)',
+                    }}
+                  />
                   <p className="product-price">{`$ ${product.price}`}</p>
                   <p className="product-details">{product.details}</p>
                 </div>
@@ -59,14 +72,17 @@ function ProductDetails({ setOpen }) {
                     size="small"
                     id="outlined-number"
                     type="number"
+                    InputProps={{ inputProps: { min: '0', max: '10', step: '1' } }}
                     value={productCount}
+                    sx={{ input: { color: '#3bb77e', outline: '#3bb77e' } }}
                     onChange={(e) => setProductCount(e.target.value)}
                   />
                   <Button
                     className="add-product-number"
                     onClick={() => {
                       addToCartLS(productCount, product);
-                      setOpen();
+                      setOpen(true);
+                      setTimeout(() => setOpen(false), 5000);
                     }}
                   >
                     Add To Cart
@@ -74,10 +90,13 @@ function ProductDetails({ setOpen }) {
                 </div>
               </div>
             </div>
+            <CategoriesAside />
           </div>
         </section>
       ) : null}
-      {catID && <CatProductsSlider catID={catID} setErrorAlert={setErrorAlert} />}
+      {catID && (
+        <CatProductsSlider catID={catID} setErrorAlert={setErrorAlert} />
+      )}
       {errorAlert ? (
         <>
           {' '}

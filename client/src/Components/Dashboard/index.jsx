@@ -49,7 +49,7 @@ export default function CustomizedTables() {
     getProducts();
   }, [dataChangeToggle]);
   return (
-    <div className="dashboard">
+    <div className="table-container">
       <ProductFormModal
         id={idN}
         open={open}
@@ -58,18 +58,16 @@ export default function CustomizedTables() {
         setDataChangeToggle={setDataChangeToggle}
         dataChangeToggle={dataChangeToggle}
       />
-
       <div className="TitleContainer">
         <h2>Products</h2>
       </div>
       <div className="inputSearchAndButton">
-        <TextField size="large" label="Search" className="inputSearch" variant="filled" />
+        <TextField size="large" label="Search" className="inputSearch" />
         <Button
           variant="contained"
           style={{
             backgroundColor: '#3AB77D',
             width: '169px',
-            height: '45px',
             fontWeight: 'bold',
           }}
           onClick={() => {
@@ -84,7 +82,7 @@ export default function CustomizedTables() {
 
         </Button>
       </div>
-      <TableContainer component={Paper} style={{ width: 1200, margin: 70, marginTop: 20 }}>
+      <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
