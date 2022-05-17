@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Button, TextField, Typography } from '@mui/material';
 import { useNavigate, Link } from 'react-router-dom';
-import logo from '../../assets/logo.png';
 import './SignUp.css';
 import image from '../../images/SignUp.jpeg';
 import { useAuth } from '../../Hooks/useAuth';
@@ -39,7 +38,7 @@ function SignUp() {
         <div className="logoPart">
           <img
             className="logo-image-title"
-            src={logo}
+            src="https://i.ibb.co/ZYQs4LQ/grocery-cart.png"
             alt="img"
           />
         </div>

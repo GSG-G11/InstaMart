@@ -13,7 +13,6 @@ import {
 import { useAuth } from '../../Hooks/useAuth';
 import { useCart } from '../../Hooks/useCart';
 import { useSocket } from '../../Hooks/useSocket';
-import logo from '../../assets/logo.png';
 
 function Header() {
   const navigate = useNavigate();
@@ -54,7 +53,7 @@ function Header() {
       <div className="left-section">
         <div className="logo-section">
           <img
-            src={logo}
+            src="https://i.ibb.co/ZYQs4LQ/grocery-cart.png"
             alt="logo-img"
             className="logo-img"
           />
