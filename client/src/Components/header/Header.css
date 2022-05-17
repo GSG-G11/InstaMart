@@ -109,3 +109,7 @@ padding: 5px 0;
   cursor: pointer;
   font-size: 14px;
 }
+
+.admin-header{
+  justify-content: space-between;
+}

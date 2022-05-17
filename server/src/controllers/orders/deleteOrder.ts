@@ -3,7 +3,7 @@ import { CustomizedError } from '../../utilities';
 import { Order } from '../../database';
 
 const deleteOrder = async (req:Request, res:Response, next:NextFunction) => {
-  const { id } = req.body;
+  const { id } = req.params;
   try {
     await Order.destroy({
       where: { id },

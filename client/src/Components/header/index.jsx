@@ -13,6 +13,7 @@ import {
 import { useAuth } from '../../Hooks/useAuth';
 import { useCart } from '../../Hooks/useCart';
 import { useSocket } from '../../Hooks/useSocket';
+import logo from '../../assets/logo.png';
 
 function Header() {
   const navigate = useNavigate();
@@ -48,39 +49,39 @@ function Header() {
     });
   };
   return (
-    <div className="header-section">
+
+    <div className={`header-section ${admin ? 'admin-header' : ''}`}>
       <div className="left-section">
         <div className="logo-section">
           <img
-            src="https://i.ibb.co/ZYQs4LQ/grocery-cart.png"
+            src={logo}
             alt="logo-img"
             className="logo-img"
           />
           <p className="logo-name"> Instamart</p>
         </div>
-        <div className="navigate-div">
-          <Link className="navigate-word" to="/">
-            Home
-          </Link>
-          <Link className="navigate-word" to="/products">
-            Products
-          </Link>
-          {admin ? (
-            <Link className="navigate-word" to="/dashboard">
-              Dashboard
+        {!admin ? (
+          <div className="navigate-div">
+            <Link className="navigate-word" to="/">
+              Home
             </Link>
-          ) : null}
-        </div>
-      </div>
-      <div className="icons-div">
-        <Link to="/cart">
-          {' '}
-          <div className="shopping-cart-div">
-            <ShoppingCart className="shopping-cart-icon" />
-            <p className="products-number">{cartitems.length || 0}</p>
+            <Link className="navigate-word" to="/products">
+              Products
+            </Link>
           </div>
-        </Link>
+        ) : null }
+      </div>
 
+      <div className="icons-div">
+        {!admin ? (
+          <Link to="/cart">
+            {' '}
+            <div className="shopping-cart-div">
+              <ShoppingCart className="shopping-cart-icon" />
+              <p className="products-number">{cartitems.length || 0}</p>
+            </div>
+          </Link>
+        ) : null }
         {user ? (
           <>
             <button onClick={handleClick} className="user-info" type="submit">
