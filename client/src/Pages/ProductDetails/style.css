@@ -4,7 +4,7 @@
     margin: 0 auto;
 }
 .product-page-container .success-alert-message{
-    position: absolute;
+    position: fixed;
     right: 0;
-    top: 0;
+    top: 80px;
 }

@@ -15,7 +15,6 @@ interface User {
 interface ModRequest extends Request{
   user?:User
   }
-
 const addOrder = async (req:ModRequest, res:Response, next:NextFunction) => {
   const {
     date, paidPrice, productArray, isSupplied = false, mobile, address,
@@ -48,17 +47,20 @@ const addOrder = async (req:ModRequest, res:Response, next:NextFunction) => {
       }],
       attributes: [
 
-        [literal('SUM(product.price*quantity)'), 'totalPrice'],
+        [literal('SUM(product.price*quantity)'), 'orderId'],
       ],
       group: ['productOrder.orderId'],
       transaction: t,
     });
-    order.totalPrice = Number(totalPrice[0].totalPrice);
+    order.totalPrice = Number(totalPrice[0].orderId);
     await order.save({ transaction: t });
+    await t.commit();
 
-    return res.status(200).json({ message: 'Order Added Successfully !' });
+    const io = req.app.get('socketio');
+    io.emit('notification', { message: 'You Received an Order Check it Out' });
+
+    return res.status(200).json({ success: true, message: 'Order added successfully!' });
   } catch (err:any) {
-    console.log(err);
     await t.rollback();
     if (err.details) {
       return res.status(422).json({ msg: err.details[0].message, status: 422 });
