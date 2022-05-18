@@ -5,14 +5,14 @@ import { Category, Product, ProductOrder } from '../../database';
 
 const getProducts = async (req:Request, res:Response, next:NextFunction) => {
   const {
-    q, categoryId, sort, page = 1, limit = 6,
+    q, categoryId, sort, page = 1, limit,
   } = req.query;
   try {
     await getProductsValidation(req);
 
     const dbFilterdProducts = await Promise.all([Product.findAll({
-      offset: (+page - 1) * +limit,
-      limit: +limit,
+      offset: limit ? ((+page - 1) * +limit) : undefined,
+      limit: limit ? +limit : undefined,
       include: [{ model: Category, attributes: ['id', 'name', 'imageUrl'] }, {
         model: ProductOrder, attributes: [], required: true, duplicating: false,
       }],
@@ -38,7 +38,7 @@ const getProducts = async (req:Request, res:Response, next:NextFunction) => {
 
     return res.json({
       status: 200,
-      totalPages: Math.ceil(dbFilterdProducts[1] / +limit) || 1,
+      totalPages: limit ? (Math.ceil(dbFilterdProducts[1] / (+limit) || 1)) : 1,
       data: dbFilterdProducts[0],
     });
   } catch (err:any) {

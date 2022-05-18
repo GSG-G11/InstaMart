@@ -3,10 +3,12 @@ import {
   Table, TableBody, TableCell, tableCellClasses, TableContainer,
   TableHead, TableRow, Paper, Button, TextField,
   styled,
+  IconButton,
 } from '@mui/material';
 import axios from 'axios';
 import './DashboardTables.css';
 import { Delete, Edit } from '@mui/icons-material';
+import ProductFormModal from '../ProductFormModal/ProductFormModal';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -26,6 +28,12 @@ const StyledTableRow = styled(TableRow)(() => ({
 
 export default function CustomizedTables() {
   const [products, setProducts] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [idN, setId] = useState(0);
+  const [dataChangeToggle, setDataChangeToggle] = useState(false);
+  const [item, setItem] = useState({
+    name: '', imageUrl: '', price: 0, details: '', categoryId: 1,
+  });
 
   useEffect(() => {
     const getProducts = async () => {
@@ -39,9 +47,17 @@ export default function CustomizedTables() {
       }
     };
     getProducts();
-  }, []);
+  }, [dataChangeToggle]);
   return (
     <div className="table-container">
+      <ProductFormModal
+        id={idN}
+        open={open}
+        setOpen={setOpen}
+        product={item}
+        setDataChangeToggle={setDataChangeToggle}
+        dataChangeToggle={dataChangeToggle}
+      />
       <div className="TitleContainer">
         <h2>Products</h2>
       </div>
@@ -53,6 +69,13 @@ export default function CustomizedTables() {
             backgroundColor: '#3AB77D',
             width: '169px',
             fontWeight: 'bold',
+          }}
+          onClick={() => {
+            setId(0);
+            setOpen(true);
+            setItem({
+              name: '', imageUrl: '', price: 0, details: '', categoryId: 1,
+            });
           }}
         >
           Add Product
@@ -72,17 +95,32 @@ export default function CustomizedTables() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {products.map((product) => (
-              <StyledTableRow key={product.id}>
-                <StyledTableCell align="center">{product.id}</StyledTableCell>
-                <StyledTableCell align="center">{product.name}</StyledTableCell>
-                <StyledTableCell align="center">{product.category.name}</StyledTableCell>
-                <StyledTableCell align="center">{product.price}</StyledTableCell>
-                <StyledTableCell align="center">{product.details}</StyledTableCell>
+            {products.map(({
+              id, name, categoryId, price, details, imageUrl, category,
+            }) => (
+              <StyledTableRow key={id}>
+                <StyledTableCell align="center">{id}</StyledTableCell>
+                <StyledTableCell align="center">{name}</StyledTableCell>
+                <StyledTableCell align="center">{category.name}</StyledTableCell>
+                <StyledTableCell align="center">{price}</StyledTableCell>
+                <StyledTableCell align="center">{details}</StyledTableCell>
                 <StyledTableCell align="center" className="dashicon">
-                  <Edit color="success" />
+                  <IconButton
+                    onClick={() => {
+                      setId(id);
+                      setItem({
+                        id, name, categoryId, price, details, imageUrl,
+                      });
+                      setOpen(true);
+                    }}
+                  >
+                    <Edit color="success" />
+                  </IconButton>
                   {' '}
-                  <Delete color="error" />
+                  <IconButton>
+                    <Delete color="error" />
+                  </IconButton>
+
                   {' '}
                 </StyledTableCell>
               </StyledTableRow>
