@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import {
   Tabs, Tab, Typography, Box,
 } from '@mui/material';
-import { DashboardTable, OrdersTable, Header } from '../../Components';
+import {
+  DashboardTable, OrdersTable, Header, AddOrder,
+} from '../../Components';
 import './dashboard.css';
 
 function TabPanel(props) {
@@ -67,12 +69,17 @@ export default function VerticalTabs() {
         >
           <Tab label="Products" {...a11yProps(0)} />
           <Tab label="Orders" {...a11yProps(1)} />
+          <Tab label="Supply Order" {...a11yProps(2)} />
+
         </Tabs>
         <TabPanel value={value} index={0}>
           <DashboardTable />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <OrdersTable />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <AddOrder />
         </TabPanel>
       </Box>
     </>

@@ -31,7 +31,7 @@ router.get('/categories/:categoryID/products', getCategoryProduct);
 router.post('/product/upload', uploadImage);
 
 // Protected routes should be under this line
-router.use('/auth', isAuth);
+router.use(isAuth);
 router.get('/auth/user', authUser);
 router.use('/admin', adminRouter);
 router.post('/order', addOrder);
