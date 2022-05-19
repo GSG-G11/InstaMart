@@ -71,9 +71,11 @@ function Header() {
             <Link className="navigate-word" to="/products">
               Products
             </Link>
-            <Link className="navigate-word" to="/dashboard">
-              Dashboard
-            </Link>
+            {admin ? (
+              <Link className="navigate-word" to="/dashboard">
+                Dashboard
+              </Link>
+            ) : ''}
           </div>
         ) : null }
       </div>

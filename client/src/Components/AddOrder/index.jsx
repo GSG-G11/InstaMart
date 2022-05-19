@@ -48,6 +48,7 @@ function AddOrder() {
   const [productArray, setProductArray] = useState([]);
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const [price, setPrice] = useState(1);
   const [id, setId] = useState(0);
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState('');
@@ -55,8 +56,11 @@ function AddOrder() {
   const [openRemove, setOpenRemove] = useState(false);
   const [errorAlert, setErrorAlert] = useState(false);
 
-  const handleInputChange = ({ target }) => {
+  const handleQuantityChange = ({ target }) => {
     setQuantity(target?.value);
+  };
+  const handlePriceChange = ({ target }) => {
+    setPrice(target?.value);
   };
   const handleClose = () => {
     setOpen(false);
@@ -70,16 +74,18 @@ function AddOrder() {
     if (item) {
       setOpen(item);
     } else {
-      setProductArray([...productArray, { id, quantity, label: value.label }]);
+      setProductArray([...productArray, {
+        id, quantity, label: value.label, price,
+      }]);
     }
   };
-  const handleInc = () => {
+  const handleReplace = () => {
     setProductArray(
       productArray.map(
         (product) => (product.id === id ? ({
-          id,
-          quantity: +quantity + +product.quantity,
-          label: product.label,
+          ...product,
+          quantity: +quantity,
+          price: +price,
         }) : product),
       ),
 
@@ -92,7 +98,7 @@ function AddOrder() {
         const result = await axios.get('/api/v1/products');
         if (result && result.data) {
           setProducts((result.data.data.map((product) => ({
-            label: product?.name, id: product?.id,
+            label: product?.name, id: product?.id, price: +product.price,
           }))));
         }
       } catch (err) {
@@ -105,7 +111,7 @@ function AddOrder() {
     axios
       .post('/api/v1/order', {
         date: new Date(),
-        paidPrice: 0,
+        paidPrice: -productArray.reduce((acc, { quantity: q, price: p }) => acc + q * p, 0),
         productArray: productArray.map((item) => (
           { id: item.id, quantity: item.quantity })),
         isSupplied: true,
@@ -133,14 +139,13 @@ function AddOrder() {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {`${value?.label} is already included (${open.quantity || ''} items).
-            Do you want to increment its quantity by ${quantity} (Total = ${(+open.quantity + +quantity) || ''})`}
+            {`${value?.label} is already included. Do you want to replace values?`}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Disagree</Button>
           <Button
-            onClick={handleInc}
+            onClick={handleReplace}
             autoFocus
           >
             Agree
@@ -193,6 +198,15 @@ function AddOrder() {
                 onChange={(event, newValue) => {
                   setValue(newValue);
                   setId(newValue?.id);
+                  if (!newValue?.id) return;
+                  const item = productArray.find((product) => product.id === newValue.id);
+                  if (item) {
+                    setPrice(item.price);
+                    setQuantity(item.quantity);
+                  } else {
+                    setPrice(+newValue.price);
+                    setQuantity(1);
+                  }
                 }}
                 inputValue={inputValue}
                 onInputChange={(event, newInputValue) => {
@@ -206,7 +220,7 @@ function AddOrder() {
               {' '}
             </FormControl>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={2}>
             <FormControl size="small" fullWidth>
               <TextField
                 fullWidth
@@ -214,7 +228,7 @@ function AddOrder() {
                 label="Product Quantity"
                 name="quantity"
                 value={quantity}
-                onChange={handleInputChange}
+                onChange={handleQuantityChange}
                 type="number"
                 inputProps={{
                   inputMode: 'numeric', pattern: '[0-9]*', min: 1,
@@ -222,7 +236,24 @@ function AddOrder() {
               />
             </FormControl>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={2}>
+            <FormControl size="small" fullWidth>
+              <TextField
+                fullWidth
+                variant="outlined"
+                label="Product Price"
+                name="price"
+                value={price}
+                onChange={handlePriceChange}
+                type="number"
+                inputProps={{
+                  inputMode: 'numeric', pattern: '[0-9]*', min: 1,
+                }}
+              />
+            </FormControl>
+          </Grid>
+
+          <Grid item xs={2}>
             <FormControl margin="dense" fullWidth>
               <Button
                 variant="contained"
@@ -231,7 +262,7 @@ function AddOrder() {
                 }}
                 onClick={handleAddProductQuantity}
               >
-                Add Product Quantity
+                Add Product
               </Button>
             </FormControl>
           </Grid>
@@ -252,6 +283,9 @@ function AddOrder() {
                   Quantity
                 </StyledTableCell>
                 <StyledTableCell className="table-raw-title" align="center">
+                  Price
+                </StyledTableCell>
+                <StyledTableCell className="table-raw-title" align="center">
                   Remove
                 </StyledTableCell>
               </TableRow>
@@ -263,23 +297,10 @@ function AddOrder() {
                     {item.label}
                   </StyledTableCell>
                   <StyledTableCell align="center">
-                    <TextField
-                      className="product-count-input"
-                      size="small"
-                      id="outlined-number"
-                      type="number"
-                      value={item.quantity}
-                      InputProps={{
-                        inputProps: { min: '1', step: '1' },
-                      }}
-                      onChange={(e) => {
-                        setProductArray(productArray.map(
-                          (item2) => (item2.id === item.id
-                            ? ({ ...item2, quantity: e.target.value })
-                            : item2),
-                        ));
-                      }}
-                    />
+                    {item.quantity}
+                  </StyledTableCell>
+                  <StyledTableCell align="center">
+                    {item.price}
                   </StyledTableCell>
                   <StyledTableCell align="center" className="dashicon">
                     <div className="delete-item">
