@@ -24,6 +24,7 @@ const signUp = async (req: Request, res: Response, next: NextFunction) => {
       res.status(400).json({ success: false, message: 'password and checkPassword not equivelant' });
     }
   } catch (error: any) {
+    console.log(error);
     if (error.details) {
       res.status(422).json(error.details[0].message);
     } else {

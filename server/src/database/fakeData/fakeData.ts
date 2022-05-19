@@ -206,7 +206,7 @@ const users = [{
   id: 10,
   name: 'insta',
   email: 'yosra@gmail.com',
-  mobile: 4525245,
+  mobile: '4525245',
   address: 'sgsggdgsg',
   password: '$2b$10$5Or.3zVU/tuQnKIVZXjjyObIgJvuhk/xHS41EaMBWXgK1LPQjpk0O',
   isAdmin: true,
@@ -247,7 +247,7 @@ const order = [{
   status: 'pending',
   supplier: 'admin',
   isSupplied: false,
-  mobile: 599832,
+  mobile: '+970567444517',
   address: 'string',
 },
 {
@@ -257,7 +257,7 @@ const order = [{
   status: 'pending',
   supplier: 'admin',
   isSupplied: false,
-  mobile: 599832,
+  mobile: '+970567444517',
   address: 'string',
 },
 {
@@ -267,7 +267,7 @@ const order = [{
   status: 'approved',
   supplier: 'admin',
   isSupplied: false,
-  mobile: 599832,
+  mobile: '+970567444517',
   address: 'string',
 }];
 

@@ -7,7 +7,7 @@ interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttri
     id?:number,
     name:string,
     email:string,
-    mobile?:number,
+    mobile?:string,
     address?:string,
     password:string,
     isAdmin?: boolean,
@@ -29,7 +29,7 @@ const User = sequelize.define<UserModel>('users', {
     unique: true,
   },
   mobile: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
   },
   address: {
     type: DataTypes.STRING,

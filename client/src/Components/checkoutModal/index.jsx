@@ -80,7 +80,7 @@ function CheckoutModal({
               variant="outlined"
               label="Mobile"
               name="mobile"
-              type="tel"
+              type="text"
               value={values.mobile}
               onChange={handleInputChange}
               required

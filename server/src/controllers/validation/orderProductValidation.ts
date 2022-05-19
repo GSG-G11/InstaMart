@@ -13,7 +13,7 @@ const orderValidation = (req: Request) => {
     isSupplied: Joi.boolean().required(),
     date: Joi.date().raw().required(),
     paidPrice: Joi.number().required(),
-    mobile: Joi.string().required(),
+    mobile: Joi.string().pattern(/^[+]*[{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/).required(),
     address: Joi.string().required(),
   });
 
