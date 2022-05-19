@@ -122,9 +122,7 @@ function CartDetails() {
                     id="outlined-number"
                     type="number"
                     defaultValue={item.count}
-                    InputProps={{
-                      inputProps: { min: '1', max: '10', step: '1' },
-                    }}
+                    InputProps={{ inputProps: { min: '0', max: `${item.availableQuantity}`, step: '1' } }}
                     onChange={(e) => addToCartLS(e.target.value - item.count, item)}
                   />
                 </StyledTableCell>
