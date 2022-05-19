@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { CustomizedError } from '../../utilities';
 import { Order } from '../../database';
 import { editOrderValidation } from '../validation';
+import twilio from '../../utilities/twilio';
 
 const editOrder = async (req:Request, res:Response, next:NextFunction) => {
   const { status } = req.body;
@@ -12,7 +13,20 @@ const editOrder = async (req:Request, res:Response, next:NextFunction) => {
     if (result) {
       result.status = status;
       await result.save();
-      res.status(200).json({ message: 'Order Updated Successfully !', data: result });
+      const SMSMessageText = (statusOrder: string) => {
+        let message = '';
+        if (statusOrder === 'approved') {
+          message = 'Hi,Your order was successfully delivered ';
+        } else {
+          message = 'Hi,Your order was rejected , you can try again later.';
+        }
+        return message;
+      };
+      const SMSmessage = await twilio(
+        result.mobile,
+        SMSMessageText(result.status),
+      );
+      res.status(200).json({ message: 'Order Updated Successfully !', data: result, SMSmessage });
     } else {
       res.status(400).json({ success: false, message: 'Bad Request!' });
     }

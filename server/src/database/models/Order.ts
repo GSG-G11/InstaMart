@@ -12,7 +12,7 @@ interface OrderModel extends Model<InferAttributes<OrderModel>,
   status:string,
   supplier?:string,
   isSupplied:boolean,
-  mobile:number,
+  mobile:string,
   address:string,
  }
 
@@ -47,7 +47,7 @@ const Order = sequelize.define<OrderModel>('order', {
     allowNull: false,
   },
   mobile: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   address: {
