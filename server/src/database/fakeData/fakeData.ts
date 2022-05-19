@@ -247,7 +247,7 @@ const order = [{
   status: 'pending',
   supplier: 'admin',
   isSupplied: false,
-  mobile: 599832,
+  mobile: '+970567444517',
   address: 'string',
 },
 {
@@ -257,7 +257,7 @@ const order = [{
   status: 'pending',
   supplier: 'admin',
   isSupplied: false,
-  mobile: 599832,
+  mobile: '+970567444517',
   address: 'string',
 },
 {
@@ -267,7 +267,7 @@ const order = [{
   status: 'approved',
   supplier: 'admin',
   isSupplied: false,
-  mobile: 599832,
+  mobile: '+970567444517',
   address: 'string',
 }];
 
