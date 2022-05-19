@@ -72,7 +72,7 @@ function ProductDetails({ setOpen }) {
                     size="small"
                     id="outlined-number"
                     type="number"
-                    InputProps={{ inputProps: { min: '0', max: '10', step: '1' } }}
+                    InputProps={{ inputProps: { min: '0', max: `${product.availableQuantity}`, step: '1' } }}
                     value={productCount}
                     sx={{ input: { color: '#3bb77e', outline: '#3bb77e' } }}
                     onChange={(e) => setProductCount(e.target.value)}
