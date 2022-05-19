@@ -257,6 +257,9 @@ function ProductFormModal({
                 disabled={isLoading}
                 type="submit"
                 variant="contained"
+                style={{
+                  backgroundColor: '#3AB77D',
+                }}
               >
                 Submit
 

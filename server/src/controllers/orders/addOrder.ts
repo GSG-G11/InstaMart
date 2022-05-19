@@ -21,12 +21,13 @@ const addOrder = async (req:ModRequest, res:Response, next:NextFunction) => {
   } = req.body;
 
   const isAdmin = req.user?.isAdmin || false;
+  const userId = req.user?.id;
   if (isSupplied && !isAdmin) return next(CustomizedError('Bad Request', 400));
   const t = await sequelize.transaction();
   try {
     await orderValidation(req);
     const order = await Order.create({
-      date, totalPrice: Infinity, paidPrice, status: 'pending', isSupplied, mobile, address,
+      date, totalPrice: Infinity, paidPrice, status: 'pending', isSupplied, mobile, address, userId,
     }, { transaction: t });
     await ProductOrder.bulkCreate(productArray.map(({ id, quantity }:
       {id:number, quantity:number}) => ({

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Header.css';
 import {
   ShoppingCart,
@@ -29,6 +29,8 @@ function Header() {
   };
   const { logout, user } = useAuth();
   const { socket } = useSocket();
+  const { pathname } = useLocation();
+  const isDashboard = pathname === '/dashboard';
   const admin = user?.isAdmin;
   useEffect(() => {
     if (socket && admin) {
@@ -49,17 +51,19 @@ function Header() {
   };
   return (
 
-    <div className={`header-section ${admin ? 'admin-header' : ''}`}>
+    <div className={`header-section ${isDashboard ? 'admin-header' : ''}`}>
       <div className="left-section">
-        <div className="logo-section">
-          <img
-            src="https://i.ibb.co/ZYQs4LQ/grocery-cart.png"
-            alt="logo-img"
-            className="logo-img"
-          />
-          <p className="logo-name"> Instamart</p>
-        </div>
-        {!admin ? (
+        <Link className="navigate-word" style={{ textDecoration: 'none' }} to="/">
+          <div className="logo-section">
+            <img
+              src="https://i.ibb.co/ZYQs4LQ/grocery-cart.png"
+              alt="logo-img"
+              className="logo-img"
+            />
+            <p className="logo-name"> Instamart</p>
+          </div>
+        </Link>
+        {!isDashboard ? (
           <div className="navigate-div">
             <Link className="navigate-word" to="/">
               Home
@@ -67,12 +71,17 @@ function Header() {
             <Link className="navigate-word" to="/products">
               Products
             </Link>
+            {admin ? (
+              <Link className="navigate-word" to="/dashboard">
+                Dashboard
+              </Link>
+            ) : ''}
           </div>
         ) : null }
       </div>
 
       <div className="icons-div">
-        {!admin ? (
+        {!isDashboard ? (
           <Link to="/cart">
             {' '}
             <div className="shopping-cart-div">

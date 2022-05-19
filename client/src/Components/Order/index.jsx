@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import {
   Table, TableBody, TableCell, tableCellClasses, TableContainer,
   TableHead, TableRow, Paper, TextField, Button,
-  styled,
+  styled, IconButton,
 } from '@mui/material';
 import axios from 'axios';
 import {
@@ -123,15 +123,22 @@ export default function OrdersTable() {
                 <StyledTableCell align="center">{order.status}</StyledTableCell>
                 <StyledTableCell align="center">{new Date(order.date).toLocaleString()}</StyledTableCell>
                 <StyledTableCell align="center" className="dashicon">
-                  <Visibility
-                    color="primary"
+                  <IconButton
                     onClick={() => {
                       setOpenModalProduct(true);
                       setOrderId(order.id);
                     }}
-                  />
+                  >
+                    <Visibility
+                      color="primary"
+                    />
+                  </IconButton>
                   {' '}
-                  <Edit color="success" onClick={(e) => handleClick(e, order.id)} type="submit" />
+                  <IconButton
+                    onClick={(e) => handleClick(e, order.id)}
+                  >
+                    <Edit color="success" />
+                  </IconButton>
                   <Menu
                     anchorEl={anchorEl}
                     // id="account-menu"
@@ -145,7 +152,11 @@ export default function OrdersTable() {
                     <MenuItem onClick={() => updateStatus('Approved')}>Approved</MenuItem>
                   </Menu>
                   {' '}
-                  <Delete color="error" onClick={() => handleDelete(order.id)} />
+                  <IconButton
+                    onClick={() => handleDelete(order.id)}
+                  >
+                    <Delete color="error" />
+                  </IconButton>
                   {' '}
                 </StyledTableCell>
               </StyledTableRow>
