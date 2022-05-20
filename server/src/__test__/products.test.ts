@@ -169,7 +169,6 @@ describe('/api/v1/categories  Test', () => {
         {
           id: 7,
           name: 'Cheese and dairy',
-          imageUrl: 'https://cdn-icons.flaticon.com/png/512/1892/premium/1892619.png?token=exp=1652990532~hmac=54c77e64a1b4b8193ca5871a1559711b',
         },
         {
           id: 8,
