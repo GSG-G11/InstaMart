@@ -101,6 +101,7 @@ export default function OrdersTable() {
           <TableHead>
             <TableRow>
               <StyledTableCell align="center">ID</StyledTableCell>
+              <StyledTableCell align="center">User</StyledTableCell>
               <StyledTableCell align="center">Mobile</StyledTableCell>
               <StyledTableCell align="center">Total Price</StyledTableCell>
               <StyledTableCell align="center">paidPrice</StyledTableCell>
@@ -115,6 +116,7 @@ export default function OrdersTable() {
             {orders.map((order) => (
               <StyledTableRow key={order.id}>
                 <StyledTableCell align="center">{order.id}</StyledTableCell>
+                <StyledTableCell align="center">{order.user?.name}</StyledTableCell>
                 <StyledTableCell align="center">{order.mobile}</StyledTableCell>
                 <StyledTableCell align="center">{order.totalPrice}</StyledTableCell>
                 <StyledTableCell align="center">{order.paidPrice}</StyledTableCell>
