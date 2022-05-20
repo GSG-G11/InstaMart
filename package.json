@@ -8,7 +8,7 @@
     "dev": "cross-env NODE_ENV=dev ts-node-dev server/src/index.ts",
     "build": "tsc -p .",
     "react": "cd client && npm start",
-    "heroku-postbuild": "cd client && npm i && npm run build",
+    "heroku-postbuild": "npm run build && cd client && npm i && npm run build",
     "sync": "cross-env NODE_ENV=dev ts-node server/src/database/sync.ts",
     "lint": "eslint --ext .ts server/src/",
     "lint:client": "eslint --ext .jsx client/src/",

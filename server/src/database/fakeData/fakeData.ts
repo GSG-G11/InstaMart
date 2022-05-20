@@ -37,7 +37,7 @@ const products = [
   {
     name: 'Lays chips',
     imageUrl: 'https://m.media-amazon.com/images/I/71J93R3+TkL._SX522_.jpg',
-    price: 2.5,
+    price: 2,
     details: '',
     categoryId: 1,
   },
@@ -100,7 +100,7 @@ const products = [
   {
     name: 'Galaxy',
     imageUrl: 'https://cdnprod.mafretailproxy.com/sys-master-root/h8c/hed/13698686287902/527328_main.jpg_480Wx480H',
-    price: 3.5,
+    price: 3,
     details: 'A famous chocolate made of wafers covered with chocolate',
     categoryId: 1,
   },
@@ -114,14 +114,14 @@ const products = [
   {
     name: 'Cola',
     imageUrl: 'https://diplomats.layam.com/media/catalog/product/cache/b7dfd230b7d734c0966cd84b3ae2fb1b/3/7/3720208_1.jpg',
-    price: 2.5,
+    price: 2,
     details: 'Perfect for parties, meals, and celebrations big and small Great for portion control - each can has only 100 calories The official soft drink of the National Football League, Major League Baseball, and cola lovers everywhere',
     categoryId: 2,
   },
   {
     name: 'Iced Coffee',
     imageUrl: 'https://halgoom.com/wp-content/uploads/2020/06/Luna-Iced-Coffe-Moca-190ml.jpg',
-    price: 3.5,
+    price: 3,
     details: 'Ice Coffee Luna is one of the best and most delicious cold coffee, available in several Arab and European countries. Weight: 190 grams',
     categoryId: 2,
   },
@@ -170,7 +170,7 @@ const products = [
   {
     name: 'paprika',
     imageUrl: 'https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-2.jpg',
-    price: 7.5,
+    price: 7,
     details: 'Paprika contains capsaicin. also, it has antioxidant properties, can help reduce the risk of cancer and heart disease, improve immunity, and even alleviate gas.',
     categoryId: 3,
   },
@@ -184,14 +184,14 @@ const products = [
   {
     name: 'Cucumber',
     imageUrl: 'https://alishmart.se/wp-content/uploads/2020/12/Cucumber-lebanese-39.90.jpg',
-    price: 2.5,
+    price: 2,
     details: 'Cucumbers have a mild, refreshing taste and a high water content. They can help relieve dehydration and are pleasant to eat in hot weather.',
     categoryId: 3,
   },
   {
     name: 'Tomato',
     imageUrl: 'https://kiranacompare.com/wp-content/uploads/2020/11/71DYmqoq-VL._SL1024_.jpg',
-    price: 1.5,
+    price: 1,
     details: 'Tomatoes are the major dietary source of the antioxidant lycopene, which has been linked to many health benefits, including reduced risk of heart disease and cancer.',
     categoryId: 3,
   },
@@ -205,7 +205,7 @@ const products = [
   {
     name: 'onion',
     imageUrl: 'https://produits.bienmanger.com/38436-0w600h600_Organic_Grano_Oro_Onion.jpg',
-    price: 1.5,
+    price: 1,
     details: 'Onions are a nutrient-dense food, meaning that they are high in vitamins, minerals, and antioxidants while being low in calories.',
     categoryId: 3,
   },
@@ -219,7 +219,7 @@ const products = [
   {
     name: 'Avocado',
     imageUrl: 'https://wp.alithemes.com/html/nest/demo/assets/imgs/shop/thumbnail-11.jpg',
-    price: 4.5,
+    price: 4,
     details: '',
     categoryId: 3,
   },
@@ -394,7 +394,7 @@ const products = [
   {
     name: 'teeth cleaner',
     imageUrl: 'https://m.media-amazon.com/images/I/91j4JnGmjDL._SX425_.jpg',
-    price: 31.5,
+    price: 31,
     details: 'Colgate Whitening Toothpaste for Sensitive Teeth, Enamel Repair and Cavity Protection, Fresh Mint Gel, 6 Oz, Pack of 3',
     categoryId: 5,
   },
@@ -443,7 +443,7 @@ const products = [
     name: 'Almarai Strawberry Flavoured',
     imageUrl:
       'https://cdnprod.mafretailproxy.com/sys-master-root/h73/hc6/16001329299486/993305_main.jpg_480Wx480H',
-    price: 1.5,
+    price: 1,
     details:
       'Known to be a perfect cold dessert, Almarai Strawberry Yoghurt can be a tremendous post dinner frozen delight. It is semi solid and easy to digest. The chilled food item can help soothe the piping hot main course you had earlier',
     categoryId: 7,
