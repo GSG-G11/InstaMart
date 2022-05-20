@@ -135,7 +135,7 @@ describe('/api/v1/categories  Test', () => {
       data: [
         {
           id: 1,
-          name: 'Food',
+          name: 'Snacks',
           imageUrl: 'https://cdn-icons-png.flaticon.com/512/541/541836.png',
         },
         {
@@ -152,6 +152,26 @@ describe('/api/v1/categories  Test', () => {
           id: 4,
           name: 'Fruits',
           imageUrl: 'https://cdn-icons-png.flaticon.com/512/3081/3081887.png',
+        },
+        {
+          id: 5,
+          name: 'Personal Care',
+          imageUrl: 'https://cdn-icons-png.flaticon.com/512/1986/1986195.png',
+        },
+        {
+          id: 6,
+          name: 'household supplies',
+          imageUrl: 'https://cdn-icons-png.flaticon.com/512/2868/2868986.png',
+        },
+        {
+          id: 7,
+          name: 'Cheese and dairy',
+          imageUrl: 'https://cdn-icons.flaticon.com/png/512/1892/premium/1892619.png?token=exp=1652990532~hmac=54c77e64a1b4b8193ca5871a1559711b',
+        },
+        {
+          id: 8,
+          name: 'Baking',
+          imageUrl: 'https://cdn-icons-png.flaticon.com/512/2917/2917630.png',
         },
       ],
     };

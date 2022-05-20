@@ -27,6 +27,10 @@ function Categories() {
     1: '#FFF2FF',
     2: '#FFF2EB',
     3: '#F2FCE4',
+    4: '#FEFCEB',
+    5: '#FFF2FF',
+    6: '#FFF2EB',
+    7: '#F2FCE4',
   };
 
   return (

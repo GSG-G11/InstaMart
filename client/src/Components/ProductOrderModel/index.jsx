@@ -19,10 +19,10 @@ function ProductOrderModel({
         <Table sx={{ minWidth: 500 }} size="small" aria-label="a dense table" className="view-product-table">
           <TableHead>
             <TableRow>
-              <TableCell className="table-product-head" align="center">Name</TableCell>
+              <TableCell className="table-product-head" align="center">Product</TableCell>
               <TableCell className="table-product-head" align="center"> Quantity</TableCell>
               <TableCell className="table-product-head" align="center">Price</TableCell>
-              <TableCell className="table-product-head" align="center">Quantity * Price</TableCell>
+              <TableCell className="table-product-head" align="center">Total Price</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
