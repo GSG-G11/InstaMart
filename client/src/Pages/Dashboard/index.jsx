@@ -5,7 +5,7 @@ import {
   Tabs, Tab, Typography, Box,
 } from '@mui/material';
 import {
-  DashboardTable, OrdersTable, Header, AddOrder,
+  DashboardTable, OrdersTable, Header, AddOrder, BalancesTable,
 } from '../../Components';
 import './dashboard.css';
 
@@ -50,7 +50,6 @@ export default function VerticalTabs() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   return (
     <>
       <Header />
@@ -70,7 +69,7 @@ export default function VerticalTabs() {
           <Tab label="Products" {...a11yProps(0)} />
           <Tab label="Orders" {...a11yProps(1)} />
           <Tab label="Supply Order" {...a11yProps(2)} />
-
+          <Tab label="Users Balances" {...a11yProps(3)} />
         </Tabs>
         <TabPanel value={value} index={0}>
           <DashboardTable />
@@ -80,6 +79,9 @@ export default function VerticalTabs() {
         </TabPanel>
         <TabPanel value={value} index={2}>
           <AddOrder />
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <BalancesTable />
         </TabPanel>
       </Box>
     </>

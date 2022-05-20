@@ -24,7 +24,7 @@ const getProducts = async (req:Request, res:Response, next:NextFunction) => {
        } : undefined)
        || (categoryId ? { categoryId: +categoryId } : undefined)
        || (q ? { name: { [Op.iLike]: `%${q}%` } } : undefined),
-      order: sort ? [['price', `${sort}`]] : [['createdAt', 'DESC']],
+      order: sort ? [['price', `${sort}`]] : [['id', 'ASC']],
     }),
     Product.count({
       where:

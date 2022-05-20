@@ -14,6 +14,7 @@ import DashboardTable from './Dashboard';
 import OrdersTable from './Order';
 import ProtectedRoute from './ProtectedRoute';
 import AddOrder from './AddOrder';
+import BalancesTable from './BalancesTable';
 
 export {
   CartDetails,
@@ -32,4 +33,5 @@ export {
   DashboardTable,
   OrdersTable,
   AddOrder,
+  BalancesTable,
 };
