@@ -10,6 +10,9 @@ Order.belongsToMany(Product, { through: ProductOrder });
 Product.belongsToMany(Order, { through: ProductOrder });
 Product.hasMany(ProductOrder);
 ProductOrder.belongsTo(Product);
+Order.hasMany(ProductOrder);
+ProductOrder.belongsTo(Order);
+
 Category.hasMany(Product);
 Product.belongsTo(Category);
 

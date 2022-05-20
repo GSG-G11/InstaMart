@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import {
-  addProduct, deleteOrder, deleteProduct, editProduct, editOrder, getOrders, getUsersBalances,
+  addProduct, deleteOrder, deleteProduct, editProduct, editOrder,
+  getOrders, getUsersBalances, getTop5ProductsSales,
 } from '../../controllers';
 import { isAuth, isAdmin } from '../../controllers/middleware';
 
@@ -19,5 +20,6 @@ adminRouter.route('/order/:id')
 adminRouter.route('/order')
   .get(getOrders);
 adminRouter.get('/balances', getUsersBalances);
+adminRouter.get('/top5', getTop5ProductsSales);
 
 export default adminRouter;
