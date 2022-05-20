@@ -5,6 +5,7 @@ import getCategories from './getCategories';
 import getCategoryProduct from './getCategoryProduct';
 import getProductByID from './getProductByID';
 import getProducts from './getProducts';
+import getTop5ProductsSales from './getTop5ProductsSales';
 import uploadImage from './uploadImageTest';
 
 export {
@@ -16,4 +17,5 @@ export {
   getProductByID,
   getCategoryProduct,
   uploadImage,
+  getTop5ProductsSales,
 };

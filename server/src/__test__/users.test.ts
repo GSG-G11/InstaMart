@@ -5,7 +5,12 @@ import sequelize from '../database/config/connection';
 import app from '../app';
 import sync from '../database/sync';
 
-beforeAll(() => sync());
+beforeAll(() => {
+  sync();
+});
+beforeEach(() => {
+  jest.setTimeout(10000); // ms
+});
 
 describe('POST /api/v1/signup', () => {
   test('success sign up', (done) => {
@@ -70,7 +75,6 @@ describe('sign up with email is already exists', () => {
       });
   });
 });
-
 beforeAll(() => sync());
 describe('Post /api/v1/logout', () => {
   test("should return { status: 200, msg: 'logged out successfully !' }", (done) => {

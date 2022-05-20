@@ -15,6 +15,7 @@ import OrdersTable from './Order';
 import ProtectedRoute from './ProtectedRoute';
 import AddOrder from './AddOrder';
 import BalancesTable from './BalancesTable';
+import Statistics from './Statistics';
 
 export {
   CartDetails,
@@ -34,4 +35,5 @@ export {
   OrdersTable,
   AddOrder,
   BalancesTable,
+  Statistics,
 };

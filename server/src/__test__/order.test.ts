@@ -11,6 +11,9 @@ beforeAll(async () => {
   await sync();
   await buildFakeData();
 });
+beforeEach(() => {
+  jest.setTimeout(10000); // ms
+});
 
 describe('Patch /api/v1/admin/order/2', () => {
   test('success edit order ', (done) => {

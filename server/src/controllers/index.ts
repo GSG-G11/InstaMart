@@ -12,6 +12,7 @@ import {
   getCategoryProduct,
   getProductByID,
   getProducts,
+  getTop5ProductsSales,
   uploadImage,
 } from './products';
 
@@ -40,4 +41,5 @@ export {
   getOrders,
   editOrder,
   getUsersBalances,
+  getTop5ProductsSales,
 };
