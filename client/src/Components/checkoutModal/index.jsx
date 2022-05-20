@@ -96,7 +96,7 @@ function CheckoutModal({
                 inputMode: 'numeric',
                 pattern: '[0-9]*',
                 min: 0,
-                step: 0.1,
+                step: 1,
               }}
               required
             />

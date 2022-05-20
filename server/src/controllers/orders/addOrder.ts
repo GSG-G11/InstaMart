@@ -33,7 +33,7 @@ const addOrder = async (req:ModRequest, res:Response, next:NextFunction) => {
       {id:number, quantity:number}) => ({
       productId: id,
       orderId: order.id,
-      quantity: isSupplied ? -quantity : quantity,
+      quantity: isSupplied ? quantity : -quantity,
     })), { transaction: t });
 
     const totalPrice = await ProductOrder.findAll({
@@ -53,7 +53,7 @@ const addOrder = async (req:ModRequest, res:Response, next:NextFunction) => {
       group: ['productOrder.orderId'],
       transaction: t,
     });
-    order.totalPrice = Number(totalPrice[0].orderId);
+    order.totalPrice = -Number(totalPrice[0].orderId);
     await order.save({ transaction: t });
     await t.commit();
 
