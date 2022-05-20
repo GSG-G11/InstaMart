@@ -18,7 +18,7 @@
 .welcome-message {
   position: absolute;
   top: 163px;
-  right: 157px;
+  left: 157px;
   font-weight: 500;
   font-size: 43px;
   color: #050505;

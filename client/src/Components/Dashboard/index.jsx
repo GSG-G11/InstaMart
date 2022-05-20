@@ -103,7 +103,7 @@ export default function CustomizedTables() {
                 <StyledTableCell align="center">{name}</StyledTableCell>
                 <StyledTableCell align="center">{category.name}</StyledTableCell>
                 <StyledTableCell align="center">{price}</StyledTableCell>
-                <StyledTableCell align="center">{details}</StyledTableCell>
+                <StyledTableCell align="center" width={450}>{details}</StyledTableCell>
                 <StyledTableCell align="center" className="dashicon">
                   <IconButton
                     onClick={() => {

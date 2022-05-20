@@ -28,6 +28,7 @@ function CategoriesAside() {
     1: '#FFF2FF',
     2: '#FFF2EB',
     3: '#F2FCE4',
+    4: '#FEFCEB',
   };
 
   return (
@@ -35,7 +36,7 @@ function CategoriesAside() {
       <p className="categories-aside-section-title">Category</p>
       <div className="categories-choices-section">
         {categoriesArr
-          ? categoriesArr.map((item, index) => (
+          ? categoriesArr.slice(0, 5).map((item, index) => (
             <button
               type="button"
               className="categorey-section-choice"

@@ -6,7 +6,7 @@ function Hero() {
     <div className="hero-section">
       <img
         className="hero-image"
-        src="https://wallpaperaccess.com/full/271714.jpg"
+        src="https://wp.alithemes.com/html/nest/demo/assets/imgs/slider/slider-1.png"
         alt="heroImage"
       />
       <p className="welcome-message">
