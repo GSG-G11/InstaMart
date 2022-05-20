@@ -8,9 +8,11 @@ import sync from '../database/sync';
 import buildFakeData from '../database/fakeData/buildFakeData';
 
 beforeAll(async () => {
-  jest.setTimeout(10000);
   await sync();
   await buildFakeData();
+});
+beforeEach(() => {
+  jest.setTimeout(2000); // ms
 });
 
 describe('POST /api/v1/admin/product', () => {

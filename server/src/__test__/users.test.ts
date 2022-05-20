@@ -6,8 +6,10 @@ import app from '../app';
 import sync from '../database/sync';
 
 beforeAll(() => {
-  jest.setTimeout(10000);
   sync();
+});
+beforeEach(() => {
+  jest.setTimeout(2000);
 });
 
 describe('POST /api/v1/signup', () => {
