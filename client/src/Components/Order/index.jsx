@@ -3,7 +3,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import {
   Table, TableBody, TableCell, tableCellClasses, TableContainer,
-  TableHead, TableRow, Paper, TextField, Button,
+  TableHead, TableRow, Paper,
   styled, IconButton,
 } from '@mui/material';
 import axios from 'axios';
@@ -81,26 +81,14 @@ export default function OrdersTable() {
     <div className="table-container">
       <div className="TitleContainer">
         <h2>Orders</h2>
-      </div>
-      <div className="inputSearchAndButton">
-        <TextField size="Normal" label="Search" className="inputSearch" />
-        <Button
-          variant="contained"
-          style={{
-            backgroundColor: '#3AB77D',
-            width: '169px',
-            fontWeight: 'bold',
-          }}
-        >
-          Add Order
-
-        </Button>
+        <br />
       </div>
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <StyledTableCell align="center">ID</StyledTableCell>
+              <StyledTableCell align="center">User</StyledTableCell>
               <StyledTableCell align="center">Mobile</StyledTableCell>
               <StyledTableCell align="center">Total Price</StyledTableCell>
               <StyledTableCell align="center">paidPrice</StyledTableCell>
@@ -115,10 +103,11 @@ export default function OrdersTable() {
             {orders.map((order) => (
               <StyledTableRow key={order.id}>
                 <StyledTableCell align="center">{order.id}</StyledTableCell>
+                <StyledTableCell align="center">{order.user?.name}</StyledTableCell>
                 <StyledTableCell align="center">{order.mobile}</StyledTableCell>
                 <StyledTableCell align="center">{order.totalPrice}</StyledTableCell>
                 <StyledTableCell align="center">{order.paidPrice}</StyledTableCell>
-                <StyledTableCell align="center">{order.isSupplied ? 'Out' : 'In'}</StyledTableCell>
+                <StyledTableCell align="center">{order.isSupplied ? 'In' : 'Out'}</StyledTableCell>
                 <StyledTableCell align="center">{order.address }</StyledTableCell>
                 <StyledTableCell align="center">{order.status}</StyledTableCell>
                 <StyledTableCell align="center">{new Date(order.date).toLocaleString()}</StyledTableCell>

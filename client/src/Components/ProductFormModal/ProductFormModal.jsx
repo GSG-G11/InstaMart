@@ -181,7 +181,7 @@ function ProductFormModal({
                     onChange={handleInputChange}
                     type="number"
                     inputProps={{
-                      inputMode: 'numeric', pattern: '[0-9]*', min: 0, step: 0.1,
+                      inputMode: 'numeric', pattern: '[0-9]*', min: 0, step: 1,
                     }}
                     error={errorMsgs.price}
                     helperText={errorMsgs.price}

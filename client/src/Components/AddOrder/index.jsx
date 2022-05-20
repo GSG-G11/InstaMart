@@ -189,6 +189,10 @@ function AddOrder() {
           mt: '35px',
         }}
       >
+        <div className="TitleContainer">
+          <h2>Supply Order</h2>
+          <br />
+        </div>
         <Grid container spacing={5}>
           <Grid item xs={6}>
             <FormControl fullWidth>

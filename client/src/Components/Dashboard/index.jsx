@@ -34,7 +34,10 @@ export default function CustomizedTables() {
   const [item, setItem] = useState({
     name: '', imageUrl: '', price: 0, details: '', categoryId: 1,
   });
-
+  const [searchTerm, setSearchTerm] = useState('');
+  const handleInputChange = ({ target: { value } }) => {
+    setSearchTerm(value);
+  };
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -62,7 +65,7 @@ export default function CustomizedTables() {
         <h2>Products</h2>
       </div>
       <div className="inputSearchAndButton">
-        <TextField size="large" label="Search" className="inputSearch" />
+        <TextField size="large" label="Search" onChange={handleInputChange} className="inputSearch" />
         <Button
           variant="contained"
           style={{
@@ -95,36 +98,37 @@ export default function CustomizedTables() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {products.map(({
-              id, name, categoryId, price, details, imageUrl, category,
-            }) => (
-              <StyledTableRow key={id}>
-                <StyledTableCell align="center">{id}</StyledTableCell>
-                <StyledTableCell align="center">{name}</StyledTableCell>
-                <StyledTableCell align="center">{category.name}</StyledTableCell>
-                <StyledTableCell align="center">{price}</StyledTableCell>
-                <StyledTableCell align="center" width={450}>{details}</StyledTableCell>
-                <StyledTableCell align="center" className="dashicon">
-                  <IconButton
-                    onClick={() => {
-                      setId(id);
-                      setItem({
-                        id, name, categoryId, price, details, imageUrl,
-                      });
-                      setOpen(true);
-                    }}
-                  >
-                    <Edit color="success" />
-                  </IconButton>
-                  {' '}
-                  <IconButton>
-                    <Delete color="error" />
-                  </IconButton>
+            {products.filter(({ name }) => name.toLowerCase().includes(searchTerm.toLowerCase()))
+              .map(({
+                id, name, categoryId, price, details, imageUrl, category,
+              }) => (
+                <StyledTableRow key={id}>
+                  <StyledTableCell align="center">{id}</StyledTableCell>
+                  <StyledTableCell align="center">{name}</StyledTableCell>
+                  <StyledTableCell align="center">{category.name}</StyledTableCell>
+                  <StyledTableCell align="center">{price}</StyledTableCell>
+                  <StyledTableCell align="center" width={450}>{details}</StyledTableCell>
+                  <StyledTableCell align="center" className="dashicon">
+                    <IconButton
+                      onClick={() => {
+                        setId(id);
+                        setItem({
+                          id, name, categoryId, price, details, imageUrl,
+                        });
+                        setOpen(true);
+                      }}
+                    >
+                      <Edit color="success" />
+                    </IconButton>
+                    {' '}
+                    <IconButton>
+                      <Delete color="error" />
+                    </IconButton>
 
-                  {' '}
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
+                    {' '}
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>
