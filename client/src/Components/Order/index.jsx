@@ -3,7 +3,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import {
   Table, TableBody, TableCell, tableCellClasses, TableContainer,
-  TableHead, TableRow, Paper, TextField, Button,
+  TableHead, TableRow, Paper,
   styled, IconButton,
 } from '@mui/material';
 import axios from 'axios';
@@ -81,20 +81,7 @@ export default function OrdersTable() {
     <div className="table-container">
       <div className="TitleContainer">
         <h2>Orders</h2>
-      </div>
-      <div className="inputSearchAndButton">
-        <TextField size="Normal" label="Search" className="inputSearch" />
-        <Button
-          variant="contained"
-          style={{
-            backgroundColor: '#3AB77D',
-            width: '169px',
-            fontWeight: 'bold',
-          }}
-        >
-          Add Order
-
-        </Button>
+        <br />
       </div>
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
