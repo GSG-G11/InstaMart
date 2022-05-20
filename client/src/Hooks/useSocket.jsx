@@ -10,7 +10,9 @@ export function SocketProvider({ children }) {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io(`https://${window.location.hostname}`);
+    const newSocket = io(`https://${window.location.hostname}`, {
+
+    });
     setSocket(newSocket);
     return () => newSocket.close();
   }, []);
