@@ -9,7 +9,7 @@ beforeAll(() => {
   sync();
 });
 beforeEach(() => {
-  jest.setTimeout(2000);
+  jest.setTimeout(10000); // ms
 });
 
 describe('POST /api/v1/signup', () => {

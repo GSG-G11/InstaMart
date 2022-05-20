@@ -12,7 +12,7 @@ beforeAll(async () => {
   await buildFakeData();
 });
 beforeEach(() => {
-  jest.setTimeout(2000); // ms
+  jest.setTimeout(10000); // ms
 });
 
 describe('POST /api/v1/admin/product', () => {
