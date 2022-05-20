@@ -75,7 +75,7 @@ describe('sign up with email is already exists', () => {
       });
   });
 });
-
+beforeAll(() => sync());
 describe('Post /api/v1/logout', () => {
   test("should return { status: 200, msg: 'logged out successfully !' }", (done) => {
     const resp = { status: 200, msg: 'logged out successfully !' };
