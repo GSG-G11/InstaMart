@@ -16,7 +16,7 @@ const getTop5ProductsSales = async (req:Request, res:Response, next:NextFunction
         where: { isSupplied: false },
       }],
       attributes: ['productId',
-        [col('product.name'), 'Product Name'],
+        [col('product.name'), 'productName'],
         [fn('sum', col('quantity')), 'quantity'],
       ],
       limit: 5,
