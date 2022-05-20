@@ -120,7 +120,7 @@ export default function OrdersTable() {
                 <StyledTableCell align="center">{order.mobile}</StyledTableCell>
                 <StyledTableCell align="center">{order.totalPrice}</StyledTableCell>
                 <StyledTableCell align="center">{order.paidPrice}</StyledTableCell>
-                <StyledTableCell align="center">{order.isSupplied ? 'Out' : 'In'}</StyledTableCell>
+                <StyledTableCell align="center">{order.isSupplied ? 'In' : 'Out'}</StyledTableCell>
                 <StyledTableCell align="center">{order.address }</StyledTableCell>
                 <StyledTableCell align="center">{order.status}</StyledTableCell>
                 <StyledTableCell align="center">{new Date(order.date).toLocaleString()}</StyledTableCell>
