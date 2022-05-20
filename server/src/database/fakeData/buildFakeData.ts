@@ -14,10 +14,11 @@ const buildFakeData = async () => {
     Category.bulkCreate(categories),
     Product.bulkCreate(products),
     User.bulkCreate(users),
-    Order.bulkCreate(order),
-    // Order.bulkCreate(order),
   ]);
+
+  await Order.bulkCreate(order);
   await ProductOrder.bulkCreate(productsOrders);
+
   // dbData.forEach(console.log);
 };
 if (NODE_ENV !== 'test') {

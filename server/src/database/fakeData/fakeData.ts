@@ -249,6 +249,7 @@ const order = [{
   isSupplied: false,
   mobile: '+970567444517',
   address: 'string',
+  userId: 10,
 },
 {
   date: new Date(),
@@ -259,6 +260,7 @@ const order = [{
   isSupplied: false,
   mobile: '+970567444517',
   address: 'string',
+  userId: 10,
 },
 {
   date: new Date(),
@@ -269,6 +271,8 @@ const order = [{
   isSupplied: false,
   mobile: '+970567444517',
   address: 'string',
+  userId: 10,
+
 }];
 
 export {
