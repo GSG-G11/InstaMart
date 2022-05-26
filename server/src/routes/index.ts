@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import {
-
+  getUserBalance,
   addOrder,
   signUp,
   login,
@@ -35,6 +35,7 @@ router.get('/auth/user', isAuth, authUser);
 router.use('/admin', isAuth, adminRouter);
 router.post('/order', isAuth, addOrder);
 router.delete('/order', isAuth, deleteOrder);
+router.get('/balance', isAuth, getUserBalance);
 router.use(notFound);
 router.use(serverError);
 

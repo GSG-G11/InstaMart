@@ -45,7 +45,7 @@ export default function Statistics() {
         <Image
           cloudName="instamart"
           publicId={statisticsUrl}
-          width="700"
+          width="750"
           crop="scale"
         />
       </div>

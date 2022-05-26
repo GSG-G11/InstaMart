@@ -1,13 +1,25 @@
 import { Request, Response, NextFunction } from 'express';
 import {
-  fn, col, literal,
+  fn, col, literal, Op,
 } from 'sequelize';
 import { Order, User } from '../../database';
 
-const getUsersBalances = async (req:Request, res:Response, next:NextFunction) => {
+interface UserI {
+    id: number,
+    isAdmin: boolean,
+    name: string,
+    iat?: number
+}
+
+interface ModRequest extends Request{
+user?:UserI
+}
+const getUserBalance = async (req:ModRequest, res:Response, next:NextFunction) => {
+  const userId = req?.user?.id;
+
   try {
     const usersBalances = await Order.findAll({
-      where: { status: 'Approved' },
+      where: { [Op.and]: [{ status: 'Approved' }, { userId }] },
       include: {
         model: User,
         attributes: [],
@@ -32,4 +44,4 @@ const getUsersBalances = async (req:Request, res:Response, next:NextFunction) =>
   }
 };
 
-export default getUsersBalances;
+export default getUserBalance;

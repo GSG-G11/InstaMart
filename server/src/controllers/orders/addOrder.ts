@@ -53,7 +53,7 @@ const addOrder = async (req:ModRequest, res:Response, next:NextFunction) => {
       group: ['productOrder.orderId'],
       transaction: t,
     });
-    order.totalPrice = -Number(totalPrice[0].orderId);
+    order.totalPrice = -Number(totalPrice[0]?.orderId || 0);
     await order.save({ transaction: t });
     await t.commit();
 
