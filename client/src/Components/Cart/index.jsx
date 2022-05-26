@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Table,
   TableBody,
@@ -15,6 +15,7 @@ import {
   Button,
   Alert,
 } from '@mui/material';
+import axios from 'axios';
 import { Delete } from '@mui/icons-material';
 import { useCart } from '../../Hooks/useCart';
 import './style.css';
@@ -41,7 +42,21 @@ function CartDetails() {
   const [open, setOpen] = useState(false);
   const [errorAlert, setErrorAlert] = useState(false);
   const [succcessAlert, setSucccessAlert] = useState(false);
+  const [userBalance, getUserBalance] = useState(0);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios.get('/api/v1/balance');
+        const { data } = result.data;
+        getUserBalance(data[0].balance);
+      } catch (error) {
+        setErrorAlert(true);
+        setTimeout(() => setErrorAlert(false), 5000);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div className="cart-container">
       <div className="cart-title-number-section">
@@ -57,9 +72,7 @@ function CartDetails() {
           product in your cart
         </Typography>
       </div>
-      <TableContainer
-        component={Paper}
-      >
+      <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -122,7 +135,13 @@ function CartDetails() {
                     id="outlined-number"
                     type="number"
                     defaultValue={item.count}
-                    InputProps={{ inputProps: { min: '0', max: `${item.availableQuantity}`, step: '1' } }}
+                    InputProps={{
+                      inputProps: {
+                        min: '0',
+                        max: `${item.availableQuantity}`,
+                        step: '1',
+                      },
+                    }}
                     onChange={(e) => addToCartLS(e.target.value - item.count, item)}
                   />
                 </StyledTableCell>
@@ -149,12 +168,18 @@ function CartDetails() {
       <div className="checkout-container">
         <div className="checkout-container-content">
           <Typography className="total-price">
+            Your Balance :
+            {' '}
+            <span className="total-price-value">{`$${userBalance}`}</span>
+            {' '}
+          </Typography>
+          <Typography className="total-price">
             Total Price:
             {' '}
             <span className="total-price-value">
               {`$${cartitems.reduce(
-                (previousValue, currentValue) => previousValue
-                 + +currentValue.price * currentValue.count,
+                (previousValue, currentValue) => (
+                  previousValue + +currentValue.price * currentValue.count),
                 0,
               )}   `}
             </span>
