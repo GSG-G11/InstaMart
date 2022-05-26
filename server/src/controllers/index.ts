@@ -17,7 +17,7 @@ import {
 } from './products';
 
 import {
-  getOrders, addOrder, deleteOrder, editOrder, getUsersBalances,
+  getOrders, addOrder, deleteOrder, editOrder, getUsersBalances, getUserBalance,
 } from './orders';
 
 export {
@@ -42,4 +42,5 @@ export {
   editOrder,
   getUsersBalances,
   getTop5ProductsSales,
+  getUserBalance,
 };
