@@ -3,7 +3,7 @@ import { CustomizedError } from '../../utilities';
 import { Product } from '../../database';
 
 const deleteProduct = async (req:Request, res:Response, next:NextFunction) => {
-  const { id } = req.body;
+  const { id } = req.params;
   try {
     await Product.destroy({
       where: { id },

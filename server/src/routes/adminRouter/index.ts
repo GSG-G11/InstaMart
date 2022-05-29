@@ -9,10 +9,11 @@ const adminRouter = Router();
 
 adminRouter.use(isAuth);
 adminRouter.use(isAdmin);
+adminRouter.route('/product/:id')
+  .delete(deleteProduct);
 adminRouter.route('/product')
   .post(addProduct)
-  .patch(editProduct)
-  .delete(deleteProduct);
+  .patch(editProduct);
 adminRouter.route('/order/:id')
   .patch(editOrder)
   .delete(deleteOrder);
