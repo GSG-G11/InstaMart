@@ -222,14 +222,11 @@ describe('/api/v1/categories/test/products', () => {
   });
 });
 
-describe('Delete /api/v1/admin/product', () => {
+describe('Delete /api/v1/admin/product/1', () => {
   test('success delete product ', (done) => {
     supertest(app)
-      .delete('/api/v1/admin/product')
+      .delete('/api/v1/admin/product/1')
       .set('Cookie', [`token=${process.env.ADMIN}`])
-      .send({
-        id: 1,
-      })
       .expect(200)
       .end((err, res) => {
         if (err) {
@@ -241,13 +238,10 @@ describe('Delete /api/v1/admin/product', () => {
   });
 });
 
-describe('Delete /api/v1/admin/product', () => {
+describe('Delete /api/v1/admin/product/2', () => {
   test('Unauthorized admin ', (done) => {
     supertest(app)
-      .delete('/api/v1/admin/product')
-      .send({
-        id: 2,
-      })
+      .delete('/api/v1/admin/product/2')
       .expect(401)
       .end((err, res) => {
         if (err) {
@@ -262,11 +256,8 @@ describe('Delete /api/v1/admin/product', () => {
 describe('Delete /api/v1/admin/product', () => {
   test('server error ', (done) => {
     supertest(app)
-      .delete('/api/v1/admin/product')
+      .delete('/api/v1/admin/product/s')
       .set('Cookie', [`token=${process.env.ADMIN}`])
-      .send({
-        id: 's',
-      })
       .expect(500)
       .end((err, res) => {
         if (err) {
