@@ -38,6 +38,16 @@ export default function CustomizedTables() {
   const handleInputChange = ({ target: { value } }) => {
     setSearchTerm(value);
   };
+  const handleDelete = async (id) => {
+    try {
+      const ProductDeleted = await axios.delete(`/api/v1/admin/product/${id}`);
+      if (ProductDeleted && ProductDeleted.data) {
+        setDataChangeToggle({ setDataChangeToggle });
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
     const getProducts = async () => {
       try {
@@ -121,7 +131,7 @@ export default function CustomizedTables() {
                       <Edit color="success" />
                     </IconButton>
                     {' '}
-                    <IconButton>
+                    <IconButton onClick={() => handleDelete(id)}>
                       <Delete color="error" />
                     </IconButton>
 
